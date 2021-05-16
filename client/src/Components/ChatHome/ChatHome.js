@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function ChatHome() {
+function ChatHome({ logoutUser }) {
     const [sideDrawer, setSideDrawer] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -94,7 +94,10 @@ function ChatHome() {
                         open={Boolean(menuOpen)}
                         onClose={handleMenuClose}
                     >
-                        <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+                        <MenuItem onClick={() => {
+                            handleMenuClose();
+                            logoutUser();
+                        }}>Logout</MenuItem>
                     </Menu>
                 </Toolbar>
             </AppBar>
@@ -154,7 +157,7 @@ function ChatHome() {
                 {/* <IconButton style={{ backgroundColor: prefersDarkMode ? "#424242" : "white",borderRadius:0,padding:"1rem" }}>
                     <EmojiEmotionsIcon />
                 </IconButton> */}
-                <IconButton style={{ backgroundColor: prefersDarkMode ? "#424242" : "white",borderRadius:0,padding:"1rem" }}>
+                <IconButton style={{ backgroundColor: prefersDarkMode ? "#424242" : "white", borderRadius: 0, padding: "1rem" }}>
                     <SendIcon />
                 </IconButton>
             </div>
