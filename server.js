@@ -21,7 +21,11 @@ app.use(routers);
 // Socket.io
 io.on("connection", (socket) => {
   console.log("A user connected !");
-  socket.emit("hi", { name: "Rahif" });
+
+  socket.on("userConnected", (data) => {
+    data.type = "static";
+    io.emit("userConnect", data)
+  })
 });
 
 // React Setup

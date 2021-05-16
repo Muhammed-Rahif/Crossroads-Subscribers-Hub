@@ -14,17 +14,17 @@ const cookieKey = "cr-chat-cookie";
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies([cookieKey]);
-  const [userLogged,setUserLogged] = useState(Boolean(cookies.userData));
+  const [userLogged, setUserLogged] = useState(Boolean(cookies.userData));
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   var setUserData = (userData) => {
-    setCookie('userData', userData, { path: '/', secure: true });
+    setCookie('userData', userData, { path: '/' });
     window.location.reload();
   }
   var getUserData = () => {
     return cookies.userData;
   }
-  var logoutUser = () =>{
+  var logoutUser = () => {
     removeCookie("userData");
     window.location.reload();
   }
@@ -43,21 +43,21 @@ function App() {
 
 
   return (
-    <ThemeProvider theme={theme}>
-      <CookiesProvider>
-        <CssBaseline />
-        <Router>
-          <Switch>
+    <CookiesProvider>
+      <Router>
+        <Switch>
+          {/* <ThemeProvider theme={theme}>
+            <CssBaseline /> */}
             <Route exact path="/" component={ChatHome}>
-            {(typeof getUserData() != "undefined") ? <ChatHome logoutUser={logoutUser} />:<Redirect to="/get-in" />}
+              {(typeof getUserData() != "undefined") ? <ChatHome getUserData={getUserData} logoutUser={logoutUser} /> : <Redirect to="/get-in" />}
             </Route>
             <Route path="/get-in" component={GetIn}>
-              {(typeof getUserData() == "undefined") ? <GetIn setUserData={setUserData} getUserData={getUserData} />:<Redirect to="/" />}
+              {(typeof getUserData() == "undefined") ? <GetIn setUserData={setUserData} getUserData={getUserData} /> : <Redirect to="/" />}
             </Route>
-          </Switch>
-        </Router>
-      </CookiesProvider>
-    </ThemeProvider>
+          {/* </ThemeProvider> */}
+        </Switch>
+      </Router>
+    </CookiesProvider>
   );
 }
 

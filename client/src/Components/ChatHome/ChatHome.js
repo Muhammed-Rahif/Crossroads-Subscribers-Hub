@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
+import { io } from "socket.io-client";
 // Components
 import SideDrawer from "../SideDrawer/SideDrawer"
 import { LeftBubble, LeftSecondaryBubble, RightBubble, RightSecondaryBubble, StaticBubble } from "../ChatBubbles/ChatBubbles";
@@ -17,6 +19,7 @@ import TextField from '@material-ui/core/TextField';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
+import App from '../../App';
 
 // Material Ui styles
 const useStyles = makeStyles((theme) => ({
@@ -27,8 +30,8 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(2),
     },
     toolbar: {
-        minHeight: 100,
-        maxHeight: 100,
+        minHeight: 75,
+        maxHeight: 75,
         alignItems: 'flex-start',
         paddingTop: theme.spacing(1),
         paddingBottom: theme.spacing(2),
@@ -47,12 +50,15 @@ const useStyles = makeStyles((theme) => ({
     chatBody: {
         zIndex: "-1",
         marginTop: "100px",
+        height: "80vh",
+        overflowY: "scroll",
     }
 }));
 
-function ChatHome({ logoutUser }) {
+function ChatHome({ logoutUser, getUserData }) {
     const [sideDrawer, setSideDrawer] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [chatBody, setChatBody] = useState(new Array());
 
     const classes = useStyles();
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -64,6 +70,20 @@ function ChatHome({ logoutUser }) {
     const handleMenuClose = () => {
         setMenuOpen(null);
     };
+
+    useEffect(() => {
+        var socket = io();
+        socket.on("connect", () => {
+            socket.emit("userConnected", getUserData())
+        });
+        socket.on("userConnect", (data) => {
+            // ReactDOM.render(<StaticBubble text={`${data.name} Joined`}/> , document.getElementById("chatBody"));
+            var prevArra = chatBody;
+            prevArra.push(data);
+            setChatBody(prevArra);
+            console.log(chatBody);
+        })
+    }, [])
 
     return (
         <div className={classes.root}>
@@ -101,45 +121,15 @@ function ChatHome({ logoutUser }) {
                     </Menu>
                 </Toolbar>
             </AppBar>
-            <div className={classes.chatBody}>
+            <div id="chatBody" className={classes.chatBody}>
                 <RightBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <RightSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <LeftBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-                <StaticBubble text="Rishan Joined" />
-                <LeftSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alll" />
+                <RightSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alll" />
+                <LeftBubble name="You" time="10:00" msg="Hi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alll" />
+                <LeftSecondaryBubble name="You" time="10:00" msg="Hi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alll" />
                 <StaticBubble text="You Joined" />
+                {
+                    
+                }
             </div>
             <div style={{ bottom: 0, position: "sticky", display: "flex", alignItems: "center", justifyContent: "center", }}>
                 <TextField
@@ -152,12 +142,12 @@ function ChatHome({ logoutUser }) {
                     rows="1"
                     rowsMax="4"
                     color="primary"
-                    style={{ backgroundColor: prefersDarkMode ? "#424242" : "white", }}
+                    style={{ backgroundColor: "white", }}
                 />
                 {/* <IconButton style={{ backgroundColor: prefersDarkMode ? "#424242" : "white",borderRadius:0,padding:"1rem" }}>
                     <EmojiEmotionsIcon />
                 </IconButton> */}
-                <IconButton style={{ backgroundColor: prefersDarkMode ? "#424242" : "white", borderRadius: 0, padding: "1rem" }}>
+                <IconButton style={{ backgroundColor: "lightgrey", borderRadius: 0, padding: "1rem" }}>
                     <SendIcon />
                 </IconButton>
             </div>
