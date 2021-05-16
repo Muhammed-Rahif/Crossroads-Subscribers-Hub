@@ -16,7 +16,7 @@ import SendIcon from '@material-ui/icons/Send';
 import TextField from '@material-ui/core/TextField';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { InputAdornment } from '@material-ui/core';
+import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 
 // Material Ui styles
 const useStyles = makeStyles((theme) => ({
@@ -81,7 +81,7 @@ function ChatHome() {
                     </IconButton>
                     <div className={classes.header}>
                         <Typography className={classes.title} variant="h4" noWrap>
-                            <img src="./logo192.png" width="100" height="80" alt="CR CHAT" />
+                            <img src="./logo192.png" width="80" height="80" alt="CR CHAT" />
                         </Typography>
                     </div>
                     <IconButton onClick={handleMenuClick} aria-label="display more actions" edge="end" color="inherit">
@@ -151,6 +151,9 @@ function ChatHome() {
                     color="primary"
                     style={{ backgroundColor: prefersDarkMode ? "#424242" : "white", }}
                 />
+                {/* <IconButton style={{ backgroundColor: prefersDarkMode ? "#424242" : "white",borderRadius:0,padding:"1rem" }}>
+                    <EmojiEmotionsIcon />
+                </IconButton> */}
                 <IconButton style={{ backgroundColor: prefersDarkMode ? "#424242" : "white",borderRadius:0,padding:"1rem" }}>
                     <SendIcon />
                 </IconButton>

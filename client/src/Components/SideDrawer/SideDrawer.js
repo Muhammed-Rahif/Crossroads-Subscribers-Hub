@@ -31,7 +31,7 @@ function SideDrawer({ status, setSideDrawer }) {
             <Drawer anchor={"left"} open={open} >
                 <List className={classes.list}>
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                        <img src="./logo192.png" width="100" height="80" alt="CR CHAT" />
+                        <img src="./logo192.png" width="80" height="80" alt="CR CHAT" />
                         <h3>CR CHAT</h3>
                     </div>
                 </List>
