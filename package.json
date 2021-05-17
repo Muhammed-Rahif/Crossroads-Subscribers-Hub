@@ -14,5 +14,9 @@
     "express": "^4.17.1",
     "react-router-dom": "^5.2.0",
     "socket.io": "^4.1.1"
+  },
+  "engines": {
+    "node": "16.0.0",
+    "npm" : "7.10.0"
   }
 }
