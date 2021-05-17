@@ -12,27 +12,25 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 // Components
 import ChatHome from "./Components/ChatHome/ChatHome";
 import GetIn from "./Components/GetIn/GetIn";
-// React cookie
-import { CookiesProvider } from "react-cookie";
-import { useCookies } from "react-cookie";
-const cookieKey = "cr-chat-cookie";
+// Store
+var store = require("store");
+const clientStorageKey = "cr-chat-store";
 
 function App() {
-  const [cookies, setCookie, removeCookie] = useCookies([cookieKey]);
   const [darkMode, setDarkMode] = useState(
     window.matchMedia("(prefers-color-scheme: dark)").matches
   );
   var prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   var setUserData = (userData) => {
-    setCookie("userData", userData, { path: "/" });
+    store.set(clientStorageKey, userData);
     window.location.reload();
   };
   var getUserData = () => {
-    return cookies.userData;
+    return store.get(clientStorageKey);
   };
   var logoutUser = () => {
-    removeCookie("userData");
+    store.remove(clientStorageKey);
     window.location.reload();
   };
   var changeMode = (val) => {
@@ -54,7 +52,6 @@ function App() {
   );
 
   return (
-    <CookiesProvider>
       <Router>
         <Switch>
           <ThemeProvider theme={theme}>
@@ -80,7 +77,6 @@ function App() {
           </ThemeProvider>
         </Switch>
       </Router>
-    </CookiesProvider>
   );
 }
 
