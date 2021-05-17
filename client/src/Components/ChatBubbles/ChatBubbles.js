@@ -64,6 +64,8 @@ function StaticBubble({ text }) {
     <Paper
       style={{
         padding: ".1rem",
+        paddingLeft: "1rem",
+        paddingRight: "1rem",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

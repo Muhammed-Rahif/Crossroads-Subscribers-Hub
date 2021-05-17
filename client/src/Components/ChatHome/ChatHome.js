@@ -59,11 +59,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-var socket;
+var socket = io("http://192.168.43.102:5000");
+var lastMessageUserId;
 function ChatHome({ logoutUser, getUserData, changeMode }) {
+  const [chatBubbles, setChatBubbles] = useState([]);
   const [sideDrawer, setSideDrawer] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [chatBubbles, setChatBubbles] = useState([]);
+  const [textFieldValue, setTextFieldValue] = useState("");
 
   const classes = useStyles();
 
@@ -76,16 +78,83 @@ function ChatHome({ logoutUser, getUserData, changeMode }) {
   };
 
   var RenderChat = ({ itm }) => {
-    if (itm.type === "static" && getUserData().userId === itm.userId) {
+    console.log(itm);
+    if (
+      itm.type === "static" &&
+      getUserData().userId === itm.userId &&
+      itm.reason === "connect"
+    ) {
       return <StaticBubble text="You Joined" />;
-    } else if (itm.type === "static") {
+    } else if (itm.type === "static" && itm.reason === "connect") {
       return <StaticBubble text={`${itm.name} Joined`} />;
+    } else if (itm.type === "static" && itm.reason === "disconnect") {
+      return <StaticBubble text={`${itm.name} Left`} />;
+    } else if (itm.type === "message" && getUserData().userId === itm.userId) {
+      return <RightBubble name="You" msg={itm.msg} time={itm.time} />;
+    } else if (itm.type === "message") {
+      return <LeftBubble name={itm.name} msg={itm.msg} time={itm.time} />;
+    } else if (
+      itm.type === "secondary" &&
+      getUserData().userId === itm.userId
+    ) {
+      return <RightSecondaryBubble msg={itm.msg} time={itm.time} />;
+    } else if (itm.type === "secondary") {
+      return <LeftSecondaryBubble msg={itm.msg} time={itm.time} />;
+    } else {
+      return (
+        <StaticBubble text="Someting went wrong. You need to reload or reenter.!" />
+      );
     }
   };
 
+  var sendMessage = () => {
+    if (
+      textFieldValue === null ||
+      textFieldValue === " " ||
+      textFieldValue === ""
+    ) {
+      document.getElementById("textField").focus();
+    } else {
+      let data = getUserData();
+      data.msg = textFieldValue;
+      socket.emit("massage", data);
+      setTextFieldValue("")
+      document.getElementById("textField").focus();
+    }
+  };
+
+  useEffect(() => {
+    // Socket.io
+    socket.on("connect", () => {
+      socket.emit("userConnected", getUserData());
+      socket.on("userConnect", (data) => {
+        setChatBubbles((chatBubbles) => [...chatBubbles, data]);
+      });
+      socket.on("userDisconnect", (data) => {
+        setChatBubbles((chatBubbles) => [...chatBubbles, data]);
+      });
+      socket.on("message", (data) => {
+        if (lastMessageUserId === data.userId) {
+          data.type = "secondary";
+          setChatBubbles((chatBubbles) => [...chatBubbles, data]);
+        } else {
+          data.type = "message";
+          setChatBubbles((chatBubbles) => [...chatBubbles, data]);
+        }
+        let chatBody = document.getElementById("chatBody");
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: 'smooth' })
+        lastMessageUserId = data.userId;
+      });
+    });
+  }, []);
+
   return (
     <div className={classes.root}>
-      <SideDrawer status={sideDrawer} changeMode={changeMode} setSideDrawer={setSideDrawer} />
+      <SideDrawer
+        status={sideDrawer}
+        changeMode={changeMode}
+        setSideDrawer={setSideDrawer}
+      />
       <AppBar
         position="fixed"
         color="inherit"
@@ -138,26 +207,9 @@ function ChatHome({ logoutUser, getUserData, changeMode }) {
         </Toolbar>
       </AppBar>
       <div id="chatBody" className={classes.chatBody}>
-        <RightBubble name="You" time="10:00" msg="Hi therre! hi alll" />
-        <RightSecondaryBubble
-          name="You"
-          time="10:00"
-          msg="Hi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alll"
-        />
-        <LeftBubble
-          name="You"
-          time="10:00"
-          msg="Hi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alll"
-        />
-        <LeftSecondaryBubble
-          name="You"
-          time="10:00"
-          msg="Hi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alllHi therre! hi alll"
-        />
-        <StaticBubble text="John Joined" />
-        {chatBubbles.map((itm) => {
-          return <RenderChat itm={itm} key={itm.userId} />;
-        })}
+        {chatBubbles.map((itm, key) => (
+          <RenderChat itm={itm} key={key} />
+        ))}
       </div>
       <div
         style={{
@@ -176,8 +228,13 @@ function ChatHome({ logoutUser, getUserData, changeMode }) {
           variant="filled"
           fullWidth
           rows="1"
+          id="textField"
           rowsMax="4"
           color="primary"
+          value={textFieldValue}
+          onChange={(e) => {
+            setTextFieldValue(e.target.value);
+          }}
         />
         {/* <IconButton style={{ backgroundColor: "inherit",borderRadius:0,padding:"1rem" }}>
                     <EmojiEmotionsIcon />
@@ -187,6 +244,7 @@ function ChatHome({ logoutUser, getUserData, changeMode }) {
             borderRadius: 0,
             padding: "1rem",
           }}
+          onClick={sendMessage}
         >
           <SendIcon />
         </IconButton>
