@@ -18,14 +18,11 @@ app.use(cors());
 // Custom Routers
 app.use(routers);
 
+// All users
+var allUsers = new Array();
 // Socket.io
 io.on("connection", (socket) => {
   console.log("A user connected !");
-
-  socket.on("userConnected", (data) => {
-    data.type = "static";
-    io.emit("userConnect", data)
-  })
 });
 
 // React Setup
