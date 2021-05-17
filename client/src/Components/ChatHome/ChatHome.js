@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 
+// Socket.io
 import { io } from "socket.io-client";
+// Moment
+import moment from "moment";
 // Components
 import SideDrawer from "../SideDrawer/SideDrawer";
 import {
@@ -117,8 +120,9 @@ function ChatHome({ logoutUser, getUserData, changeMode }) {
     } else {
       let data = getUserData();
       data.msg = textFieldValue;
+      data.time = moment().format("LT");
       socket.emit("massage", data);
-      setTextFieldValue("")
+      setTextFieldValue("");
       document.getElementById("textField").focus();
     }
   };
@@ -142,7 +146,7 @@ function ChatHome({ logoutUser, getUserData, changeMode }) {
           setChatBubbles((chatBubbles) => [...chatBubbles, data]);
         }
         let chatBody = document.getElementById("chatBody");
-        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: 'smooth' })
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
         lastMessageUserId = data.userId;
       });
     });
