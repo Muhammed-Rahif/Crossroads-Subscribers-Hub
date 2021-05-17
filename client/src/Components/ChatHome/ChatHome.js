@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-var socket = io("http://192.168.43.102:5000");
+var socket = io("https://crossroads-chat.herokuapp.com/");
 var lastMessageUserId;
 function ChatHome({ logoutUser, getUserData, changeMode }) {
   const [chatBubbles, setChatBubbles] = useState([]);
