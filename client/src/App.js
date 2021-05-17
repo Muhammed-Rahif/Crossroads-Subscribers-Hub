@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -19,9 +19,10 @@ const cookieKey = "cr-chat-cookie";
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies([cookieKey]);
-  const [prefersDarkMode, setPrefersDarkMode] = useState(
-    useMediaQuery("(prefers-color-scheme: dark)")
+  const [darkMode, setDarkMode] = useState(
+    window.matchMedia("(prefers-color-scheme: dark)").matches
   );
+  var prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   var setUserData = (userData) => {
     setCookie("userData", userData, { path: "/" });
@@ -34,15 +35,22 @@ function App() {
     removeCookie("userData");
     window.location.reload();
   };
+  var changeMode = (val) => {
+    setDarkMode(val);
+  };
+
+  useEffect(() => {
+    setDarkMode(prefersDarkMode);
+  }, [useMediaQuery("(prefers-color-scheme: dark)")]);
 
   const theme = React.useMemo(
     () =>
       createMuiTheme({
         palette: {
-          type: prefersDarkMode ? "dark" : "light",
+          type: darkMode ? "dark" : "light",
         },
       }),
-    [prefersDarkMode]
+    [darkMode]
   );
 
   return (
@@ -54,6 +62,7 @@ function App() {
             <Route exact path="/" component={ChatHome}>
               {typeof getUserData() != "undefined" ? (
                 <ChatHome
+                  changeMode={changeMode}
                   getUserData={getUserData}
                   logoutUser={logoutUser}
                 />

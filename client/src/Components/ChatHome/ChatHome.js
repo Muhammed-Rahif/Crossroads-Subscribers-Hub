@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 var socket;
-function ChatHome({ logoutUser, getUserData }) {
+function ChatHome({ logoutUser, getUserData, changeMode }) {
   const [sideDrawer, setSideDrawer] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [chatBubbles, setChatBubbles] = useState([]);
@@ -85,7 +85,7 @@ function ChatHome({ logoutUser, getUserData }) {
 
   return (
     <div className={classes.root}>
-      <SideDrawer status={sideDrawer} setSideDrawer={setSideDrawer} />
+      <SideDrawer status={sideDrawer} changeMode={changeMode} setSideDrawer={setSideDrawer} />
       <AppBar
         position="fixed"
         color="inherit"
@@ -166,7 +166,6 @@ function ChatHome({ logoutUser, getUserData }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "inherit",
         }}
       >
         <TextField

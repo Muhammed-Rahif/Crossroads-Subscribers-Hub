@@ -20,12 +20,18 @@ const useStyles = makeStyles({
   },
 });
 
-function SideDrawer({ status, setSideDrawer }) {
+function SideDrawer({ status, setSideDrawer, changeMode }) {
   const [open, setOpen] = useState(true);
+  const [switchButton, setSwitchButton] = useState(
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  );
   const classes = useStyles();
   useEffect(() => {
     setOpen(status);
   }, [status]);
+  useEffect(()=>{
+    changeMode(switchButton);
+  },[switchButton])
 
   return (
     <div
@@ -68,6 +74,10 @@ function SideDrawer({ status, setSideDrawer }) {
             <Switch
               name="checkedB"
               color="primary"
+              onChange={(e) => {
+                setSwitchButton(e.target.checked);
+              }}
+              checked={switchButton}
             />
           </ListItem>
         </List>
