@@ -1,2 +1,2 @@
 # CR Chat
-### Live at [Here](https://crossroads-chat.herokuapp.com/)
+### Live @ [Here](https://crossroads-chat.herokuapp.com/)
