@@ -51,13 +51,15 @@ io.on("connection", (socket) => {
   socket.on("massage", (data) => {
     io.emit("message", data);
   });
-
+  
   socket.on("disconnect", (reason) => {
     console.log("A user disconnected !");
     var data = allUsers.splice(searchUserIndex(socket.id), 1);
-    data[0].type = "static";
-    data[0].reason = "disconnect";
-    io.emit("userDisconnect", data[0]);
+    if( data.length < 0){
+      data[0].type = "static";
+      data[0].reason = "disconnect";
+      io.emit("userDisconnect", data[0]);
+    }
   });
 });
 

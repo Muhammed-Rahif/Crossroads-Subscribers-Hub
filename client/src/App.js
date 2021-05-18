@@ -52,31 +52,33 @@ function App() {
   );
 
   return (
-      <Router>
-        <Switch>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Route exact path="/" component={ChatHome}>
-              {typeof getUserData() != "undefined" ? (
-                <ChatHome
-                  changeMode={changeMode}
-                  getUserData={getUserData}
-                  logoutUser={logoutUser}
-                />
-              ) : (
-                <Redirect to="/get-in" />
-              )}
-            </Route>
-            <Route path="/get-in" component={GetIn}>
-              {typeof getUserData() == "undefined" ? (
-                <GetIn setUserData={setUserData} getUserData={getUserData} />
-              ) : (
-                <Redirect to="/" />
-              )}
-            </Route>
-          </ThemeProvider>
-        </Switch>
-      </Router>
+    <Router>
+      <Switch>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Route exact path="/" component={ChatHome}>
+            {typeof getUserData() != "undefined" ? (
+              <>
+              <ChatHome
+                changeMode={changeMode}
+                getUserData={getUserData}
+                logoutUser={logoutUser}
+              />
+              </>
+            ) : (
+              <Redirect to="/get-in" />
+            )}
+          </Route>
+          <Route path="/get-in" component={GetIn}>
+            {typeof getUserData() == "undefined" ? (
+              <GetIn setUserData={setUserData} getUserData={getUserData} />
+            ) : (
+              <Redirect to="/" />
+            )}
+          </Route>
+        </ThemeProvider>
+      </Switch>
+    </Router>
   );
 }
 

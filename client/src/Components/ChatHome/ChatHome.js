@@ -6,6 +6,7 @@ import { io } from "socket.io-client";
 import moment from "moment";
 // Components
 import SideDrawer from "../SideDrawer/SideDrawer";
+import BackDrop from "../Backdrop/Backdrop";
 import {
   LeftBubble,
   LeftSecondaryBubble,
@@ -67,6 +68,7 @@ var lastMessageUserId;
 function ChatHome({ logoutUser, getUserData, changeMode }) {
   const [chatBubbles, setChatBubbles] = useState([]);
   const [sideDrawer, setSideDrawer] = useState(false);
+  const [backDrop, setBackDrop] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [textFieldValue, setTextFieldValue] = useState("");
 
@@ -79,6 +81,31 @@ function ChatHome({ logoutUser, getUserData, changeMode }) {
   const handleMenuClose = () => {
     setMenuOpen(null);
   };
+
+  useEffect(() => {
+    socket.on("connecting", () => {
+      setBackDrop("Connecting... Get ready for your entry..!");
+    });
+    socket.on("connect", () => {
+      setBackDrop(false);
+    });
+    socket.on("reconnecting", () => {
+      setBackDrop("Reconnecting... Get ready for your entry..!");
+    });
+    socket.on("reconnect_error", () => {
+      setBackDrop("Ooops..! Reconnecting..!");
+    });
+    socket.on("reconnect", () => {
+      setBackDrop("Done..! Reconnected to the Server..!");
+      window.location.reload();
+    });
+    socket.on("connect_error", (err) => {
+      setBackDrop(""+err);
+    });
+    socket.on("disconnect", () => {
+      setBackDrop("Something went wrong... Reconnecting..!");
+    });
+  }, []);
 
   var RenderChat = ({ itm }) => {
     console.log(itm);
@@ -154,6 +181,7 @@ function ChatHome({ logoutUser, getUserData, changeMode }) {
 
   return (
     <div className={classes.root}>
+      { backDrop && <BackDrop reason={backDrop} /> }
       <SideDrawer
         status={sideDrawer}
         changeMode={changeMode}
