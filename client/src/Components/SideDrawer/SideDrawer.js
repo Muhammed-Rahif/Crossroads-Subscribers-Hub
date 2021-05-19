@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+// Component
+import Info from "../Info/Info";
+
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -25,13 +28,15 @@ function SideDrawer({ status, setSideDrawer, changeMode }) {
   const [switchButton, setSwitchButton] = useState(
     window.matchMedia("(prefers-color-scheme: dark)").matches
   );
+  const [info,setInfo] = useState(false);
+
   const classes = useStyles();
   useEffect(() => {
     setOpen(status);
   }, [status]);
-  useEffect(()=>{
+  useEffect(() => {
     changeMode(switchButton);
-  },[switchButton])
+  }, [switchButton])
 
   return (
     <div
@@ -41,6 +46,7 @@ function SideDrawer({ status, setSideDrawer, changeMode }) {
         setOpen(false);
       }}
     >
+      {info && <Info status={info} setInfo={setInfo} />}
       <Drawer anchor={"left"} open={open}>
         <List className={classes.list}>
           <div
@@ -51,7 +57,7 @@ function SideDrawer({ status, setSideDrawer, changeMode }) {
               justifyContent: "center",
             }}
           >
-            <img src="./logo192.png" width="80" height="80" alt="CR CHAT" />
+            <img src="./logo192.png" width="60" height="60" alt="CR CHAT" />
             <h3>CR CHAT</h3>
           </div>
         </List>
@@ -83,7 +89,9 @@ function SideDrawer({ status, setSideDrawer, changeMode }) {
         </List>
         <Divider />
         <List className={classes.list}>
-          <ListItem button>
+          <ListItem button onClick={() => {
+            setInfo(true);
+          }}>
             <ListItemIcon>
               <InfoIcon />
             </ListItemIcon>

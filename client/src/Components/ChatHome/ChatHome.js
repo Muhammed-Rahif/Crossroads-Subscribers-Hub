@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   toolbar: {
-    minHeight: 100,
-    maxHeight: 100,
+    minHeight: 75,
+    maxHeight: 75,
     alignItems: "flex-start",
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(2),
@@ -57,8 +57,8 @@ const useStyles = makeStyles((theme) => ({
   },
   chatBody: {
     zIndex: "-1",
-    marginTop: "100px",
-    height: "80vh",
+    marginTop: "75px",
+    height: "90vh",
     overflowY: "scroll",
   },
 }));
@@ -97,7 +97,6 @@ function ChatHome({ logoutUser, getUserData, changeMode }) {
     });
     socket.on("reconnect", () => {
       setBackDrop("Done..! Reconnected to the Server..!");
-      window.location.reload();
     });
     socket.on("connect_error", (err) => {
       setBackDrop(""+err);
@@ -209,7 +208,7 @@ function ChatHome({ logoutUser, getUserData, changeMode }) {
           </IconButton>
           <div className={classes.header}>
             <Typography className={classes.title} variant="h4" noWrap>
-              <img src="./logo192.png" width="80" height="80" alt="CR CHAT" />
+              <img src="./logo192.png" width="52" height="52" alt="CR CHAT" />
             </Typography>
           </div>
           <IconButton
