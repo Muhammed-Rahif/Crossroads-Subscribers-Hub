@@ -68,7 +68,7 @@ var lastMessageUserId;
 function ChatHome({ logoutUser, getUserData, changeMode }) {
   const [chatBubbles, setChatBubbles] = useState([]);
   const [sideDrawer, setSideDrawer] = useState(false);
-  const [backDrop, setBackDrop] = useState("");
+  const [backDrop, setBackDrop] = useState(" ");
   const [menuOpen, setMenuOpen] = useState(false);
   const [textFieldValue, setTextFieldValue] = useState("");
 
