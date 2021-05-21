@@ -54,6 +54,7 @@ For running this project on localhost you need these things ready
 
 ### Installation and Contributing 📥️
 
+#### Installation :-
 1. Fork this repository 
 2. Clone the forked repo from your Github
    ```sh
@@ -81,16 +82,17 @@ For running this project on localhost you need these things ready
    cd ..
    npm run devStart
    ```
+   
+#### Contributing :-
 
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-<!-- USAGE EXAMPLES -->
-<!--## Usage 🖱️
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_-->
-
-
+9. Create your own Branch (`git checkout -b <YOUR_BRANCH_NAME>`)
+10. Write some code, Fix some issues, Make your sign.
+11. Add new files to tracking list (`git add --all` or `git add <NEW_FILE_NAME>`)
+12. Commit your Changes (`git commit -m '<YOUR_COMMIT_MESSAGE>'`)
+13. Push to the forked repository Branch (`git push origin react`)
+14. Then Open a Pull Request to main repository
 
 <!-- ROADMAP -->
 ## Roadmap ✨️
@@ -98,14 +100,4 @@ _For more examples, please refer to the [Documentation](https://example.com)_-->
 See the [open issues](https://github.com/Muhammed-Rahif/CR-Chat/issues) for a list of proposed features (and known issues).
 
 
-
-<!-- CONTRIBUTING 
-## Contributing
-
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+<hr />
