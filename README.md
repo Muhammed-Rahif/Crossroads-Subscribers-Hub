@@ -73,22 +73,22 @@ For running this project on localhost you need these things ready
    yarn install
    ```
 7. Run the client on `localhost:3000`
-  ```shell
-  yarn start
-  ```
+   ```shell
+   yarn start
+   ```
 8. Run the server on `localhost:5000`
-  ```shell
-  cd ..
-  npm run devStart
-  ```
+   ```shell
+   cd ..
+   npm run devStart
+   ```
 
 
 <!-- USAGE EXAMPLES -->
-## Usage 🖱️
+<!--## Usage 🖱️
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+_For more examples, please refer to the [Documentation](https://example.com)_-->
 
 
 
@@ -99,7 +99,7 @@ See the [open issues](https://github.com/Muhammed-Rahif/CR-Chat/issues) for a li
 
 
 
-<!-- CONTRIBUTING -->
+<!-- CONTRIBUTING 
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
