@@ -92,7 +92,7 @@ Contributions are what make the open source community such an amazing place to b
 11. Add new files to tracking list (`git add --all` or `git add <NEW_FILE_NAME>`)
 12. Commit your Changes (`git commit -m '<YOUR_COMMIT_MESSAGE>'`)
 13. Push to the forked repository Branch (`git push origin react`)
-14. Then Open a Pull Request to [main repository](https://github.com/Muhammed-Rahif/CR-Chat)
+14. Then Open a Pull Request to [main repository](https://github.com/Muhammed-Rahif/CR-Chat) ( this repository )
 
 <!-- ROADMAP -->
 ## Roadmap ✨️
