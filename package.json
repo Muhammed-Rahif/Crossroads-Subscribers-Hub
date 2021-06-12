@@ -1,0 +1,9 @@
+{
+  "name": "crossroads-chat",
+  "version": "2.0.0",
+  "description": "This is a Progressive Web App made for crossroads subscribers",
+  "main": "server.js",
+  "repository": "git@github.com:Muhammed-Rahif/CR-Chat.git",
+  "author": "Muhammed Rahif <rahifpalliyalil@gmail.com>",
+  "license": "MIT"
+}
