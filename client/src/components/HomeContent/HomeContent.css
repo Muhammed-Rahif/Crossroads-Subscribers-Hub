@@ -1,0 +1,16 @@
+.home-content-wrapper {
+  margin-top: 4rem;
+  flex-grow: 1;
+  display: flex;
+}
+.card-title {
+  text-align: center;
+  font-size: xx-large;
+  font-weight: bold;
+}
+.video-cards-title{
+  width: 100%;
+  text-align: center;
+  font-size: xx-large;
+  font-weight: bold;
+}

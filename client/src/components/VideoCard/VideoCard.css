@@ -1,0 +1,39 @@
+.video-card {
+  padding: 1rem;
+  margin: 1rem;
+}
+.video-card .youtube-video {
+  width: 100%;
+  height: 18rem;
+}
+.video-card .content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+.video-card .content .title{
+    font-weight: bold;
+}
+.video-card .content .badges{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.video-card .content .badges .badge {
+  margin: 0.4rem;
+}
+.video-card .content .link-btns{
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+.video-card .content .link-btns .btn{
+    text-transform: none !important;
+}
+@media only screen and (max-width:767px) {
+    .video-card .youtube-video {
+        width: 100%;
+        height: 14rem;
+      }
+}

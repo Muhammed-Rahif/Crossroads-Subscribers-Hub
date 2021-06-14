@@ -1,0 +1,24 @@
+.drawer-lists {
+  width: 250px;
+}
+.side-drawer-wrapper {
+  width: 100%;
+  height: auto;
+  position: absolute;
+}
+.side-drawer-header {
+  width: 100%;
+  margin-top: 1rem;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.side-drawer-header img {
+  height: 6rem;
+}
+.hr {
+  width: 90%;
+  opacity: 0.2;
+}

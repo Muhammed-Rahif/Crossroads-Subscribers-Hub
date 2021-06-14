@@ -1,0 +1,32 @@
+.event-card {
+  display: flex;
+  align-items: center;
+  width: auto;
+  margin: 1rem;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+.event-card img {
+  width: 100%;
+  height: 100%;
+}
+.event-card-content {
+  text-align: left;
+  width: 100%;
+  padding: 1rem;
+}
+.event-card-title {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+}
+.event-card-badge {
+  margin: 0.25rem !important;
+  margin-bottom: 1rem !important;
+  margin-left: 0rem !important;
+}
+.event-card-link {
+  text-transform: none !important;
+  margin-top: 1rem !important;
+  margin-left: 1rem !important;
+}

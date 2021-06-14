@@ -1,0 +1,48 @@
+.member-card {
+  display: flex;
+  align-items: center;
+  width: auto;
+  margin: 1rem;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+.member-card-logo {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  padding: 0.3rem;
+  padding-left: 1rem;
+  flex-direction: column;
+  justify-content: center;
+}
+.member-card-text {
+  flex: 6;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.member-badges {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.member-card-links {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+}
+.badge {
+  margin: 0.2rem;
+}
+.link-btn {
+  margin: 0.5rem !important;
+}

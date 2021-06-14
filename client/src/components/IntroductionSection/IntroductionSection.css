@@ -1,0 +1,32 @@
+.intro-wrapper {
+  min-height: 80vh;
+  width: 100%;
+}
+.intro-youtube {
+  height: 50vh;
+  width: 100%;
+}
+.intro-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-transform: none;
+  flex-direction: column;
+  padding: 1rem;
+  padding-right: 0.5rem;
+  padding-bottom: 2rem;
+}
+.intro-main-title {
+  font-weight: bold !important;
+  margin-bottom: 1rem !important;
+  max-width: 33rem;
+}.intro-main-subtitle {
+  max-width: 50rem;
+  font-weight: bold !important;
+  margin-bottom: 1rem !important;
+}
+@media only screen and (max-width: 767px) {
+  .intro-youtube {
+    height: 30vh;
+  }
+}
