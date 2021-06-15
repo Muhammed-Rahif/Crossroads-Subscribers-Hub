@@ -20,7 +20,15 @@ function Footer(props) {
           </Typography>
           <Grid container>
             <Grid xs={12} sm={3} xl={2} className="link-section">
-              <span className="link-title">Features</span>
+              <span className="link-title">Pages</span>
+              <span
+                className="link"
+                onClick={() => {
+                  history.push("/");
+                }}
+              >
+                Home
+              </span>
               <span
                 className="link"
                 onClick={() => {
@@ -66,6 +74,7 @@ function Footer(props) {
               <span className="link">Clubhouse</span>
             </Grid>
           </Grid>
+          <hr className="hr" />
           <div className="copyright-section">
             <Typography>© Crossroads Subscribers Hub</Typography>
             <Typography>2019 - {new Date().getFullYear()}</Typography>

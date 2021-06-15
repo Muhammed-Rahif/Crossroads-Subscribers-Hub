@@ -7,6 +7,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 // Components
 import Home from "./pages/Home";
 import { ThemeContext } from "./contexts/Contexts";
+import About from "./pages/About";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -18,6 +19,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route path="/about">
+            <About/>
           </Route>
         </Switch>
       </Router>

@@ -8,3 +8,7 @@
 body {
   scrollbar-width: none;
 }
+.hr {
+  width: 90%;
+  opacity: 0.2;
+}

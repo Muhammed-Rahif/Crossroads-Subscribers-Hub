@@ -19,10 +19,12 @@ import {
   Info,
   SupervisedUserCircle,
 } from "@material-ui/icons";
+import { useHistory } from "react-router-dom";
 
 function SideDrawer() {
   const { sideDrawer, setSideDrawer } = useContext(SideDrawerContext);
   const { darkTheme, setDarkTheme } = useContext(ThemeContext);
+  const history = useHistory();
 
   const toggleSideDrawer = (event) => {
     if (
@@ -49,7 +51,12 @@ function SideDrawer() {
         </div>
         <hr className="hr" />
         <List className="drawer-lists">
-          <ListItem button>
+          <ListItem
+            button
+            onClick={() => {
+              history.push("/");
+            }}
+          >
             <ListItemIcon>
               <Home />
             </ListItemIcon>
@@ -102,7 +109,12 @@ function SideDrawer() {
             <ListItemIcon>
               <Info />
             </ListItemIcon>
-            <ListItemText primary="About" />
+            <ListItemText
+              primary="About"
+              onClick={() => {
+                history.push("/about");
+              }}
+            />
           </ListItem>
         </List>
       </SwipeableDrawer>
