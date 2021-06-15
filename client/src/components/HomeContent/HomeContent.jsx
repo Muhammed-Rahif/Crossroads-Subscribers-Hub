@@ -12,7 +12,7 @@ function HomeContent(props) {
       name: "Muhammed Rahif",
       badges: ["developer", "student", "contributer", "member"],
       github: "https://github.com/Muhammed-Rahif",
-      instagram: "https://www.instagram.com/_.raifu.op_/",
+      instagram: "https://www.instagram.com/Muhammed_Rahif_/",
       email: "rahifpalliyalil@gmail.com",
     },
     {
