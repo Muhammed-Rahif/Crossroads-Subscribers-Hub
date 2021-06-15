@@ -42,7 +42,7 @@ function AboutContent(props) {
       </div>
       <div className="inner-section">
         <Typography variant="h6" style={{ textAlign: "center" }}>
-          We need your help. Join with us. Sign up right now..! 🙃️
+          We need your help and support. Join with us. Sign up right now..! 🙃️
         </Typography>
       </div>
       <hr className="hr" />
