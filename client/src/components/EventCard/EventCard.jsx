@@ -2,7 +2,10 @@ import React from "react";
 import "./EventCard.css";
 import { Button, Chip, Paper, Typography } from "@material-ui/core";
 import { getIcon } from "../IconConfig/Badges";
-import { openUrlInNewTab } from "../../contants/constantFunctions";
+import {
+  openLocationInGMap,
+  openUrlInNewTab,
+} from "../../contants/constantFunctions";
 
 function EventCard({
   title = "",
@@ -18,7 +21,6 @@ function EventCard({
     },
   ],
 }) {
-
   return (
     <Paper className="event-card" elevation={3}>
       <img src={imageSrc} alt={title} />
@@ -46,12 +48,7 @@ function EventCard({
           className="event-card-badge"
           clickable
           onClick={() => {
-            window
-              .open(
-                "https://www.google.co.in/maps/search/" + location,
-                "_blank"
-              )
-              .focus();
+            openLocationInGMap(location);
           }}
         ></Chip>
         <br />

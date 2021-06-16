@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import { BackdropLoadingContext, ThemeContext } from "./contexts/Contexts";
 import About from "./pages/About";
 import BackdropLoading from "./components/BackdropLoading/BackdropLoading";
+import Profile from "./pages/Profile";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path="/about">
             <About />
+          </Route>
+          <Route path="/profile">
+            <Profile />
           </Route>
         </Switch>
       </Router>

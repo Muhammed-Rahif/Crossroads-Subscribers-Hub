@@ -24,12 +24,14 @@ import {
   ThemeContext,
 } from "../../contexts/Contexts";
 import NotificationsPopover from "../NotificationsPopover/NotificationsPopover";
+import { useHistory } from "react-router";
 
 function NavBar(props) {
   const [profilePopover, setProfilePopover] = useState(false);
   const { sideDrawer, setSideDrawer } = useContext(SideDrawerContext);
   const { darkTheme, setDarkTheme } = useContext(ThemeContext);
   const { setNotificationsPopover } = useContext(NotificationsPopoverContext);
+  const history = useHistory();
 
   var handleProfileClose = () => {
     setProfilePopover(false);
@@ -123,7 +125,13 @@ function NavBar(props) {
                 </div>
                 <hr className="hr" />
                 <div className="profile-btns">
-                  <Button variant="contained" color="default">
+                  <Button
+                    variant="contained"
+                    color="default"
+                    onClick={() => {
+                      history.push("/profile");
+                    }}
+                  >
                     View Profile
                   </Button>
                   <Button variant="contained" color="secondary">

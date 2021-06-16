@@ -80,7 +80,12 @@ function SideDrawer() {
             </ListItemIcon>
             <ListItemText primary="Events" />
           </ListItem>
-          <ListItem button>
+          <ListItem
+            button
+            onClick={() => {
+              history.push("/profile");
+            }}
+          >
             <ListItemIcon>
               <AccountCircle />
             </ListItemIcon>
