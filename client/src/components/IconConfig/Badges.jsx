@@ -9,6 +9,10 @@ import {
   Work,
 } from "@material-ui/icons";
 
+function getBadgesList() {
+  return ["member","student","contributer","working",]
+}
+
 function getIcon(icon) {
   switch (icon) {
     case "member":
@@ -32,4 +36,4 @@ function getIcon(icon) {
   }
 }
 
-export { getIcon };
+export { getIcon,getBadgesList };

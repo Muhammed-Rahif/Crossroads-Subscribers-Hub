@@ -10,6 +10,7 @@ import { BackdropLoadingContext, ThemeContext } from "./contexts/Contexts";
 import About from "./pages/About";
 import BackdropLoading from "./components/BackdropLoading/BackdropLoading";
 import Profile from "./pages/Profile";
+import Signup from "./pages/Signup";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -29,6 +30,9 @@ function App() {
       <BackdropLoading open={backdropLoading} />
       <Router>
         <Switch>
+          <Route path="/signup">
+            <Signup />
+          </Route>
           <Route exact path="/">
             <Home />
           </Route>

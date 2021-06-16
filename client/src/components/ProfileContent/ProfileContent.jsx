@@ -35,7 +35,6 @@ function ProfileContent(props) {
             <Chip
               className="badge"
               label="Working"
-              className="badge"
               color="secondary"
               icon={getIcon("working")}
             ></Chip>
