@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Button,
-  Typography,
   StepLabel,
   Step,
   Stepper,
@@ -10,7 +9,6 @@ import {
   Grid,
   Chip,
 } from "@material-ui/core";
-import { Done } from "@material-ui/icons";
 import { getBadgesList, getIcon } from "../IconConfig/Badges";
 import "./SignupContent.css";
 
