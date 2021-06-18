@@ -1,0 +1,25 @@
+.signup-content-wrapper{
+  margin-top: 7rem;
+  margin-bottom: 3rem;
+}
+.signup-content-wrapper .container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+.signup-content-wrapper .container form{
+  width: 100%;
+}
+.signup-content-wrapper .container .input-field-wrapper{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+@media only screen and (max-width:767px) {
+  .signup-content-wrapper .container{
+    max-width: 95%;
+    margin: auto;
+  }
+}

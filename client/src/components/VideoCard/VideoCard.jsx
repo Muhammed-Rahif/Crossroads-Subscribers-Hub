@@ -2,7 +2,7 @@ import { Button, Chip, Paper, Typography } from "@material-ui/core";
 import React from "react";
 import "./VideoCard.css";
 import YouTube from "react-youtube";
-import { openUrlInNewTab } from "../../contants/constantFunctions";
+import { openUrlInNewTab } from "../../contants/constants";
 
 function VideoCard({
   videoId = "",

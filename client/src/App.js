@@ -10,28 +10,35 @@ import { BackdropLoadingContext, ThemeContext } from "./contexts/Contexts";
 import About from "./pages/About";
 import BackdropLoading from "./components/BackdropLoading/BackdropLoading";
 import Profile from "./pages/Profile";
-import Signup from "./pages/Signup";
+import SignUp from "./pages/SignUp";
+import SideDrawer from "./components/SideDrawer/SideDrawer";
+import NavBar from "./components/NavBar/NavBar";
+import Footer from "./components/Footer/Footer";
+import AlertDialog from "./components/AlertDialog/AlertDialog";
 
 function App() {
   const { theme } = useContext(ThemeContext);
-  const { backdropLoading, setBackdropLoading } = useContext(
-    BackdropLoadingContext
-  );
+  const { setBackdropLoading } = useContext(BackdropLoadingContext);
 
   useEffect(() => {
     window.onload = () => {
       setBackdropLoading(false);
     };
-  }, []);
+  }, [setBackdropLoading]);
 
   return (
     <ThemeProvider theme={theme}>
+      {/* Common components */}
       <CssBaseline />
-      <BackdropLoading open={backdropLoading} />
+      <NavBar />
+      <SideDrawer />
+      <BackdropLoading />
+      <AlertDialog />
+      {/* Routers */}
       <Router>
         <Switch>
-          <Route path="/signup">
-            <Signup />
+          <Route path="/sign-up">
+            <SignUp />
           </Route>
           <Route exact path="/">
             <Home />
@@ -44,6 +51,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
+      <Footer />
     </ThemeProvider>
   );
 }

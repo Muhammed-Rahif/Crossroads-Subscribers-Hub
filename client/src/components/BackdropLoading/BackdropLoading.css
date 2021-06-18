@@ -2,6 +2,14 @@
   z-index: 99999 !important;
   opacity: 0.75 !important;
   background-color: rgb(17, 17, 17) !important;
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.backdrop-loading .text-container{
+  margin-top: 1rem;
 }
 .dot-flashing {
   position: relative;

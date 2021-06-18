@@ -4,11 +4,16 @@ const http = require("http");
 const server = http.createServer(app);
 const PORT = process.env.PORT || 5000;
 const path = require("path");
+const bodyParser = require("body-parser");
+
+// Body parser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Routers
 const routers = require("./routers/routers");
 
-app.use("/api",routers);
+app.use("/api", routers);
 
 // Front end setup
 app.use(express.static(path.join(__dirname, "client/build")));

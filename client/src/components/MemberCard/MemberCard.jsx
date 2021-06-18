@@ -4,7 +4,7 @@ import { Avatar, Button, Chip, Paper, Typography } from "@material-ui/core";
 import { CheckCircle, Email, GitHub, Instagram } from "@material-ui/icons";
 import { ThemeContext } from "../../contexts/Contexts";
 import { getIcon } from "../IconConfig/Badges";
-import { openUrlInNewTab } from "../../contants/constantFunctions";
+import { openUrlInNewTab } from "../../contants/constants";
 
 function MemberCard({
   memberName = "",

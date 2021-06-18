@@ -5,7 +5,7 @@ import { getIcon } from "../IconConfig/Badges";
 import {
   openLocationInGMap,
   openUrlInNewTab,
-} from "../../contants/constantFunctions";
+} from "../../contants/constants";
 
 function EventCard({
   title = "",

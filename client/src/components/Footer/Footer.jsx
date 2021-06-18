@@ -1,7 +1,7 @@
 import { Grid, Paper, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import React from "react";
-import { openUrlInNewTab } from "../../contants/constantFunctions";
+import { openUrlInNewTab } from "../../contants/constants";
 import "./Footer.css";
 
 function Footer(props) {

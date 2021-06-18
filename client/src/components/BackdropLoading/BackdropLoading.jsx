@@ -1,11 +1,18 @@
-import { Backdrop } from "@material-ui/core";
-import React from "react";
+import { Backdrop, Typography } from "@material-ui/core";
+import React, { useContext } from "react";
+import { BackdropLoadingContext } from "../../contexts/Contexts";
 import "./BackdropLoading.css";
 
-function BackdropLoading({ open }) {
+function BackdropLoading() {
+  const { backdropLoading } = useContext(BackdropLoadingContext);
   return (
-    <Backdrop open={open} className="backdrop-loading">
+    <Backdrop open={backdropLoading} className="backdrop-loading">
       <div className="dot-flashing"></div>
+      <div className="text-container">
+        <Typography variant="subtitle1">
+          {typeof backdropLoading === "string" && backdropLoading}
+        </Typography>
+      </div>
     </Backdrop>
   );
 }

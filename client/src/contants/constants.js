@@ -6,4 +6,7 @@ const openLocationInGMap = (locationName) => {
     .open("https://www.google.co.in/maps/search/" + locationName, "_blank")
     .focus();
 };
-export { openUrlInNewTab, openLocationInGMap };
+const emailRegexPattern =
+  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  
+export { openUrlInNewTab, openLocationInGMap, emailRegexPattern };

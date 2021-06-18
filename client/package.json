@@ -2,7 +2,7 @@
   "name": "crossroads-subscribers-hub",
   "version": "2.0.0",
   "private": true,
-  "proxy" : "http://localhost:5000/",
+  "proxy": "http://localhost:5000/",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
@@ -12,6 +12,7 @@
     "axios": "^0.21.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^7.8.8",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-youtube": "^7.13.1",
