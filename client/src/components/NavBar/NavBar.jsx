@@ -24,7 +24,7 @@ import {
   ThemeContext,
 } from "../../contexts/Contexts";
 import NotificationsPopover from "../NotificationsPopover/NotificationsPopover";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
 function NavBar(props) {
   const [profilePopover, setProfilePopover] = useState(false);

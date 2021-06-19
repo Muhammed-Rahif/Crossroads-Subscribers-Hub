@@ -1,3 +1,4 @@
+const clientStorageKey = "CrossroadsSubscribersHub";
 const openUrlInNewTab = (url) => {
   window.open(url, "_blank").focus();
 };
@@ -8,5 +9,10 @@ const openLocationInGMap = (locationName) => {
 };
 const emailRegexPattern =
   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-  
-export { openUrlInNewTab, openLocationInGMap, emailRegexPattern };
+
+export {
+  openUrlInNewTab,
+  openLocationInGMap,
+  emailRegexPattern,
+  clientStorageKey,
+};

@@ -1,12 +1,21 @@
 import React, { useContext, useEffect } from "react";
 import "./App.css";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 // Theme
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 // Components
 import Home from "./pages/Home";
-import { BackdropLoadingContext, ThemeContext } from "./contexts/Contexts";
+import {
+  BackdropLoadingContext,
+  ThemeContext,
+  UserContext,
+} from "./contexts/Contexts";
 import About from "./pages/About";
 import BackdropLoading from "./components/BackdropLoading/BackdropLoading";
 import Profile from "./pages/Profile";
@@ -19,26 +28,25 @@ import AlertDialog from "./components/AlertDialog/AlertDialog";
 function App() {
   const { theme } = useContext(ThemeContext);
   const { setBackdropLoading } = useContext(BackdropLoadingContext);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     window.onload = () => {
       setBackdropLoading(false);
     };
   }, [setBackdropLoading]);
-
+  console.log(user);
   return (
-    <ThemeProvider theme={theme}>
-      {/* Common components */}
-      <CssBaseline />
-      <NavBar />
-      <SideDrawer />
-      <BackdropLoading />
-      <AlertDialog />
-      {/* Routers */}
-      <Router>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <NavBar />
+        <SideDrawer />
+        <BackdropLoading />
+        <AlertDialog />
         <Switch>
           <Route path="/sign-up">
-            <SignUp />
+            {user ? <Redirect to="/" /> : <SignUp />}
           </Route>
           <Route exact path="/">
             <Home />
@@ -50,9 +58,9 @@ function App() {
             <Profile />
           </Route>
         </Switch>
-      </Router>
-      <Footer />
-    </ThemeProvider>
+        <Footer />
+      </ThemeProvider>
+    </Router>
   );
 }
 

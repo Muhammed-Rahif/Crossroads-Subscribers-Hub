@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef, useContext, useState } from "react";
 import "./SignUpContent.css";
 import { Grid, TextField, Typography, Avatar, Button } from "@material-ui/core";
 import { LockOutlined } from "@material-ui/icons";
@@ -8,6 +8,7 @@ import { signUpUser } from "../../contants/apiReqs";
 import {
   AlertDialogContext,
   BackdropLoadingContext,
+  UserContext,
 } from "../../contexts/Contexts";
 
 function SignUpContent() {
@@ -22,24 +23,30 @@ function SignUpContent() {
   const password = useRef({});
   password.current = watch("password", "");
 
+  const [signUpError, setSignUpError] = useState(null);
+
   const { setBackdropLoading } = useContext(BackdropLoadingContext);
   const { setAlertDialog } = useContext(AlertDialogContext);
+  const { setUser } = useContext(UserContext);
 
   const onSubmit = (data) => {
     setBackdropLoading("Signing up...");
     signUpUser(data)
-      .then((response) => {
+      .then((userData) => {
         setBackdropLoading(false);
-        console.log(response);
-        setAlertDialog({
-          open: true,
-          title: "Success!",
-          text: "Successfully sign up!",
-        });
+        setSignUpError(false);
+        setUser(userData);
       })
       .catch((err) => {
         setBackdropLoading(false);
-        setAlertDialog({ open: true, title: "Alert !", text: err.message });
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        if (err.status === 409) {
+          setSignUpError("This user is already exist!");
+        } else if (err.status === 401) {
+          setSignUpError("Unauthorized activity!");
+        } else {
+          setSignUpError("Something really went wrong!");
+        }
       });
   };
 
@@ -50,6 +57,11 @@ function SignUpContent() {
           <LockOutlined />
         </Avatar>
         <Typography variant="h5">Sign up</Typography>
+        {signUpError && (
+          <Typography style={{ color: "crimson" }} variant="subtitle2">
+            {signUpError}
+          </Typography>
+        )}
         <Grid sm={5} xs={12} className="container">
           <form onSubmit={handleSubmit(onSubmit)} autoComplete="on">
             <div className="input-field-wrapper">
