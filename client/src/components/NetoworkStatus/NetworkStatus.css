@@ -1,0 +1,16 @@
+.network-status-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999999999;
+  display: flex;
+  height: auto;
+  display: none;
+}
+.network-status-wrapper .text {
+  text-align: center;
+  padding: 1rem;
+}

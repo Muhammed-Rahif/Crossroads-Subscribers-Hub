@@ -1,12 +1,14 @@
-import React from "react";
-import { Grid } from "@material-ui/core";
+import React, { useContext } from "react";
+import { Grid, Paper, Typography, Button } from "@material-ui/core";
 import "./HomeContent.css";
 import MemberCard from "../MemberCard/MemberCard";
 import EventCard from "../EventCard/EventCard";
 import IntroductionSection from "../IntroductionSection/IntroductionSection";
 import VideoCard from "../VideoCard/VideoCard";
+import { UserContext } from "../../contexts/Contexts";
 
 function HomeContent(props) {
+  const { user } = useContext(UserContext);
   const persons = [
     {
       name: "Muhammed Rahif",
@@ -106,6 +108,7 @@ function HomeContent(props) {
                 set up an environment for us to start learning to programme`}
             linkToPlaylist="https://youtube.com/playlist?list=PLY-ecO2csVHeKaBI7lAM1jbIPU8K6fUxY"
             numOfVideos={14}
+            btnText="Go to playlist"
           />
         </Grid>
         <Grid sm={6} xs={12}>
@@ -120,6 +123,7 @@ function HomeContent(props) {
             discription={`Web Designing Challenge is an initiative by Team Crossroads to teach how to develop and deploy a static website from scratch. The complete series will be of 10 videos and each video will cover the necessary topics such as HTML, CSS, Javascript, JQuery and Bootstrap. Also in the end we will teach you how to purchase a domain name and live host a website. `}
             linkToPlaylist="https://youtube.com/playlist?list=PLY-ecO2csVHfRMEmW_ltccnJcMtSGUKSk"
             numOfVideos={14}
+            btnText="Go to playlist"
           />
         </Grid>
         <Grid sm={6} xs={12}>
@@ -140,6 +144,7 @@ function HomeContent(props) {
             discription={`Date with Git is an initiative by Team Crossroads. The complete series will be of 5 videos and each video will cover the necessary topics. Git is a distributed version control system for tracking changes in source code during software development. It is designed for coordinating work among programmers, but it can be used to track changes in any set of files. Its goals include speed, data integrity, and support for distributed, non-linear workflows`}
             linkToPlaylist="https://youtube.com/playlist?list=PLY-ecO2csVHdLhAO6TERaMJXP8aqyWVt-"
             numOfVideos={8}
+            btnText="Go to playlist"
           />
         </Grid>
         <Grid sm={6} xs={12}>
@@ -162,6 +167,31 @@ function HomeContent(props) {
               },
             ]}
           />
+        </Grid>
+        <Grid sm={6} xs={12}>
+          {!user && (
+            <Paper
+              style={{
+                padding: "1.5rem",
+                padingTop: "1rem",
+                paddingBottom: "1rem",
+                margin: "1rem",
+              }}
+              elevation={3}
+            >
+              <img
+                src="https://media.tenor.com/images/abb0f0b2a59f2f263401a552ffa22812/tenor.gif"
+                alt="Sign up"
+                width="100%"
+              />
+              <Typography variant="h6">
+                Want to explore more features. Sign up right now..
+              </Typography>
+              <Button variant="contained" color="secondary">
+                Sign up
+              </Button>
+            </Paper>
+          )}
         </Grid>
         <Grid sm={6} xs={12}>
           <h2 className="card-title">Members</h2>

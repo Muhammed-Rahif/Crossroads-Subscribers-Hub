@@ -27,7 +27,7 @@ function IntroductionSection({
       </div>
       <div className="intro-content">
         <Typography variant="h4" className="intro-main-title">
-          We will help you learn to code and build a better future...
+          We will help you learn to code and make your future awesome...
         </Typography>
         <Typography variant="h6" className="intro-main-subtitle">
           No tech education requirements, No age restrictions. Everyone can..!

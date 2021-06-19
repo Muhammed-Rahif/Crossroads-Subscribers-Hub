@@ -12,6 +12,7 @@ function VideoCard({
   discription = ``,
   linkToPlaylist = "",
   numOfVideos = false,
+  btnText = "Watch Video",
 }) {
   return (
     <Paper className="video-card" elevation={3}>
@@ -72,7 +73,7 @@ function VideoCard({
               openUrlInNewTab(linkToPlaylist);
             }}
           >
-            Go to Playlist
+            {btnText}
           </Button>
         </div>
       </div>

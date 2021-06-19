@@ -24,6 +24,7 @@ import SideDrawer from "./components/SideDrawer/SideDrawer";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import AlertDialog from "./components/AlertDialog/AlertDialog";
+import NetworkStatus from "./components/NetoworkStatus/NetworkStatus";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -35,11 +36,12 @@ function App() {
       setBackdropLoading(false);
     };
   }, [setBackdropLoading]);
-  console.log(user);
+
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <NetworkStatus />
         <NavBar />
         <SideDrawer />
         <BackdropLoading />

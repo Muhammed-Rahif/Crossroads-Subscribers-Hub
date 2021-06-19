@@ -5,11 +5,7 @@ import { LockOutlined } from "@material-ui/icons";
 import { useForm } from "react-hook-form";
 import { emailRegexPattern } from "../../contants/constants";
 import { signUpUser } from "../../contants/apiReqs";
-import {
-  AlertDialogContext,
-  BackdropLoadingContext,
-  UserContext,
-} from "../../contexts/Contexts";
+import { BackdropLoadingContext, UserContext } from "../../contexts/Contexts";
 
 function SignUpContent() {
   const {
@@ -26,7 +22,6 @@ function SignUpContent() {
   const [signUpError, setSignUpError] = useState(null);
 
   const { setBackdropLoading } = useContext(BackdropLoadingContext);
-  const { setAlertDialog } = useContext(AlertDialogContext);
   const { setUser } = useContext(UserContext);
 
   const onSubmit = (data) => {

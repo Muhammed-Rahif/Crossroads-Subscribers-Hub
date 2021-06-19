@@ -18,6 +18,7 @@ import {
   Brightness4,
   Brightness7,
   EventNote,
+  FormatListNumbered,
   Forum,
   Home,
   Info,
@@ -72,6 +73,12 @@ function SideDrawer() {
               <SupervisedUserCircle />
             </ListItemIcon>
             <ListItemText primary="Members" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <FormatListNumbered />
+            </ListItemIcon>
+            <ListItemText primary="Projects" />
           </ListItem>
           <ListItem button>
             <ListItemIcon>
