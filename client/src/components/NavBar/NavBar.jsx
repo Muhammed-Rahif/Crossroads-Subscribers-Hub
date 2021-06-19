@@ -16,22 +16,28 @@ import {
   Forum,
   CheckCircle,
   Notifications,
+  Info,
+  PersonAdd,
+  EventNote,
 } from "@material-ui/icons";
 import "./NavBar.css";
 import {
   NotificationsPopoverContext,
   SideDrawerContext,
   ThemeContext,
+  UserContext,
 } from "../../contexts/Contexts";
 import NotificationsPopover from "../NotificationsPopover/NotificationsPopover";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 function NavBar(props) {
   const [profilePopover, setProfilePopover] = useState(false);
   const { sideDrawer, setSideDrawer } = useContext(SideDrawerContext);
   const { darkTheme, setDarkTheme } = useContext(ThemeContext);
   const { setNotificationsPopover } = useContext(NotificationsPopoverContext);
+  const { user } = useContext(UserContext);
   const history = useHistory();
+  const location = useLocation();
 
   var handleProfileClose = () => {
     setProfilePopover(false);
@@ -54,20 +60,42 @@ function NavBar(props) {
           </IconButton>
         </div>
         <div className="navbar-links">
-          <IconButton className="navbar-link">
-            <Forum />
-          </IconButton>
-          <IconButton
-            className="navbar-link"
-            onClick={(e) => {
-              setNotificationsPopover(e.currentTarget);
-            }}
-          >
-            <Badge color="primary" badgeContent={3} showZero>
-              <Notifications />
-            </Badge>
-          </IconButton>
-          <NotificationsPopover />
+          {user ? (
+            <>
+              <IconButton className="navbar-link">
+                <Forum />
+              </IconButton>
+              <IconButton
+                className="navbar-link"
+                onClick={(e) => {
+                  setNotificationsPopover(e.currentTarget);
+                }}
+              >
+                <Badge color="primary" badgeContent={3} showZero>
+                  <Notifications />
+                </Badge>
+              </IconButton>
+              <NotificationsPopover />{" "}
+            </>
+          ) : location.pathname !== "/about" ? (
+            <IconButton
+              className="navbar-link"
+              onClick={() => {
+                history.push("/about");
+              }}
+            >
+              <Info />
+            </IconButton>
+          ) : (
+            <IconButton
+              className="navbar-link"
+              onClick={() => {
+                // history.push("/events");
+              }}
+            >
+              <EventNote />
+            </IconButton>
+          )}
           <IconButton
             onClick={() => {
               setDarkTheme(!darkTheme);
@@ -76,14 +104,26 @@ function NavBar(props) {
           >
             {darkTheme ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
-          <Avatar
-            className="navbar-link avatar"
-            alt="Travis Howard"
-            src="https://material-ui.com/static/images/avatar/2.jpg"
-            onClick={(e) => {
-              setProfilePopover(e.currentTarget);
-            }}
-          />
+          {user ? (
+            <Avatar
+              className="navbar-link avatar"
+              alt={user && user.fullName}
+              // src="https://material-ui.com/static/images/avatar/2.jpg"
+              onClick={(e) => {
+                setProfilePopover(e.currentTarget);
+              }}
+            />
+          ) : (
+            <IconButton
+              color="default"
+              variant="contained"
+              onClick={() => {
+                history.push("/sign-up");
+              }}
+            >
+              <PersonAdd />
+            </IconButton>
+          )}
           <Popover
             open={profilePopover}
             anchorEl={profilePopover}
@@ -98,47 +138,47 @@ function NavBar(props) {
             }}
           >
             <div className="profile-popover-wrapper">
-              <div className="inner-profile-popover">
-                <div className="profile">
-                  <Avatar
-                    className="navbar-link avatar"
-                    alt="Travis Howard"
-                    src="https://material-ui.com/static/images/avatar/2.jpg"
-                  />
-                  <Typography variant="h6" className="profile-name">
-                    Travis Howard
-                  </Typography>
-                  <Typography variant="subtitle1">
-                    travishoward@gmail.com
-                  </Typography>
-                  <Badge
-                    badgeContent={
-                      <CheckCircle
-                        style={{ color: "#00e676", fontSize: "0.7rem" }}
-                      />
-                    }
-                  >
-                    <Typography style={{ fontSize: "0.7rem" }}>
-                      Verified User{" "}
+              {user && (
+                <div className="inner-profile-popover">
+                  <div className="profile">
+                    <Avatar
+                      className="navbar-link avatar"
+                      alt="Travis Howard"
+                      src="https://material-ui.com/static/images/avatar/2.jpg"
+                    />
+                    <Typography variant="h6" className="profile-name">
+                      {user.fullName}
                     </Typography>
-                  </Badge>
+                    <Typography variant="subtitle1">{user.email}</Typography>
+                    <Badge
+                      badgeContent={
+                        <CheckCircle
+                          style={{ color: "#00e676", fontSize: "0.7rem" }}
+                        />
+                      }
+                    >
+                      <Typography style={{ fontSize: "0.7rem" }}>
+                        Verified User{" "}
+                      </Typography>
+                    </Badge>
+                  </div>
+                  <hr className="hr" />
+                  <div className="profile-btns">
+                    <Button
+                      variant="contained"
+                      color="default"
+                      onClick={() => {
+                        history.push("/profile");
+                      }}
+                    >
+                      View Profile
+                    </Button>
+                    <Button variant="contained" color="secondary">
+                      Log out
+                    </Button>
+                  </div>
                 </div>
-                <hr className="hr" />
-                <div className="profile-btns">
-                  <Button
-                    variant="contained"
-                    color="default"
-                    onClick={() => {
-                      history.push("/profile");
-                    }}
-                  >
-                    View Profile
-                  </Button>
-                  <Button variant="contained" color="secondary">
-                    Log out
-                  </Button>
-                </div>
-              </div>
+              )}
             </div>
           </Popover>
         </div>

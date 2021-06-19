@@ -25,7 +25,12 @@ const getUserData = () => {
           clientId: store.get(clientStorageKey).clientId,
         })
         .then((response) => {
+          delete response.data._id;
           resolve(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          resolve(null);
         });
     } else {
       resolve(null);

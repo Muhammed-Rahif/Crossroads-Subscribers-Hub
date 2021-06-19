@@ -35,11 +35,10 @@ module.exports = {
     return new Promise((resolve, reject) => {
       UserModel.findOne({ _id: userId, clientId })
         .then((userData) => {
-          console.log(userData);
           if (userData) {
-            delete userData.password;
-            delete userData._id;
-            delete userData.versionKey;
+            userData.password = undefined;
+            userData._id = undefined;
+            userData.versionKey = undefined;
             resolve({ userData, statusCode: 200 });
           } else {
             resolve({ statusCode: 404 });

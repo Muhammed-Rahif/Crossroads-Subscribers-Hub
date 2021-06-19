@@ -7,7 +7,11 @@ import {
   SwipeableDrawer,
   Switch,
 } from "@material-ui/core";
-import { SideDrawerContext, ThemeContext } from "../../contexts/Contexts";
+import {
+  SideDrawerContext,
+  ThemeContext,
+  UserContext,
+} from "../../contexts/Contexts";
 import "./SideDrawer.css";
 import {
   AccountCircle,
@@ -24,6 +28,7 @@ import { useHistory } from "react-router-dom";
 function SideDrawer() {
   const { sideDrawer, setSideDrawer } = useContext(SideDrawerContext);
   const { darkTheme, setDarkTheme } = useContext(ThemeContext);
+  const { user } = useContext(UserContext);
   const history = useHistory();
 
   const toggleSideDrawer = (event) => {
@@ -83,7 +88,7 @@ function SideDrawer() {
           <ListItem
             button
             onClick={() => {
-              history.push("/profile");
+              history.push(user ? "/profile" : "/sign-up");
             }}
           >
             <ListItemIcon>
