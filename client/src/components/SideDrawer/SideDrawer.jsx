@@ -80,12 +80,12 @@ function SideDrawer() {
             </ListItemIcon>
             <ListItemText primary="Projects" />
           </ListItem>
-          <ListItem button>
+          {/* <ListItem button>
             <ListItemIcon>
               <Forum />
             </ListItemIcon>
             <ListItemText primary="Chat Room" />
-          </ListItem>
+          </ListItem> */}
           <ListItem button>
             <ListItemIcon>
               <EventNote />

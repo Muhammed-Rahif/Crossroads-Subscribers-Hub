@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, TextField, Typography } from "@material-ui/core";
-import { openUrlInNewTab } from "../../contants/constants";
+import { openUrlInNewTab } from "../../constants/constants";
 import "./AboutContent.css";
 
 function AboutContent(props) {

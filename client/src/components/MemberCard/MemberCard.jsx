@@ -4,7 +4,7 @@ import { Avatar, Button, Chip, Paper, Typography } from "@material-ui/core";
 import { CheckCircle, Email, GitHub, Instagram } from "@material-ui/icons";
 import { ThemeContext } from "../../contexts/Contexts";
 import { getIcon } from "../IconConfig/Badges";
-import { openUrlInNewTab } from "../../contants/constants";
+import { openUrlInNewTab } from "../../constants/constants";
 
 function MemberCard({
   memberName = "",
@@ -76,7 +76,7 @@ function MemberCard({
           className="link-btn"
           disabled={!emailLink}
           onClick={() => {
-            openUrlInNewTab("mailto:"+emailLink);
+            openUrlInNewTab("mailto:" + emailLink);
           }}
         >
           <Email />

@@ -1,7 +1,7 @@
 import { Grid, Paper, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import React from "react";
-import { openUrlInNewTab } from "../../contants/constants";
+import { openUrlInNewTab } from "../../constants/constants";
 import "./Footer.css";
 
 function Footer(props) {
@@ -12,11 +12,16 @@ function Footer(props) {
         <div className="footer">
           <Typography>
             Wanna contribute ?{" "}
-            <span className="link"
-            onClick={()=>{
-              openUrlInNewTab("https://github.com/Muhammed-Rahif/Crossroads-Subscribers-Hub")
-            }}
-            >@Github/Muhammed-Rahif</span>
+            <span
+              className="link"
+              onClick={() => {
+                openUrlInNewTab(
+                  "https://github.com/Muhammed-Rahif/Crossroads-Subscribers-Hub"
+                );
+              }}
+            >
+              @Github/Muhammed-Rahif
+            </span>
           </Typography>
           <Grid container>
             <Grid xs={12} sm={3} xl={2} className="link-section">

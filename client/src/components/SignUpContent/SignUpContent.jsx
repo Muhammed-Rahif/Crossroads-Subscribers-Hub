@@ -3,8 +3,8 @@ import "./SignUpContent.css";
 import { Grid, TextField, Typography, Avatar, Button } from "@material-ui/core";
 import { LockOutlined } from "@material-ui/icons";
 import { useForm } from "react-hook-form";
-import { emailRegexPattern } from "../../contants/constants";
-import { signUpUser } from "../../contants/apiReqs";
+import { emailRegexPattern } from "../../constants/constants";
+import { signUpUser } from "../../constants/apiReqs";
 import { BackdropLoadingContext, UserContext } from "../../contexts/Contexts";
 
 function SignUpContent() {

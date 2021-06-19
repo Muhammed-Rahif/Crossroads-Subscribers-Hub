@@ -2,10 +2,7 @@ import React from "react";
 import "./EventCard.css";
 import { Button, Chip, Paper, Typography } from "@material-ui/core";
 import { getIcon } from "../IconConfig/Badges";
-import {
-  openLocationInGMap,
-  openUrlInNewTab,
-} from "../../contants/constants";
+import { openLocationInGMap, openUrlInNewTab } from "../../constants/constants";
 
 function EventCard({
   title = "",

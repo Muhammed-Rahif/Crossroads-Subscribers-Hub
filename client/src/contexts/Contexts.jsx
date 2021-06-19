@@ -1,6 +1,6 @@
 import { useState, createContext, useMemo, useEffect } from "react";
 import { createMuiTheme } from "@material-ui/core/styles";
-import { getUserData } from "../contants/apiReqs";
+import { getUserData } from "../constants/apiReqs";
 
 // Contexts
 export const SideDrawerContext = createContext(null);
