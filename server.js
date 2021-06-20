@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const db = require("./db/db");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const expressLayouts = require("express-ejs-layouts");
 
 // Session
 app.use(
@@ -20,6 +21,11 @@ app.use(
   })
 );
 
+// View engine set up
+app.set("view engine", "ejs");
+app.use(expressLayouts);
+app.set("layout", "layouts/layout");
+
 // Body parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -28,9 +34,11 @@ app.use(bodyParser.json());
 db.connect();
 
 // Routers
-const routers = require("./routers/routers");
+const userRouters = require("./routers/userRouter");
+const adminRouters = require("./routers/adminRouter");
 
-app.use("/api", routers);
+app.use("/api", userRouters);
+app.use("/admin", adminRouters);
 
 // Front end setup
 app.use(express.static(path.join(__dirname, "client/build")));

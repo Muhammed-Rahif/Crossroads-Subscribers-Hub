@@ -1,0 +1,113 @@
+<div class="p-3 pt-5 mt-4 row">
+    <h4 class="text-center">Admins List</h4>
+    <div class="table-responsive">
+        <table style="overflow: scroll;" class="table align-middle table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Admins Names</th>
+                    <th scope="col">Admins Emails</th>
+                    <th scope="col">Total login count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <% for (var i=0; i < adminNames.length; i++) { %>
+                            <h6><span class="badge bg-primary">
+                                    <%= adminNames[i] %>
+                                </span></h6>
+                            <% } %>
+                    </td>
+                    <td>
+                        <% for (var i=0; i < adminEmails.length; i++) { %>
+                            <h6><span class="badge bg-primary">
+                                    <%= adminEmails[i] %>
+                                </span></h6>
+                            <% } %>
+                    </td>
+                    <td>
+                        <%= loginCount %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="p-3 pt-0 mt-1">
+    <h4 class="text-center">Database Details</h4>
+    <div class="table-responsive">
+        <table style="overflow: scroll;" class="table align-middle table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Collections</th>
+                    <th scope="col">Numbers of Documents</th>
+                    <th scope="col">Last updated</th>
+                    <th scope="col">Updates times</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Users</td>
+                    <td>1145642</td>
+                    <td>12 June 2021</td>
+                    <td>2</td>
+                    <td>
+                        <a href="/admin/users" class="btn btn-sm m-1">View</a>
+                        <a class="btn btn-sm m-1 btn-primary">Create</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Events</td>
+                    <td>21</td>
+                    <td>1 Jan 2021</td>
+                    <td>0</td>
+                    <td>
+                        <a href="/admin/events" class="btn btn-sm m-1">View</a>
+                        <a class="btn btn-sm m-1 btn-primary">Create</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Projects</td>
+                    <td>45</td>
+                    <td>6 April 2021</td>
+                    <td>1</td>
+                    <td>
+                        <a class="btn btn-sm m-1">View</a>
+                        <a class="btn btn-sm m-1 btn-primary">Create</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Playlists</td>
+                    <td>456</td>
+                    <td>16 May 2021</td>
+                    <td>5</td>
+                    <td>
+                        <a class="btn btn-sm m-1">View</a>
+                        <a class="btn btn-sm m-1 btn-primary">Create</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Videos</td>
+                    <td>564</td>
+                    <td>30 Aug 2021</td>
+                    <td>0</td>
+                    <td>
+                        <a class="btn btn-sm m-1">View</a>
+                        <a class="btn btn-sm m-1 btn-primary">Create</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Requests</td>
+                    <td>77</td>
+                    <td>4 Dec 2021</td>
+                    <td>88</td>
+                    <td>
+                        <a class="btn btn-sm m-1">View</a>
+                        <a class="btn btn-sm m-1 btn-primary">Create</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

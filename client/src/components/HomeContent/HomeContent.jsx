@@ -98,7 +98,7 @@ function HomeContent(props) {
               "Threads",
             ]}
             projects={["Calcualtor"]}
-            discription={`100K Coding Challenge is an initiative by Team Crossroads to teach
+            description={`100K Coding Challenge is an initiative by Team Crossroads to teach
                 programming in the simplest possible manner to 1 lakh students across
                 Kerala completely FREE of cost. This video is the part one video of
                 the series and today we will be discussing about the general aspects
@@ -106,7 +106,7 @@ function HomeContent(props) {
                 programming? several terminologies associated with programming etc.
                 Also, today we will finish installing few softwares and tools and will
                 set up an environment for us to start learning to programme`}
-            linkToPlaylist="https://youtube.com/playlist?list=PLY-ecO2csVHeKaBI7lAM1jbIPU8K6fUxY"
+            btnLink="https://youtube.com/playlist?list=PLY-ecO2csVHeKaBI7lAM1jbIPU8K6fUxY"
             numOfVideos={14}
             btnText="Go to playlist"
           />
@@ -120,8 +120,8 @@ function HomeContent(props) {
               "Personal Website",
               "Hosting a static website in GitHub pages",
             ]}
-            discription={`Web Designing Challenge is an initiative by Team Crossroads to teach how to develop and deploy a static website from scratch. The complete series will be of 10 videos and each video will cover the necessary topics such as HTML, CSS, Javascript, JQuery and Bootstrap. Also in the end we will teach you how to purchase a domain name and live host a website. `}
-            linkToPlaylist="https://youtube.com/playlist?list=PLY-ecO2csVHfRMEmW_ltccnJcMtSGUKSk"
+            description={`Web Designing Challenge is an initiative by Team Crossroads to teach how to develop and deploy a static website from scratch. The complete series will be of 10 videos and each video will cover the necessary topics such as HTML, CSS, Javascript, JQuery and Bootstrap. Also in the end we will teach you how to purchase a domain name and live host a website. `}
+            btnLink="https://youtube.com/playlist?list=PLY-ecO2csVHfRMEmW_ltccnJcMtSGUKSk"
             numOfVideos={14}
             btnText="Go to playlist"
           />
@@ -141,8 +141,8 @@ function HomeContent(props) {
               "Project managment",
             ]}
             projects={[]}
-            discription={`Date with Git is an initiative by Team Crossroads. The complete series will be of 5 videos and each video will cover the necessary topics. Git is a distributed version control system for tracking changes in source code during software development. It is designed for coordinating work among programmers, but it can be used to track changes in any set of files. Its goals include speed, data integrity, and support for distributed, non-linear workflows`}
-            linkToPlaylist="https://youtube.com/playlist?list=PLY-ecO2csVHdLhAO6TERaMJXP8aqyWVt-"
+            description={`Date with Git is an initiative by Team Crossroads. The complete series will be of 5 videos and each video will cover the necessary topics. Git is a distributed version control system for tracking changes in source code during software development. It is designed for coordinating work among programmers, but it can be used to track changes in any set of files. Its goals include speed, data integrity, and support for distributed, non-linear workflows`}
+            btnLink="https://youtube.com/playlist?list=PLY-ecO2csVHdLhAO6TERaMJXP8aqyWVt-"
             numOfVideos={8}
             btnText="Go to playlist"
           />
@@ -151,21 +151,13 @@ function HomeContent(props) {
           <h2 className="card-title">Upcoming Events</h2>
           <EventCard
             title="Javascript Develpers Meeting"
-            discription="Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut facilis inventore adipisci ratione voluptatibus, facere accusantium sapiente illo doloribus dignissimos, accusamus maxime molestias alias totam hic. Officiis ut doloribus praesentium."
+            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut facilis inventore adipisci ratione voluptatibus, facere accusantium sapiente illo doloribus dignissimos, accusamus maxime molestias alias totam hic. Officiis ut doloribus praesentium."
             date="12.04.2022"
             time="10 AM"
             location="Cyber Park, Kozhikode"
             imageSrc="https://javascript-conference.com/wp-content/uploads/2019/05/45446385882_2738d47a46_z.jpg"
-            linkButtons={[
-              {
-                link: "https://www.google.com/",
-                text: "Go to Google",
-              },
-              {
-                link: "https://www.google.com/",
-                text: "Go to Official Website",
-              },
-            ]}
+            btnLink="https://www.google.com/"
+            btnText="Go to Google"
           />
         </Grid>
         <Grid sm={6} xs={12}>

@@ -6,17 +6,13 @@ import { openLocationInGMap, openUrlInNewTab } from "../../constants/constants";
 
 function EventCard({
   title = "",
-  discription = "",
+  description = "",
   date = "",
   time = "",
   location = "",
   imageSrc = "",
-  linkButtons = [
-    {
-      link: "",
-      text: "",
-    },
-  ],
+  btnLink = "",
+  btnText = "",
 }) {
   return (
     <Paper className="event-card" elevation={3}>
@@ -49,29 +45,22 @@ function EventCard({
           }}
         ></Chip>
         <br />
-        <Typography className="event-card-discription" variant="subtitle1">
-          {discription}
+        <Typography className="event-card-description" variant="subtitle1">
+          {description}
         </Typography>
         <div>
-          {linkButtons.map((itm, key) => {
-            var pathArray = itm.link.split("/");
-            var protocol = pathArray[0];
-            var host = pathArray[2];
-            var url = protocol + "//" + host;
-            return (
-              <Button
-                className="event-card-link"
-                variant="contained"
-                color="secondary"
-                key={key}
-                onClick={() => {
-                  openUrlInNewTab(url);
-                }}
-              >
-                {itm.text}
-              </Button>
-            );
-          })}
+          {btnLink && (
+            <Button
+              className="event-card-link"
+              variant="contained"
+              color="secondary"
+              onClick={() => {
+                openUrlInNewTab(btnLink);
+              }}
+            >
+              {btnText}
+            </Button>
+          )}
         </div>
       </div>
     </Paper>

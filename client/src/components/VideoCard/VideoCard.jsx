@@ -9,10 +9,10 @@ function VideoCard({
   title = "",
   topicsCovered = [],
   projects = [],
-  discription = ``,
-  linkToPlaylist = "",
+  description = ``,
+  btnLink = "",
   numOfVideos = false,
-  btnText = "Watch Video",
+  btnText = "Watch video",
 }) {
   return (
     <Paper className="video-card" elevation={3}>
@@ -58,7 +58,7 @@ function VideoCard({
             })}
         </div>
         <hr className="hr" />
-        <Typography variant="subtitle1">{discription}</Typography>
+        <Typography variant="subtitle1">{description}</Typography>
         {numOfVideos && (
           <Typography variant="subtitle2" style={{ marginTop: "0.5rem" }}>
             Number of videos :- {numOfVideos}
@@ -70,7 +70,7 @@ function VideoCard({
             color="secondary"
             className="btn"
             onClick={() => {
-              openUrlInNewTab(linkToPlaylist);
+              openUrlInNewTab(btnLink);
             }}
           >
             {btnText}

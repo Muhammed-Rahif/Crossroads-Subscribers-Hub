@@ -1,0 +1,67 @@
+<div class="p-3 pt-4 mt-5">
+    <h4 class="text-center">Users Details</h4>
+    <% if(users.length> 0) { %>
+        <div class="table-responsive">
+            <table style="overflow: scroll;" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">User</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Client ID</th>
+                        <th scope="col">Profile updated</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0; i < users.length; i++){ %>
+                        <tr>
+                            <td>
+                                <%= users[i].fullName %>
+                            </td>
+                            <td>
+                                <%= users[i].email %>
+                            </td>
+                            <td>
+                                <%= users[i].createdAt.toLocaleString("en-US"); %>
+                            </td>
+                            <td>
+                                <%= users[i].location %>
+                            </td>
+                            <td>
+                                <%= users[i].clientId %>
+                            </td>
+                            <td>
+                                <%= users[i].versionKey %> times
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-sm m-1">Send Notifcation</button>
+                                <button class="btn btn-danger btn-sm m-1"
+                                    onclick="deleteUser('<%= users[i]._id %>')">Delete</button>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+        <% }else{ %>
+            <hr>
+            <h6 class="text-center">No users found!</h6>
+            <% } %>
+</div>
+<script>
+    function deleteUser(userId) {
+        if (confirm("Are you sure to want to delete this user ?")) {
+            axios.delete("/admin/delete/user", { data: { userId } }).then((response) => {
+                if (response.status === 200) {
+                    window.location.reload();
+                } else {
+                    alert("Something went wrong!");
+                }
+            })
+        } else {
+            return;
+        }
+    }
+</script>

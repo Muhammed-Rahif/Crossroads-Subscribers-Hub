@@ -1,0 +1,38 @@
+<div class="p-5 mt-5">
+    <form action="/admin/login" method="POST" class="col-md-6 m-auto" autocomplete="on">
+        <h5 class="text-center">Log in to Admin Panel</h5>
+        <%if (loginErr) { %>
+            <p class="text-center text-danger text-small">
+                <%= loginErr %>
+            </p>
+            <% } else { %>
+                <br>
+                <% } %>
+                    <div class="form-outline">
+                        <input name="adminName" type="text" id="adminName" class="form-control" required autofocus />
+                        <label class="form-label" for="adminName">Your name</label>
+                    </div>
+                    <br>
+                    <div class="form-outline">
+                        <input name="adminEmail" type="email" id="adminEmail" class="form-control" required autofocus />
+                        <label class="form-label" for="adminEmail">Your email</label>
+                    </div>
+                    <br>
+                    <div class="form-outline">
+                        <input name="adminId" type="number" id="adminId" class="form-control" required />
+                        <label class="form-label" for="adminId">Admin Id</label>
+                    </div>
+                    <br>
+                    <div class="form-outline">
+                        <input name="secretId" type="text" id="secretId" class="form-control" required />
+                        <label class="form-label" for="secretId">Secret Id</label>
+                    </div>
+                    <br>
+                    <div class="form-outline">
+                        <input name="password" type="password" id="password" class="form-control" required />
+                        <label class="form-label" for="password">Password</label>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary w-100">Log in</button>
+    </form>
+</div>

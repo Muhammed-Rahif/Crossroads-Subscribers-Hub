@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const helperFunctions = require("../functions/helperFunctions");
+const userFunctions = require("../functions/userFunctions");
 
 router.post("/sign-up", (req, res) => {
-  helperFunctions
+  userFunctions
     .signUpUser(req.body)
     .then((response) => {
       if (response.statusCode === 201) {
@@ -21,7 +21,7 @@ router.post("/sign-up", (req, res) => {
 });
 
 router.post("/get-user-data", (req, res) => {
-  helperFunctions
+  userFunctions
     .getUserData(req.session.userData.userId, req.body.clientId)
     .then((response) => {
       if (response.statusCode === 200) {

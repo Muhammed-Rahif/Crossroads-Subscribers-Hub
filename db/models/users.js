@@ -1,6 +1,7 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
+const updateVersioningPlugin = require("mongoose-update-versioning");
 
-var userSchema = new mongoose.Schema(
+const usersSchema = new mongoose.Schema(
   {
     clientId: { type: String, required: true, unique: true },
     fullName: { type: String, required: true },
@@ -14,4 +15,6 @@ var userSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("User", userSchema, "users");
+usersSchema.plugin(updateVersioningPlugin);
+
+module.exports = mongoose.model("User", usersSchema, "users");
