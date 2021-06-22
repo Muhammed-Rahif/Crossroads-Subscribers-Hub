@@ -38,8 +38,14 @@ router.get("/events", verifyAdminLogin, (req, res) => {
 // Playists page
 router.get("/playlists", verifyAdminLogin, (req, res) => {
   adminFunctions.getPlaylists().then((playlists) => {
-    console.log(playlists);
     res.render("pages/playlists", { playlists });
+  });
+});
+
+// Projects page
+router.get("/projects", verifyAdminLogin, (req, res) => {
+  adminFunctions.getProjects().then((projects) => {
+    res.render("pages/projects", { projects });
   });
 });
 
@@ -64,16 +70,27 @@ router.get("/create/playlist", verifyAdminLogin, (req, res) => {
 });
 
 router.post("/create/playlist", verifyAdminLogin, (req, res) => {
-  console.log(req.body);
   adminFunctions.createPlaylist(req.body).then((response) => {
+    res.json(response);
+  });
+});
+
+// Create project
+router.get("/create/project", verifyAdminLogin, (req, res) => {
+  res.render("pages/create-project");
+});
+
+router.post("/create/project", verifyAdminLogin, (req, res) => {
+  adminFunctions.createProject(req.body).then((response) => {
+    console.log(req.body);
     res.json(response);
   });
 });
 
 // Edit event
 router.get("/edit/event/:eventId", (req, res) => {
-  adminFunctions.getEvent(req.params.eventId).then((eventData) => {
-    res.render("pages/edit-event", { eventData });
+  adminFunctions.getEvent(req.params.eventId).then((event) => {
+    res.render("pages/edit-event", { event });
   });
 });
 
@@ -89,14 +106,30 @@ router.post("/edit/event/:eventId", (req, res) => {
 
 // Edit playlist
 router.get("/edit/playlist/:playlistId", (req, res) => {
-  adminFunctions.getPlaylist(req.params.playlistId).then((playlistData) => {
-    res.render("pages/edit-playlist", { playlistData });
+  adminFunctions.getPlaylist(req.params.playlistId).then((playlist) => {
+    res.render("pages/edit-playlist", { playlist });
   });
 });
 
 router.post("/edit/playlist/:playlistId", (req, res) => {
   adminFunctions
     .updatePlaylist(req.params.playlistId, req.body)
+    .then((response) => {
+      res.json(response);
+    });
+});
+
+// Edit project
+router.get("/edit/project/:projectId", (req, res) => {
+  adminFunctions.getProject(req.params.projectId).then((project) => {
+    console.log({ project });
+    res.render("pages/edit-project", { project });
+  });
+});
+
+router.post("/edit/project/:projectId", (req, res) => {
+  adminFunctions
+    .updateProject(req.params.projectId, req.body)
     .then((response) => {
       res.json(response);
     });
@@ -127,6 +160,17 @@ router.delete("/delete/event", verifyAdminLogin, (req, res) => {
 // Delete playlist
 router.delete("/delete/playlist", verifyAdminLogin, (req, res) => {
   adminFunctions.deletePlaylist(req.body.playlistId).then((response) => {
+    if (response.status) {
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(400);
+    }
+  });
+});
+
+// Delete project
+router.delete("/delete/project", verifyAdminLogin, (req, res) => {
+  adminFunctions.deleteProject(req.body.projectId).then((response) => {
     if (response.status) {
       res.sendStatus(200);
     } else {

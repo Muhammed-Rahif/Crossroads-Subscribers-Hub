@@ -1,0 +1,153 @@
+<div class="p-3 col-md-8 m-auto pt-4 mt-5 mb-5">
+    <form class="m-auto" autocomplete="on">
+        <h5 class="text-center">Create a new Project</h5>
+        <br>
+        <div class="form-outline">
+            <input name="title" type="text" id="title" class="form-control" required autofocus />
+            <label class="form-label" for="title">Project title or name</label>
+        </div>
+        <br>
+        <div class="form-outline">
+            <textarea required name="description" class="form-control" id="description" rows="4"></textarea>
+            <label class="form-label" for="description">Project description</label>
+        </div>
+        <br>
+        <div class="form-outline">
+            <input type="url" required name="githubLink" class="form-control" id="githubLink" />
+            <label class="form-label" for="githubLink">Github repo link</label>
+        </div>
+        <br>
+        <div class="form-outline">
+            <input type="url" required name="hostedIn" class="form-control" id="hostedIn" />
+            <label class="form-label" for="hostedIn">Hosted link</label>
+        </div>
+        <br>
+        <label class="form-label">Contributors</label>
+        <div style="border-radius: .25rem;border: 1px lightgrey solid;padding: .33em .75em;">
+            <div class="d-flex mb-1">
+                <input name="contributors" placeholder="Contributor" id="contributor" class="form-control">
+                <button type="button" class="btn-sm btn btn-primary"
+                    onclick="addTagTo('contributors',$('#contributor').val())">+</button>
+            </div>
+            <label style="display: none;" class="form-label"></label>
+            <div class="d-flex justify-content-between">
+                <h5 id="contributors">
+                </h5>
+            </div>
+        </div>
+        <br>
+        <label class="form-label">Technologies</label>
+        <div style="border-radius: .25rem;border: 1px lightgrey solid;padding: .33em .75em;">
+            <label style="display: none;" class="form-label"></label>
+            <div class="d-flex mb-1">
+                <input name="usedTechnologies" placeholder="Technology" id="technology" class="form-control">
+                <button type="button" class="btn-sm btn btn-primary"
+                    onclick="addTagTo('technologies',$('#technology').val())">+</button>
+            </div>
+            <div class="d-flex justify-content-between">
+                <h5 id="technologies">
+                </h5>
+            </div>
+        </div>
+        <br>
+        <label class="form-label">Languages</label>
+        <div style="border-radius: .25rem;border: 1px lightgrey solid;padding: .33em .75em;">
+            <div class="d-flex mb-1">
+                <input name="usedLanguages" placeholder="Language" id="language" class="form-control">
+                <button type="button" class="btn-sm btn btn-primary"
+                    onclick="addTagTo('languages',$('#language').val())">+</button>
+            </div>
+            <label style="display: none;" class="form-label"></label>
+            <div class="d-flex justify-content-between">
+                <h5 id="languages">
+                </h5>
+            </div>
+        </div>
+        <br>
+        <div class="form-outline">
+            <input required type="text" name="stableBranch" class="form-control" id="stableBranch" rows="4" />
+            <label class="form-label" for="stableBranch">Stable Branch</label>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary w-100">Create project</button>
+    </form>
+</div>
+<script>
+    var contributorsArray = [];
+    var technologiesArray = [];
+    var languagesArray = [];
+
+    function addTagTo(toArray, tag) {
+        if (toArray === "technologies") {
+            $(`#technology`).val("").focus();
+        } else {
+            $(`#${toArray.slice(0, -1)}`).val("").focus();
+        }
+        if (tag !== "") {
+            if (toArray === "contributors") {
+                contributorsArray.push(tag);
+            } else if (toArray === "technologies") {
+                technologiesArray.push(tag);
+            } else if (toArray === "languages") {
+                languagesArray.push(tag);
+            }
+        }
+        refreshTags();
+    }
+
+    function removeTagFrom(fromArray, indx) {
+        if (fromArray === "contributors") {
+            contributorsArray.splice(indx, 1);
+        } else if (fromArray === "technologies") {
+            technologiesArray.splice(indx, 1);
+        } else if (fromArray === "languages") {
+            languagesArray.splice(indx, 1);
+        }
+        refreshTags();
+    }
+
+    function refreshTags() {
+        $("#contributors").empty();
+        $("#technologies").empty();
+        $("#languages").empty();
+        contributorsArray.map((itm, indx) => {
+            $("#contributors").append(`<span class="badge m-1 bg-primary">
+                        ${itm} <button type="button" onclick="removeTagFrom('contributors',${indx})" class="btn-danger">-</button>
+                    </span>`);
+        });
+        technologiesArray.map((itm, indx) => {
+            $("#technologies").append(`<span class="badge m-1 bg-primary">
+                        ${itm} <button type="button" onclick="removeTagFrom('technologies',${indx})" class="btn-danger">-</button>
+                    </span>`);
+        });
+        languagesArray.map((itm, indx) => {
+            $("#languages").append(`<span class="badge m-1 bg-primary">
+                        ${itm} <button type="button" onclick="removeTagFrom('languages',${indx})" class="btn-danger">-</button>
+                    </span>`);
+        });
+    }
+
+
+
+    window.onload = () => {
+        $("form").submit(function (e) {
+            e.preventDefault();
+            // get all the inputs into an array.
+            var $inputs = $('form :input');
+            var values = {};
+            $inputs.each(function () {
+                values[this.name] = $(this).val();
+            });
+
+            axios.post("/admin/create/project", { ...values, usedTechnologies: technologiesArray, contributors: contributorsArray, usedLanguages: languagesArray }).then(response => {
+                if (response.data.status) {
+                    window.location.href = "/admin/projects"
+                } else {
+                    window.location.reload();
+                }
+            })
+
+        });
+        refreshTags();
+    }
+</script>

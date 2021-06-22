@@ -3,20 +3,20 @@
         <h5 class="text-center">Edit a Playlist</h5>
         <br>
         <div class="form-outline">
-            <input value="<%=playlistData.title%>" name="title" type="text" id="title" class="form-control" required
+            <input value="<%=playlist.title%>" name="title" type="text" id="title" class="form-control" required
                 autofocus />
             <label class="form-label" for="title">Playlist title or name</label>
         </div>
         <br>
         <div class="form-outline">
             <textarea required name="description" class="form-control" id="description"
-                rows="4"><%=playlistData.description%></textarea>
+                rows="4"><%=playlist.description%></textarea>
             <label class="form-label" for="description">Playlist description</label>
         </div>
         <br>
         <div class="form-outline">
-            <input value="<%=playlistData.videoId%>" required type="text" name="videoId" class="form-control"
-                id="videoId" rows="4" />
+            <input value="<%=playlist.videoId%>" required type="text" name="videoId" class="form-control" id="videoId"
+                rows="4" />
             <label class="form-label" for="videoId">Playlist YT video id </label>
         </div>
         <br>
@@ -49,19 +49,19 @@
         </div>
         <br>
         <div class="form-outline">
-            <input value="<%=playlistData.numOfVideos%>" required type="number" name="numOfVideos" class="form-control"
+            <input value="<%=playlist.numOfVideos%>" required type="number" name="numOfVideos" class="form-control"
                 id="numOfVideos" rows="4" />
             <label class="form-label" for="numOfVideos">Number of videos</label>
         </div>
         <br>
         <div class="w-100 flex-wrap d-flex">
             <div class="form-outline col-md-6 col-6">
-                <input value="<%=playlistData.btnLink%>" required type="url" name="btnLink" class="form-control"
+                <input value="<%=playlist.btnLink%>" required type="url" name="btnLink" class="form-control"
                     id="btnLink" rows="4" />
                 <label class="form-label" for="btnLink">Bottom button link</label>
             </div>
             <div class="form-outline col-md-6 col-6">
-                <input value="<%=playlistData.btnText%>" required type="text" name="btnText" class="form-control"
+                <input value="<%=playlist.btnText%>" required type="text" name="btnText" class="form-control"
                     id="btnText" rows="4" />
                 <label class="form-label" for="btnText">Bottom button text</label>
             </div>
@@ -74,11 +74,12 @@
     var topicsArray = [];
     var projectsArray = [];
 
-    "<% for (let j=0; j < playlistData.topicsCovered.length; j++) { %>"
-    topicsArray.push("<%=playlistData.topicsCovered[j]%>");
+    "<% for (let j=0; j < playlist.topicsCovered.length; j++) { %>"
+    topicsArray.push("<%=playlist.topicsCovered[j]%>");
     "<% } %>"
-    "<% for (let j=0; j < playlistData.projects.length; j++) { %>"
-    projectsArray.push("<%=playlistData.projects[j]%>");
+
+    "<% for (let j=0; j < playlist.projects.length; j++) { %>"
+    projectsArray.push("<%=playlist.projects[j]%>");
     "<% } %>"
 
     function addTagTo(toArray, tag) {
@@ -127,7 +128,7 @@
                 values[this.name] = $(this).val();
             });
 
-            axios.post("/admin/edit/playlist/<%=playlistData._id%>", { ...values, projects: projectsArray, topicsCovered: topicsArray }).then(response => {
+            axios.post("/admin/edit/playlist/<%=playlist._id%>", { ...values, projects: projectsArray, topicsCovered: topicsArray }).then(response => {
                 if (response.data.status) {
                     window.location.href = "/admin/playlists"
                 } else {

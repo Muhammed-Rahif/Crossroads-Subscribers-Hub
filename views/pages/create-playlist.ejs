@@ -13,27 +13,27 @@
         </div>
         <br>
         <div class="form-outline">
-            <input required type="text" name="videoId" class="form-control" id="videoId" rows="4" />
+            <input required type="text" name="videoId" class="form-control" id="videoId" />
             <label class="form-label" for="videoId">Playlist YT video id </label>
         </div>
         <br>
-        <label class="form-label" for="topicsCovered">Topics covered</label>
+        <label class="form-label">Topics covered</label>
         <div style="border-radius: .25rem;border: 1px lightgrey solid;padding: .33em .75em;">
             <div class="d-flex mb-1">
                 <input name="coveredTopics" placeholder="Topic" id="topic" class="form-control">
                 <button type="button" class="btn-sm btn btn-primary"
                     onclick="addTagTo('topics',$('#topic').val())">+</button>
             </div>
-            <label style="display: none;" class="form-label" for="topicsCovered"></label>
+            <label style="display: none;" class="form-label"></label>
             <div class="d-flex justify-content-between">
                 <h5 id="topics">
                 </h5>
             </div>
         </div>
         <br>
-        <label class="form-label" for="topicsCovered">Projects</label>
+        <label class="form-label">Projects</label>
         <div style="border-radius: .25rem;border: 1px lightgrey solid;padding: .33em .75em;">
-            <label style="display: none;" class="form-label" for="topicsCovered"></label>
+            <label style="display: none;" class="form-label"></label>
             <div class="d-flex mb-1">
                 <input name="projects" placeholder="Project" id="project" class="form-control">
                 <button type="button" class="btn-sm btn btn-primary"
@@ -70,10 +70,12 @@
 
     function addTagTo(toArray, tag) {
         $(`#${toArray.slice(0, -1)}`).val("").focus();
-        if (toArray === "topics") {
-            topicsArray.push(tag)
-        } else if (toArray === "projects") {
-            projectsArray.push(tag)
+        if (tag !== "") {
+            if (toArray === "topics") {
+                topicsArray.push(tag);
+            } else if (toArray === "projects") {
+                projectsArray.push(tag);
+            }
         }
         refreshTags();
     }

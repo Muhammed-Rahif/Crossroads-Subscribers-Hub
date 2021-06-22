@@ -4,6 +4,7 @@ const AdminModel = require("../db/models/admins");
 const UserModel = require("../db/models/users");
 const EventModel = require("../db/models/events");
 const PlaylistModel = require("../db/models/playlists");
+const ProjectModel = require("../db/models/projects");
 
 module.exports = {
   login: (adminData) => {
@@ -94,6 +95,18 @@ module.exports = {
         });
     });
   },
+  createProject: (projectData) => {
+    return new Promise((resolve, reject) => {
+      ProjectModel.create(projectData)
+        .then((doc) => {
+          resolve({ status: true });
+        })
+        .catch((err) => {
+          console.log(err);
+          resolve({ status: false });
+        });
+    });
+  },
   getAdminsDetails: () => {
     return new Promise((resolve, reject) => {
       AdminModel.findOne({}, "adminNames adminEmails -_id versionKey").then(
@@ -120,17 +133,6 @@ module.exports = {
       });
     });
   },
-  getEvent: (eventId) => {
-    return new Promise((resolve, reject) => {
-      EventModel.findById(eventId)
-        .then((eventData) => {
-          resolve(eventData);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-  },
   getPlaylists: () => {
     return new Promise((resolve, reject) => {
       PlaylistModel.find({})
@@ -142,9 +144,42 @@ module.exports = {
         });
     });
   },
+  getProjects: () => {
+    return new Promise((resolve, reject) => {
+      ProjectModel.find({})
+        .then((projectsArray) => {
+          resolve(projectsArray);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  },
+  getEvent: (eventId) => {
+    return new Promise((resolve, reject) => {
+      EventModel.findById(eventId)
+        .then((eventData) => {
+          resolve(eventData);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
   getPlaylist: (playlistId) => {
     return new Promise((resolve, reject) => {
       PlaylistModel.findById(playlistId)
+        .then((playlistData) => {
+          resolve(playlistData);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  getProject: (projectId) => {
+    return new Promise((resolve, reject) => {
+      ProjectModel.findById(projectId)
         .then((playlistData) => {
           resolve(playlistData);
         })
@@ -172,6 +207,21 @@ module.exports = {
     return new Promise((resolve, reject) => {
       PlaylistModel.findByIdAndUpdate(playlistId, {
         $set: { ...playlistData },
+        $inc: { versionKey: 1 },
+      })
+        .then(() => {
+          resolve({ status: true });
+        })
+        .catch((err) => {
+          console.log(err);
+          resolve({ status: false });
+        });
+    });
+  },
+  updateProject: (projectId, projectData) => {
+    return new Promise((resolve, reject) => {
+      ProjectModel.findByIdAndUpdate(projectId, {
+        $set: { ...projectData },
         $inc: { versionKey: 1 },
       })
         .then(() => {
@@ -218,6 +268,22 @@ module.exports = {
   deletePlaylist: (playlistId) => {
     return new Promise((resolve, reject) => {
       PlaylistModel.findByIdAndDelete(playlistId)
+        .then((doc) => {
+          if (doc) {
+            resolve({ status: true });
+          } else {
+            resolve({ status: false });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          resolve({ status: false });
+        });
+    });
+  },
+  deleteProject: (projectId) => {
+    return new Promise((resolve, reject) => {
+      ProjectModel.findByIdAndDelete(projectId)
         .then((doc) => {
           if (doc) {
             resolve({ status: true });
