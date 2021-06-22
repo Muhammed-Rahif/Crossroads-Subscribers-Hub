@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const updateVersioningPlugin = require("mongoose-update-versioning");
 
 const adminsSchema = new mongoose.Schema(
   {
@@ -13,8 +12,6 @@ const adminsSchema = new mongoose.Schema(
     versionKey: "versionKey",
   }
 );
-
-adminsSchema.plugin(updateVersioningPlugin);
 
 // My Login data
 //  Admin id : 2434

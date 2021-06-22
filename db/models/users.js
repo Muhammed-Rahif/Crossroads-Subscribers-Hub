@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const updateVersioningPlugin = require("mongoose-update-versioning");
 
 const usersSchema = new mongoose.Schema(
   {
@@ -14,7 +13,5 @@ const usersSchema = new mongoose.Schema(
     versionKey: "versionKey",
   }
 );
-
-usersSchema.plugin(updateVersioningPlugin);
 
 module.exports = mongoose.model("User", usersSchema, "users");

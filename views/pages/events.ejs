@@ -11,6 +11,7 @@
                     <tr>
                         <th scope="col">Created</th>
                         <th scope="col">Event</th>
+                        <th scope="col">Event photo</th>
                         <th scope="col">Description</th>
                         <th scope="col">Date</th>
                         <th scope="col">Time</th>
@@ -30,6 +31,9 @@
                                 <%= events[i].title %>
                             </td>
                             <td>
+                                <img src="<%= events[i].imageSrc %>" alt="<%= events[i].imageSrc %>" width="100%">
+                            </td>
+                            <td>
                                 <%= events[i].description %>
                             </td>
                             <td>
@@ -39,7 +43,7 @@
                                 <%= events[i].time %>
                             </td>
                             <td>
-                                <%= events[i].location %> times
+                                <%= events[i].location %>
                             </td>
                             <td>
                                 <a href="<%= events[i].btnLink %>" target="_blank" class="btn btn-primary btn-sm m-1">
@@ -47,12 +51,12 @@
                                 </a>
                             </td>
                             <td>
-                                <%= events[i].versionKey %>
+                                <%= events[i].versionKey %> times
                             </td>
                             <td>
-                                <button class="btn-primary btn-sm btn m-1">
+                                <a href="/admin/edit/event/<%= events[i]._id %>" class="btn-primary btn-sm btn m-1">
                                     Edit
-                                </button>
+                                </a>
                                 <button onclick="deleteEvent('<%= events[i]._id %>')" class="btn-danger btn-sm btn m-1">
                                     Delete
                                 </button>

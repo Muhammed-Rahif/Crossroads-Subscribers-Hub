@@ -19,7 +19,6 @@
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.17.2",
     "mongoose": "^5.12.14",
-    "mongoose-update-versioning": "^0.1.1",
     "uuid": "^8.3.2"
   }
 }

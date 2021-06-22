@@ -1,0 +1,103 @@
+<div class="p-3 pt-4 mt-5">
+    <h4 class="text-center">Playlists Details</h4>
+    <div class="text-center">
+        <a href="/admin/create/playlist" class="btn m-auto col-12 col-md-4 btn-primary">Create a playlist</a>
+    </div>
+    <hr>
+    <% if(playlists.length> 0){ %>
+        <div class="table-responsive">
+            <table style="overflow: scroll;" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Created</th>
+                        <th scope="col">Playlist</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Youtube video</th>
+                        <th scope="col">Topics Covered</th>
+                        <th scope="col">Projects</th>
+                        <th scope="col">Bottom button demo</th>
+                        <th scope="col">Number of videos</th>
+                        <th scope="col">Updated</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0; i < playlists.length; i++){ %>
+                        <tr>
+                            <td>
+                                <%= playlists[i].createdAt.toLocaleString("en-US"); %>
+                            </td>
+                            <td>
+                                <%= playlists[i].title %>
+                            </td>
+                            <td>
+                                <%= playlists[i].description %>
+                            </td>
+                            <td>
+                                <a target="_blank" href="https://www.youtube.com/watch?v=<%= playlists[i].videoId %>">
+                                    <%= playlists[i].videoId %>
+                                </a>
+                            </td>
+                            <td>
+                                <% for (let j=0; j < playlists[i].topicsCovered.length; j++) { %>
+                                    <h6><span class="badge bg-primary">
+                                            <%= playlists[i].topicsCovered[j] %>
+                                        </span></h6>
+                                    <% } %>
+                            </td>
+                            <td>
+                                <% for (let j=0; j < playlists[i].projects.length; j++) { %>
+                                    <h6><span class="badge bg-primary">
+                                            <%= playlists[i].projects[j] %>
+                                        </span></h6>
+                                    <% } %>
+
+                            </td>
+                            <td>
+                                <a href="<%= playlists[i].btnLink %>" target="_blank"
+                                    class="btn btn-primary btn-sm m-1">
+                                    <%= playlists[i].btnText %>
+                                </a>
+                            </td>
+                            <td>
+                                <%= playlists[i].numOfVideos %>
+                            </td>
+                            <td>
+                                <%= playlists[i].versionKey %> times
+                            </td>
+                            <td>
+                                <a href="/admin/edit/playlist/<%= playlists[i]._id %>"
+                                    class="btn-primary btn-sm btn m-1">
+                                    Edit
+                                </a>
+                                <button onclick="deletePlaylist('<%= playlists[i]._id %>')"
+                                    class="btn-danger btn-sm btn m-1">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+        <% }else { %>
+            <h6 class="text-center">No playlists found!</h6>
+            <% } %>
+
+</div>
+
+<script>
+    function deletePlaylist(playlistId) {
+        if (confirm("Are you sure to want to delete this playlist ?")) {
+            axios.delete("/admin/delete/playlist", { data: { playlistId } }).then((response) => {
+                if (response.status === 200) {
+                    window.location.reload();
+                } else {
+                    alert("Something went wrong!");
+                }
+            })
+        } else {
+            return;
+        }
+    }
+</script>

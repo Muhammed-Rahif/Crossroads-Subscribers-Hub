@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const AdminModel = require("../db/models/admins");
 const UserModel = require("../db/models/users");
 const EventModel = require("../db/models/events");
+const PlaylistModel = require("../db/models/playlists");
 
 module.exports = {
   login: (adminData) => {
@@ -23,6 +24,7 @@ module.exports = {
                       $push: {
                         adminNames: adminData.adminName,
                       },
+                      $inc: { versionKey: 1 },
                     }
                   ).then((doc) => {
                     resolve({
@@ -39,6 +41,7 @@ module.exports = {
                         adminNames: adminData.adminName,
                         adminEmails: adminData.adminEmail,
                       },
+                      $inc: { versionKey: 1 },
                     }
                   ).then((doc) => {
                     resolve({
@@ -67,6 +70,30 @@ module.exports = {
       });
     });
   },
+  createEvent: (eventData) => {
+    return new Promise((resolve, reject) => {
+      EventModel.create(eventData)
+        .then((doc) => {
+          resolve({ status: true });
+        })
+        .catch((err) => {
+          console.log(err);
+          resolve({ status: false });
+        });
+    });
+  },
+  createPlaylist: (playlistData) => {
+    return new Promise((resolve, reject) => {
+      PlaylistModel.create(playlistData)
+        .then((doc) => {
+          resolve({ status: true });
+        })
+        .catch((err) => {
+          console.log(err);
+          resolve({ status: false });
+        });
+    });
+  },
   getAdminsDetails: () => {
     return new Promise((resolve, reject) => {
       AdminModel.findOne({}, "adminNames adminEmails -_id versionKey").then(
@@ -76,7 +103,7 @@ module.exports = {
       );
     });
   },
-  getUsersDetails: () => {
+  getUsers: () => {
     return new Promise((resolve, reject) => {
       UserModel.find(
         {},
@@ -86,19 +113,68 @@ module.exports = {
       });
     });
   },
-  getEventsDetails: () => {
+  getEvents: () => {
     return new Promise((resolve, reject) => {
       EventModel.find({}).then((eventsArray) => {
         resolve(eventsArray);
       });
     });
   },
-  createEvent: (eventData) => {
+  getEvent: (eventId) => {
     return new Promise((resolve, reject) => {
-      let event = new EventModel(eventData);
-      event
-        .save()
-        .then((doc) => {
+      EventModel.findById(eventId)
+        .then((eventData) => {
+          resolve(eventData);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  getPlaylists: () => {
+    return new Promise((resolve, reject) => {
+      PlaylistModel.find({})
+        .then((playlistsArray) => {
+          resolve(playlistsArray);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  },
+  getPlaylist: (playlistId) => {
+    return new Promise((resolve, reject) => {
+      PlaylistModel.findById(playlistId)
+        .then((playlistData) => {
+          resolve(playlistData);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  updateEvent: (eventId, eventData) => {
+    return new Promise((resolve, reject) => {
+      EventModel.findByIdAndUpdate(eventId, {
+        $set: { ...eventData },
+        $inc: { versionKey: 1 },
+      })
+        .then(() => {
+          resolve({ status: true });
+        })
+        .catch((err) => {
+          console.log(err);
+          resolve({ status: false });
+        });
+    });
+  },
+  updatePlaylist: (playlistId, playlistData) => {
+    return new Promise((resolve, reject) => {
+      PlaylistModel.findByIdAndUpdate(playlistId, {
+        $set: { ...playlistData },
+        $inc: { versionKey: 1 },
+      })
+        .then(() => {
           resolve({ status: true });
         })
         .catch((err) => {
@@ -126,6 +202,22 @@ module.exports = {
   deleteEvent: (eventId) => {
     return new Promise((resolve, reject) => {
       EventModel.findByIdAndDelete(eventId)
+        .then((doc) => {
+          if (doc) {
+            resolve({ status: true });
+          } else {
+            resolve({ status: false });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          resolve({ status: false });
+        });
+    });
+  },
+  deletePlaylist: (playlistId) => {
+    return new Promise((resolve, reject) => {
+      PlaylistModel.findByIdAndDelete(playlistId)
         .then((doc) => {
           if (doc) {
             resolve({ status: true });

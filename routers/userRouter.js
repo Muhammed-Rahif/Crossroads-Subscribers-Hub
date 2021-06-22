@@ -21,15 +21,19 @@ router.post("/sign-up", (req, res) => {
 });
 
 router.post("/get-user-data", (req, res) => {
-  userFunctions
-    .getUserData(req.session.userData.userId, req.body.clientId)
-    .then((response) => {
-      if (response.statusCode === 200) {
-        res.status(response.statusCode).json(response.userData);
-      } else {
-        res.sendStatus(404);
-      }
-    });
+  if (req.session.userData) {
+    userFunctions
+      .getUserData(req.session.userData.userId, req.body.clientId)
+      .then((response) => {
+        if (response.statusCode === 200) {
+          res.status(response.statusCode).json(response.userData);
+        } else {
+          res.sendStatus(404);
+        }
+      });
+  } else {
+    res.sendStatus(404);
+  }
 });
 
 module.exports = router;

@@ -1,0 +1,56 @@
+<div class="p-3 col-md-8 m-auto pt-4 mt-5 mb-5">
+    <form action="/admin/edit/event/<%= eventData._id %>" method="POST" class="m-auto" autocomplete="on">
+        <h5 class="text-center">Edit an Event</h5>
+        <br>
+        <div class="form-outline">
+            <input value="<%= eventData.title %>" name="title" type="text" id="title" class="form-control" required
+                autofocus />
+            <label class="form-label" for="title">Event title or name</label>
+        </div>
+        <br>
+        <div class="form-outline">
+            <textarea required name="description" class="form-control" id="description"
+                rows="4"><%= eventData.description %></textarea>
+            <label class="form-label" for="description">Event description</label>
+        </div>
+        <br>
+        <div class="form-outline">
+            <input value="<%= eventData.date %>" required type="date" name="date" class="form-control" id="date"
+                rows="4" />
+            <label class="form-label" for="date">Event date</label>
+        </div>
+        <br>
+        <div class="form-outline">
+            <input value="<%= eventData.time %>" required type="time" name="time" class="form-control" id="time"
+                rows="4" />
+            <label class="form-label" for="time">Event time</label>
+        </div>
+        <br>
+        <div class="form-outline">
+            <input value="<%= eventData.location %>" required type="text" name="location" class="form-control"
+                id="location" rows="4" />
+            <label class="form-label" for="location">Event location</label>
+        </div>
+        <br>
+        <div class="form-outline">
+            <input value="<%= eventData.imageSrc %>" required type="url" name="imageSrc" class="form-control"
+                id="imageSrc" rows="4" />
+            <label class="form-label" for="imageSrc">Event title image url</label>
+        </div>
+        <br>
+        <div class="w-100 flex-wrap d-flex">
+            <div class="form-outline col-md-6 col-6">
+                <input value="<%= eventData.btnLink %>" type="url" name="btnLink" class="form-control" id="btnLink"
+                    rows="4" />
+                <label class="form-label" for="btnLink">Bottom button link</label>
+            </div>
+            <div class="form-outline col-md-6 col-6">
+                <input value="<%= eventData.btnText %>" type="text" name="btnText" class="form-control" id="btnText"
+                    rows="4" />
+                <label class="form-label" for="btnText">Bottom button text</label>
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary w-100">Update event</button>
+    </form>
+</div>

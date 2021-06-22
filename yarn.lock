@@ -500,11 +500,6 @@ mongoose-legacy-pluralize@1.0.2:
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
   integrity sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==
 
-mongoose-update-versioning@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/mongoose-update-versioning/-/mongoose-update-versioning-0.1.1.tgz#89549d9b6100f5718c653ce61edb1e30030260f0"
-  integrity sha512-5mYUx991yPFkAWygTCQK+3Nd/79IPmB+2198PMa9DatzZKlx/rTskdsrzxxWJHzoNjt4EVQReYvFZHYYtbWmDQ==
-
 mongoose@^5.12.14:
   version "5.12.14"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.12.14.tgz#610460f0725acf67b3eefcd92f0a48a08919d51b"

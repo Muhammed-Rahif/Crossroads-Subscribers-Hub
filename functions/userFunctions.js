@@ -14,9 +14,7 @@ module.exports = {
           } else {
             userData.password = await bcrypt.hash(userData.password, 10);
             userData.clientId = uuidv4();
-            let user = new UserModel(userData);
-            user
-              .save()
+            UserModel.create(userData)
               .then((doc) => {
                 resolve({ statusCode: 201, userData: doc });
               })

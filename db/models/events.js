@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
-const updateVersioningPlugin = require("mongoose-update-versioning");
 
-const eventsSchema = mongoose.Schema(
+const eventsSchema = new mongoose.Schema(
   {
     createdAt: { type: Date, required: true, default: new Date() },
     title: { type: String, required: true },
@@ -17,7 +16,5 @@ const eventsSchema = mongoose.Schema(
     versionKey: "versionKey",
   }
 );
-
-eventsSchema.plugin(updateVersioningPlugin);
 
 module.exports = mongoose.model("Event", eventsSchema, "events");
