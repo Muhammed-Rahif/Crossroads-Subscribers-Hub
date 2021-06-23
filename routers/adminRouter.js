@@ -42,6 +42,13 @@ router.get("/playlists", verifyAdminLogin, (req, res) => {
   });
 });
 
+// Videos page
+router.get("/videos", verifyAdminLogin, (req, res) => {
+  adminFunctions.getVideos().then((videos) => {
+    res.render("pages/videos", { videos });
+  });
+});
+
 // Projects page
 router.get("/projects", verifyAdminLogin, (req, res) => {
   adminFunctions.getProjects().then((projects) => {
@@ -82,6 +89,17 @@ router.get("/create/project", verifyAdminLogin, (req, res) => {
 
 router.post("/create/project", verifyAdminLogin, (req, res) => {
   adminFunctions.createProject(req.body).then((response) => {
+    res.json(response);
+  });
+});
+
+// Create video
+router.get("/create/video", verifyAdminLogin, (req, res) => {
+  res.render("pages/create-video");
+});
+
+router.post("/create/video", verifyAdminLogin, (req, res) => {
+  adminFunctions.createVideo(req.body).then((response) => {
     console.log(req.body);
     res.json(response);
   });
@@ -135,6 +153,20 @@ router.post("/edit/project/:projectId", (req, res) => {
     });
 });
 
+// Edit video
+router.get("/edit/video/:videoId", (req, res) => {
+  adminFunctions.getVideo(req.params.videoId).then((video) => {
+    console.log({ video });
+    res.render("pages/edit-video", { video });
+  });
+});
+
+router.post("/edit/video/:videoId", (req, res) => {
+  adminFunctions.updateVideo(req.params.videoId, req.body).then((response) => {
+    res.json(response);
+  });
+});
+
 // Delete user
 router.delete("/delete/user", verifyAdminLogin, (req, res) => {
   adminFunctions.deleteUser(req.body.userId).then((response) => {
@@ -171,6 +203,17 @@ router.delete("/delete/playlist", verifyAdminLogin, (req, res) => {
 // Delete project
 router.delete("/delete/project", verifyAdminLogin, (req, res) => {
   adminFunctions.deleteProject(req.body.projectId).then((response) => {
+    if (response.status) {
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(400);
+    }
+  });
+});
+
+// Delete video
+router.delete("/delete/video", verifyAdminLogin, (req, res) => {
+  adminFunctions.deleteVideo(req.body.videoId).then((response) => {
     if (response.status) {
       res.sendStatus(200);
     } else {

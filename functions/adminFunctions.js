@@ -5,6 +5,7 @@ const UserModel = require("../db/models/users");
 const EventModel = require("../db/models/events");
 const PlaylistModel = require("../db/models/playlists");
 const ProjectModel = require("../db/models/projects");
+const VideoModel = require("../db/models/videos");
 
 module.exports = {
   login: (adminData) => {
@@ -107,6 +108,18 @@ module.exports = {
         });
     });
   },
+  createVideo: (videoData) => {
+    return new Promise((resolve, reject) => {
+      VideoModel.create(videoData)
+        .then((doc) => {
+          resolve({ status: true });
+        })
+        .catch((err) => {
+          console.log(err);
+          resolve({ status: false });
+        });
+    });
+  },
   getAdminsDetails: () => {
     return new Promise((resolve, reject) => {
       AdminModel.findOne({}, "adminNames adminEmails -_id versionKey").then(
@@ -155,6 +168,17 @@ module.exports = {
         });
     });
   },
+  getVideos: () => {
+    return new Promise((resolve, reject) => {
+      VideoModel.find({})
+        .then((videosArray) => {
+          resolve(videosArray);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  },
   getEvent: (eventId) => {
     return new Promise((resolve, reject) => {
       EventModel.findById(eventId)
@@ -180,8 +204,19 @@ module.exports = {
   getProject: (projectId) => {
     return new Promise((resolve, reject) => {
       ProjectModel.findById(projectId)
-        .then((playlistData) => {
-          resolve(playlistData);
+        .then((projectData) => {
+          resolve(projectData);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  getVideo: (videoId) => {
+    return new Promise((resolve, reject) => {
+      VideoModel.findById(videoId)
+        .then((videoData) => {
+          resolve(videoData);
         })
         .catch((err) => {
           reject(err);
@@ -222,6 +257,21 @@ module.exports = {
     return new Promise((resolve, reject) => {
       ProjectModel.findByIdAndUpdate(projectId, {
         $set: { ...projectData },
+        $inc: { versionKey: 1 },
+      })
+        .then(() => {
+          resolve({ status: true });
+        })
+        .catch((err) => {
+          console.log(err);
+          resolve({ status: false });
+        });
+    });
+  },
+  updateVideo: (videoId, videoData) => {
+    return new Promise((resolve, reject) => {
+      VideoModel.findByIdAndUpdate(videoId, {
+        $set: { ...videoData },
         $inc: { versionKey: 1 },
       })
         .then(() => {
@@ -284,6 +334,22 @@ module.exports = {
   deleteProject: (projectId) => {
     return new Promise((resolve, reject) => {
       ProjectModel.findByIdAndDelete(projectId)
+        .then((doc) => {
+          if (doc) {
+            resolve({ status: true });
+          } else {
+            resolve({ status: false });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          resolve({ status: false });
+        });
+    });
+  },
+  deleteVideo: (videoId) => {
+    return new Promise((resolve, reject) => {
+      VideoModel.findByIdAndDelete(videoId)
         .then((doc) => {
           if (doc) {
             resolve({ status: true });
