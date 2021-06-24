@@ -10,7 +10,10 @@ module.exports = {
         delete userData.confirmPassword;
         UserModel.findOne({ email: userData.email }).then(async (userExist) => {
           if (userExist) {
-            resolve({ statusCode: 409 });
+            resolve({
+              statusCode: 409,
+              message: "This user is already exist!",
+            });
           } else {
             userData.password = await bcrypt.hash(userData.password, 10);
             userData.clientId = uuidv4();
@@ -25,8 +28,38 @@ module.exports = {
           }
         });
       } else {
-        resolve({ statusCode: 401 });
+        resolve({ statusCode: 401, message: "Unauthorized activity!" });
       }
+    });
+  },
+  loginUser: (userData) => {
+    return new Promise((resolve, reject) => {
+      UserModel.findOne({ email: userData.email }).then(async (user) => {
+        if (user) {
+          console.log(
+            `${user.fullName.toLowerCase()}:${userData.fullName.toLowerCase()}`
+          );
+          if (user.fullName.toLowerCase() === userData.fullName.toLowerCase()) {
+            bcrypt.compare(userData.password, user.password).then((status) => {
+              if (status) {
+                resolve({ statusCode: 200, userData: user });
+              } else {
+                resolve({
+                  statusCode: 401,
+                  message: "Incorrect password typed!",
+                });
+              }
+            });
+          } else {
+            resolve({ statusCode: 401, message: "Incorrect full name typed!" });
+          }
+        } else {
+          resolve({
+            statusCode: 404,
+            message: "User not found.. Incorrect email typed!",
+          });
+        }
+      });
     });
   },
   getUserData: (userId, clientId) => {

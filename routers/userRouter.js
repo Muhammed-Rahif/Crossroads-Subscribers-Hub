@@ -12,11 +12,28 @@ router.post("/sign-up", (req, res) => {
           .status(response.statusCode)
           .json({ clientId: response.userData.clientId });
       } else {
-        res.sendStatus(response.statusCode);
+        res.status(response.statusCode).json({ message: response.message });
       }
     })
     .catch((err) => {
-      res.sendStatus(500);
+      res.status(500).json({ message: "Something really went wrong!" });
+    });
+});
+
+router.post("/login", (req, res) => {
+  userFunctions
+    .loginUser(req.body)
+    .then((response) => {
+      if (response.statusCode === 200) {
+        res
+          .status(response.statusCode)
+          .json({ clientId: response.userData.clientId });
+      } else {
+        res.status(response.statusCode).json({ message: response.message });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ message: "Something really went wrong!" });
     });
 });
 
@@ -34,6 +51,11 @@ router.post("/get-user-data", (req, res) => {
   } else {
     res.sendStatus(404);
   }
+});
+
+router.post("/logout", (req, res) => {
+  req.session.destroy();
+  res.status(200).json({ message: "User logout success!" });
 });
 
 module.exports = router;

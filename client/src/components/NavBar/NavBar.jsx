@@ -22,6 +22,7 @@ import {
 } from "@material-ui/icons";
 import "./NavBar.css";
 import {
+  BackdropLoadingContext,
   NotificationsPopoverContext,
   SideDrawerContext,
   ThemeContext,
@@ -29,13 +30,15 @@ import {
 } from "../../contexts/Contexts";
 import NotificationsPopover from "../NotificationsPopover/NotificationsPopover";
 import { useHistory, useLocation } from "react-router-dom";
+import { logoutUser } from "../../constants/apiReqs";
 
 function NavBar(props) {
   const [profilePopover, setProfilePopover] = useState(false);
   const { sideDrawer, setSideDrawer } = useContext(SideDrawerContext);
   const { darkTheme, setDarkTheme } = useContext(ThemeContext);
   const { setNotificationsPopover } = useContext(NotificationsPopoverContext);
-  const { user } = useContext(UserContext);
+  const { setBackdropLoading } = useContext(BackdropLoadingContext);
+  const { user, setUser } = useContext(UserContext);
   const history = useHistory();
   const location = useLocation();
 
@@ -107,12 +110,13 @@ function NavBar(props) {
           {user ? (
             <Avatar
               className="navbar-link avatar"
-              alt={user && user.fullName}
               // src="https://material-ui.com/static/images/avatar/2.jpg"
               onClick={(e) => {
                 setProfilePopover(e.currentTarget);
               }}
-            />
+            >
+              {user.fullName.match(/\b(\w)/g)}
+            </Avatar>
           ) : (
             <IconButton
               color="default"
@@ -143,24 +147,15 @@ function NavBar(props) {
                   <div className="profile">
                     <Avatar
                       className="navbar-link avatar"
-                      alt="Travis Howard"
-                      src="https://material-ui.com/static/images/avatar/2.jpg"
-                    />
+                      alt={user.fullName.match(/\b(\w)/g)}
+                      src=""
+                    >
+                      {user.fullName.match(/\b(\w)/g)}
+                    </Avatar>
                     <Typography variant="h6" className="profile-name">
                       {user.fullName}
                     </Typography>
                     <Typography variant="subtitle1">{user.email}</Typography>
-                    <Badge
-                      badgeContent={
-                        <CheckCircle
-                          style={{ color: "#00e676", fontSize: "0.7rem" }}
-                        />
-                      }
-                    >
-                      <Typography style={{ fontSize: "0.7rem" }}>
-                        Verified User{" "}
-                      </Typography>
-                    </Badge>
                   </div>
                   <hr className="hr" />
                   <div className="profile-btns">
@@ -173,7 +168,18 @@ function NavBar(props) {
                     >
                       View Profile
                     </Button>
-                    <Button variant="contained" color="secondary">
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => {
+                        setBackdropLoading("Logging out..!");
+                        logoutUser().then((response) => {
+                          setBackdropLoading(false);
+                          setUser(null);
+                          handleProfileClose();
+                        });
+                      }}
+                    >
                       Log out
                     </Button>
                   </div>

@@ -15,6 +15,7 @@
   text-align: left;
   width: 100%;
   padding: 1rem;
+  padding-left: 0;
 }
 .event-card-title {
   margin-top: 0.25rem !important;

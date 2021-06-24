@@ -12,7 +12,35 @@ const signUpUser = (userData) => {
         resolve(response);
       })
       .catch((err) => {
-        reject(err.response);
+        reject(err.response.data);
+      });
+  });
+};
+
+const loginUser = (userData) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post("/api/login", userData)
+      .then((response) => {
+        store.set(clientStorageKey, response.data);
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err.response.data);
+      });
+  });
+};
+
+const logoutUser = () => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post("/api/logout")
+      .then((response) => {
+        store.remove(clientStorageKey);
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err.response.data);
       });
   });
 };
@@ -38,4 +66,4 @@ const getUserData = () => {
   });
 };
 
-export { signUpUser, getUserData };
+export { signUpUser, getUserData, loginUser, logoutUser };

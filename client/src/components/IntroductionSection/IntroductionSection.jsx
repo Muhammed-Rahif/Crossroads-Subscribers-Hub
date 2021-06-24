@@ -7,10 +7,8 @@ function IntroductionSection({
   videoId = "",
   mainTitle = "",
   subTitle = "",
-  linkButton = {
-    link: "",
-    text: "",
-  },
+  btnLink = "",
+  btnText = "",
 }) {
   return (
     <Grid className="intro-wrapper" style={{ backgroundColor: "inherit" }}>

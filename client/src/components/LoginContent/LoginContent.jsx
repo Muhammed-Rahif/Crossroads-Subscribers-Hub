@@ -1,36 +1,33 @@
-import React, { useRef, useContext, useState } from "react";
-import "./SignUpContent.css";
-import { Grid, TextField, Typography, Avatar, Button } from "@material-ui/core";
-import { LockOutlined } from "@material-ui/icons";
+import React, { useContext, useState } from "react";
+import { Grid, Typography, Avatar, TextField, Button } from "@material-ui/core";
+import "./LoginContent.css";
 import { useForm } from "react-hook-form";
-import { emailRegexPattern } from "../../constants/constants";
-import { getUserData, signUpUser } from "../../constants/apiReqs";
+import { LockOutlined } from "@material-ui/icons";
 import { BackdropLoadingContext, UserContext } from "../../contexts/Contexts";
+import { emailRegexPattern } from "../../constants/constants";
+import { getUserData, loginUser } from "../../constants/apiReqs";
 import { Link } from "react-router-dom";
 
-function SignUpContent() {
+function LoginContent(props) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm({
     reValidateMode: "onChange",
   });
-  const password = useRef({});
-  password.current = watch("password", "");
 
-  const [signUpError, setSignUpError] = useState(null);
+  const [loginError, setLoginError] = useState(null);
 
   const { setBackdropLoading } = useContext(BackdropLoadingContext);
   const { setUser } = useContext(UserContext);
 
   const onSubmit = (data) => {
-    setBackdropLoading("Signing up...");
-    signUpUser(data)
+    setBackdropLoading("Logging in...");
+    loginUser(data)
       .then((response) => {
         setBackdropLoading(false);
-        setSignUpError(false);
+        setLoginError(false);
         getUserData().then((userData) => {
           setUser(userData);
         });
@@ -38,20 +35,20 @@ function SignUpContent() {
       .catch((err) => {
         setBackdropLoading(false);
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-        setSignUpError(err.message);
+        setLoginError(err.message);
       });
   };
 
   return (
-    <div className="signup-content-wrapper">
+    <div className="login-content-wrapper">
       <Grid container className="container">
         <Avatar style={{ margin: "auto", backgroundColor: "#f50057" }}>
           <LockOutlined />
         </Avatar>
-        <Typography variant="h5">Sign up</Typography>
-        {signUpError && (
+        <Typography variant="h5">Login</Typography>
+        {loginError && (
           <Typography style={{ color: "crimson" }} variant="subtitle2">
-            {signUpError}
+            {loginError}
           </Typography>
         )}
         <Grid sm={5} xs={12} className="container">
@@ -79,31 +76,6 @@ function SignUpContent() {
                 error={errors.hasOwnProperty("fullName")}
                 helperText={
                   errors.hasOwnProperty("fullName") && errors.fullName.message
-                }
-              />
-            </div>
-            <div className="input-field-wrapper">
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                label="Location"
-                color="secondary"
-                type="text"
-                {...register("location", {
-                  required: "Location is required.",
-                  maxLength: {
-                    value: 50,
-                    message: "Maximum length allowed 50.",
-                  },
-                  minLength: {
-                    value: 4,
-                    message: "Minimum 4 charecters.",
-                  },
-                })}
-                error={errors.hasOwnProperty("location")}
-                helperText={
-                  errors.hasOwnProperty("location") && errors.location.message
                 }
               />
             </div>
@@ -162,51 +134,23 @@ function SignUpContent() {
               />
             </div>
             <div className="input-field-wrapper">
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                label="Confirm Password"
-                color="secondary"
-                type="password"
-                {...register("confirmPassword", {
-                  required: "Confirm password is required.",
-                  maxLength: {
-                    value: 24,
-                    message: "Maximum length allowed 24.",
-                  },
-                  minLength: {
-                    value: 6,
-                    message: "Minimum 6 charecters.",
-                  },
-                  validate: (value) =>
-                    value === password.current || "The passwords do not match.",
-                })}
-                error={errors.hasOwnProperty("confirmPassword")}
-                helperText={
-                  errors.hasOwnProperty("confirmPassword") &&
-                  errors.confirmPassword.message
-                }
-              />
-            </div>
-            <div className="input-field-wrapper">
               <Button
                 color="secondary"
                 variant="contained"
                 type="submit"
                 fullWidth
               >
-                Sign up
+                Login
               </Button>
             </div>
             <Grid container justify="flex-end">
               <Grid item>
                 <Link
                   className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-body2 MuiTypography-colorPrimary"
-                  to="/login"
+                  to="/sign-up"
                   variant="body2"
                 >
-                  Already have an account? Log in
+                  Already have an account? Sign up
                 </Link>
               </Grid>
             </Grid>
@@ -216,4 +160,5 @@ function SignUpContent() {
     </div>
   );
 }
-export default SignUpContent;
+
+export default LoginContent;

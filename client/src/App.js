@@ -25,6 +25,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import AlertDialog from "./components/AlertDialog/AlertDialog";
 import NetworkStatus from "./components/NetoworkStatus/NetworkStatus";
+import Login from "./pages/Login";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -50,6 +51,7 @@ function App() {
           <Route path="/sign-up">
             {user ? <Redirect to="/" /> : <SignUp />}
           </Route>
+          <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
           <Route exact path="/">
             <Home />
           </Route>
@@ -57,7 +59,7 @@ function App() {
             <About />
           </Route>
           <Route path="/profile">
-            <Profile />
+            {user ? <Profile /> : <Redirect to="/sign-up" />}
           </Route>
         </Switch>
         <Footer />
