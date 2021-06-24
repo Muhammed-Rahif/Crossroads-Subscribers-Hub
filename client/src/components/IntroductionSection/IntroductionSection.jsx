@@ -2,19 +2,21 @@ import { Typography, Button, Grid } from "@material-ui/core";
 import React from "react";
 import YouTube from "react-youtube";
 import "./IntroductionSection.css";
+import { openUrlInNewTab } from "../../constants/constants";
 
 function IntroductionSection({
-  videoId = "",
-  mainTitle = "",
-  subTitle = "",
-  btnLink = "",
-  btnText = "",
+  videoId = "CJ-0NsEOzcg",
+  mainTitle = "We will help you learn to code and make your future awesome...",
+  subTitle = `No tech education requirements, No age restrictions. Everyone can..!
+  Feel free to join with Crossroads...`,
+  btnLink = "https://youtube.com/playlist?list=PLY-ecO2csVHeKaBI7lAM1jbIPU8K6fUxY",
+  btnText = "Get started",
 }) {
   return (
     <Grid className="intro-wrapper" style={{ backgroundColor: "inherit" }}>
       <div className="intro-video">
         <YouTube
-          videoId="CJ-0NsEOzcg"
+          videoId={videoId}
           opts={{
             playerVars: {
               autoplay: 1,
@@ -25,18 +27,20 @@ function IntroductionSection({
       </div>
       <div className="intro-content">
         <Typography variant="h4" className="intro-main-title">
-          We will help you learn to code and make your future awesome...
+          {mainTitle}
         </Typography>
         <Typography variant="h6" className="intro-main-subtitle">
-          No tech education requirements, No age restrictions. Everyone can..!
-          Feel free to join with Crossroads...
+          {subTitle}
         </Typography>
         <Button
           variant="contained"
           color="secondary"
+          onClick={() => {
+            openUrlInNewTab(btnLink);
+          }}
           style={{ textTransform: "none" }}
         >
-          Get started
+          {btnText}
         </Button>
       </div>
     </Grid>

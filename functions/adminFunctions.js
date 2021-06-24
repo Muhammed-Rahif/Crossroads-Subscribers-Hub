@@ -6,6 +6,7 @@ const EventModel = require("../db/models/events");
 const PlaylistModel = require("../db/models/playlists");
 const ProjectModel = require("../db/models/projects");
 const VideoModel = require("../db/models/videos");
+const IntroductionModel = require("../db/models/introduction");
 
 module.exports = {
   login: (adminData) => {
@@ -223,6 +224,17 @@ module.exports = {
         });
     });
   },
+  getIntroduction: () => {
+    return new Promise((resolve, reject) => {
+      IntroductionModel.findOne()
+        .then((introduction) => {
+          resolve(introduction);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
   updateEvent: (eventId, eventData) => {
     return new Promise((resolve, reject) => {
       EventModel.findByIdAndUpdate(eventId, {
@@ -274,6 +286,24 @@ module.exports = {
         $set: { ...videoData },
         $inc: { versionKey: 1 },
       })
+        .then(() => {
+          resolve({ status: true });
+        })
+        .catch((err) => {
+          console.log(err);
+          resolve({ status: false });
+        });
+    });
+  },
+  updateIntroduction: (introductionData) => {
+    return new Promise((resolve, reject) => {
+      IntroductionModel.findOneAndUpdate(
+        {},
+        {
+          $set: { ...introductionData },
+          $inc: { versionKey: 1 },
+        }
+      )
         .then(() => {
           resolve({ status: true });
         })

@@ -1,0 +1,57 @@
+<div class="p-3 col-md-8 m-auto pt-4 mt-5 mb-5">
+
+    <div style="border: lightgrey 1px solid;" class="mt-5 mb-5 p-2">
+        <iframe width="100%" height="300" src="https://www.youtube.com/embed/<%= introduction.videoId %>"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        <h4>
+            <%= introduction.mainTitle %>
+        </h4>
+        <p>
+            <%= introduction.subTitle %>
+        </p>
+        <div class="w-100">
+            <a target="_blank" href="<%= introduction.btnLink %>" class="btn btn-primary">
+                <%= introduction.btnText %>
+            </a>
+        </div>
+    </div>
+    <hr>
+    <form action="/admin/edit/introduction" method="POST" class="m-auto" autocomplete="on">
+        <h5 class="text-center">Edit Introduction</h5>
+        <br>
+        <div class="form-outline">
+            <input value="<%= introduction.videoId %>" name="videoId" type="text" id="videoId" class="form-control"
+                required autofocus />
+            <label class="form-label" for="videoId">YT video Id</label>
+        </div>
+        <br>
+        <div class="form-outline">
+            <input value="<%= introduction.mainTitle %>" name="mainTitle" type="text" id="mainTitle"
+                class="form-control" required autofocus />
+            <label class="form-label" for="mainTitle">Main title</label>
+        </div>
+        <br>
+        <div class="form-outline">
+            <input value="<%= introduction.subTitle %>" name="subTitle" type="text" id="subTitle" class="form-control"
+                required autofocus />
+            <label class="form-label" for="subTitle">Sub title</label>
+        </div>
+        <br>
+        <div class="w-100 flex-wrap d-flex">
+            <div class="form-outline col-md-6 col-6">
+                <input value="<%= introduction.btnLink %>" required type="url" name="btnLink" class="form-control"
+                    id="btnLink" rows="4" />
+                <label class="form-label" for="btnLink">Bottom button link</label>
+            </div>
+            <div class="form-outline col-md-6 col-6">
+                <input value="<%= introduction.btnText %>" required type="text" name="btnText" class="form-control"
+                    id="btnText" rows="4" />
+                <label class="form-label" for="btnText">Bottom button text</label>
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary w-100">Update introduction</button>
+    </form>
+</div>

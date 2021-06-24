@@ -167,6 +167,24 @@ router.post("/edit/video/:videoId", (req, res) => {
   });
 });
 
+// Edit introduction
+router.get("/edit/introduction", (req, res) => {
+  adminFunctions.getIntroduction().then((introduction) => {
+    console.log(introduction);
+    res.render("pages/edit-introduction", { introduction });
+  });
+});
+
+router.post("/edit/introduction", (req, res) => {
+  adminFunctions.updateIntroduction(req.body).then((response) => {
+    if (response.status) {
+      res.redirect("/admin");
+    } else {
+      res.redirect("/admin/edit/introduction");
+    }
+  });
+});
+
 // Delete user
 router.delete("/delete/user", verifyAdminLogin, (req, res) => {
   adminFunctions.deleteUser(req.body.userId).then((response) => {
