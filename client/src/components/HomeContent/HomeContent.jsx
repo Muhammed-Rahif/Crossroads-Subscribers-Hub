@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Grid, Paper, Typography, Button } from "@material-ui/core";
 import "./HomeContent.css";
 import MemberCard from "../MemberCard/MemberCard";
@@ -6,9 +6,23 @@ import EventCard from "../EventCard/EventCard";
 import IntroductionSection from "../IntroductionSection/IntroductionSection";
 import VideoCard from "../VideoCard/VideoCard";
 import { UserContext } from "../../contexts/Contexts";
+import { getIntroduction } from "../../constants/apiReqs";
 
 function HomeContent(props) {
   const { user } = useContext(UserContext);
+
+  const [introduction, setIntroduction] = useState({});
+
+  useEffect(() => {
+    if (user) {
+      getIntroduction().then((introductionData) => {
+        if (introductionData) {
+          setIntroduction(introductionData);
+        }
+      });
+    }
+  }, [user]);
+
   const persons = [
     {
       name: "Muhammed Rahif",
@@ -64,14 +78,11 @@ function HomeContent(props) {
     <div className="home-content-wrapper">
       <Grid container>
         <IntroductionSection
-          videoId="CJ-0NsEOzcg"
-          mainTitle="We will help you learn to code and build a better future..."
-          subTitle={`No tech education requirements, No age restrictions. Everyone can..!
-              Feel free to join with Crossroads...`}
-          linkButton={{
-            link: "/login",
-            text: "Get started",
-          }}
+          videoId={introduction.videoId}
+          mainTitle={introduction.mainTitle}
+          subTitle={introduction.subTitle}
+          btnLink={introduction.btnLink}
+          btnText={introduction.btnText}
         />
         <h2 className="video-cards-title">Video Playlists</h2>
         <Grid sm={6} xs={12}>

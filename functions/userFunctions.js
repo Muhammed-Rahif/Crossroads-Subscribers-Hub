@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const { v4: uuidv4 } = require("uuid");
 // Models
 const UserModel = require("../db/models/users");
+const IntroductionModel = require("../db/models/introduction");
 
 module.exports = {
   signUpUser: (userData) => {
@@ -36,9 +37,8 @@ module.exports = {
     return new Promise((resolve, reject) => {
       UserModel.findOne({ email: userData.email }).then(async (user) => {
         if (user) {
-          console.log(
-            `${user.fullName.toLowerCase()}:${userData.fullName.toLowerCase()}`
-          );
+          console.log({ user });
+          console.log({ userData });
           if (user.fullName.toLowerCase() === userData.fullName.toLowerCase()) {
             bcrypt.compare(userData.password, user.password).then((status) => {
               if (status) {
@@ -78,6 +78,39 @@ module.exports = {
         .catch((err) => {
           reject(err);
         });
+    });
+  },
+  getIntroduction: (userId) => {
+    return new Promise((resolve, reject) => {
+      if (userId) {
+        IntroductionModel.findOne()
+          .then((introductionData) => {
+            resolve(introductionData);
+          })
+          .catch((err) => {
+            resolve({
+              videoId: "CJ-0NsEOzcg",
+              mainTitle:
+                "We will help you learn to code and make your future awesome...",
+              subTitle: `No tech education requirements, No age restrictions. Everyone can..!
+            Feel free to join with Crossroads...`,
+              btnLink:
+                "https://youtube.com/playlist?list=PLY-ecO2csVHeKaBI7lAM1jbIPU8K6fUxY",
+              btnText: "Get started",
+            });
+          });
+      } else {
+        resolve({
+          videoId: "CJ-0NsEOzcg",
+          mainTitle:
+            "We will help you learn to code and make your future awesome...",
+          subTitle: `No tech education requirements, No age restrictions. Everyone can..!
+          Feel free to join with Crossroads...`,
+          btnLink:
+            "https://youtube.com/playlist?list=PLY-ecO2csVHeKaBI7lAM1jbIPU8K6fUxY",
+          btnText: "Get started",
+        });
+      }
     });
   },
 };

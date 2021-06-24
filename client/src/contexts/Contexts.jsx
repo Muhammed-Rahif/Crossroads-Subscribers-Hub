@@ -16,7 +16,7 @@ export default function Contexts({ children }) {
     window.matchMedia("(prefers-color-scheme: dark)").matches
   );
   const [notificationsPopover, setNotificationsPopover] = useState(false);
-  const [backdropLoading, setBackdropLoading] = useState(true);
+  const [backdropLoading, setBackdropLoading] = useState("Getting ready.!");
   const [alertDialog, setAlertDialog] = useState({ open: false });
   const [user, setUser] = useState();
 

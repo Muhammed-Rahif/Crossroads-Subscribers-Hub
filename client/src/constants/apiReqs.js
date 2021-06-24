@@ -26,6 +26,7 @@ const loginUser = (userData) => {
         resolve(response);
       })
       .catch((err) => {
+        console.log(err.response);
         reject(err.response.data);
       });
   });
@@ -66,4 +67,17 @@ const getUserData = () => {
   });
 };
 
-export { signUpUser, getUserData, loginUser, logoutUser };
+const getIntroduction = () => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post("/api/get-introduction")
+      .then((introduction) => {
+        resolve(introduction.data.introduction);
+      })
+      .catch((err) => {
+        resolve(null);
+      });
+  });
+};
+
+export { signUpUser, getUserData, loginUser, logoutUser, getIntroduction };

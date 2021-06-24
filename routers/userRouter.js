@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userFunctions = require("../functions/userFunctions");
 
+// Sign up a user
 router.post("/sign-up", (req, res) => {
   userFunctions
     .signUpUser(req.body)
@@ -20,11 +21,13 @@ router.post("/sign-up", (req, res) => {
     });
 });
 
+// Login a user
 router.post("/login", (req, res) => {
   userFunctions
     .loginUser(req.body)
     .then((response) => {
       if (response.statusCode === 200) {
+        req.session.userData = { userId: response.userData._id };
         res
           .status(response.statusCode)
           .json({ clientId: response.userData.clientId });
@@ -37,6 +40,7 @@ router.post("/login", (req, res) => {
     });
 });
 
+// Get logged in user's data
 router.post("/get-user-data", (req, res) => {
   if (req.session.userData) {
     userFunctions
@@ -53,9 +57,20 @@ router.post("/get-user-data", (req, res) => {
   }
 });
 
+// Logout logged in user
 router.post("/logout", (req, res) => {
-  req.session.destroy();
+  req.session.userData = {};
   res.status(200).json({ message: "User logout success!" });
+});
+
+// Get introduction content
+router.post("/get-introduction", (req, res) => {
+  userFunctions
+    .getIntroduction(req.session.userData.userId)
+    .then((introduction) => {
+      console.log(introduction);
+      res.json({ introduction });
+    });
 });
 
 module.exports = router;
