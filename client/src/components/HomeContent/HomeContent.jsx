@@ -11,16 +11,14 @@ import { getIntroduction } from "../../constants/apiReqs";
 function HomeContent(props) {
   const { user } = useContext(UserContext);
 
-  const [introduction, setIntroduction] = useState({});
+  const [introduction, setIntroduction] = useState(null);
 
   useEffect(() => {
-    if (user) {
-      getIntroduction().then((introductionData) => {
-        if (introductionData) {
-          setIntroduction(introductionData);
-        }
-      });
-    }
+    getIntroduction().then((introductionData) => {
+      if (introductionData) {
+        setIntroduction(introductionData);
+      }
+    });
   }, [user]);
 
   const persons = [
@@ -78,11 +76,11 @@ function HomeContent(props) {
     <div className="home-content-wrapper">
       <Grid container>
         <IntroductionSection
-          videoId={introduction.videoId}
-          mainTitle={introduction.mainTitle}
-          subTitle={introduction.subTitle}
-          btnLink={introduction.btnLink}
-          btnText={introduction.btnText}
+          videoId={introduction ? introduction.videoId : undefined}
+          mainTitle={introduction ? introduction.mainTitle : undefined}
+          subTitle={introduction ? introduction.subTitle : undefined}
+          btnLink={introduction ? introduction.btnLink : undefined}
+          btnText={introduction ? introduction.btnText : undefined}
         />
         <h2 className="video-cards-title">Video Playlists</h2>
         <Grid sm={6} xs={12}>
