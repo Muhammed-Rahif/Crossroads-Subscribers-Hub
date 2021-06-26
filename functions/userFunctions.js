@@ -3,6 +3,8 @@ const { v4: uuidv4 } = require("uuid");
 // Models
 const UserModel = require("../db/models/users");
 const IntroductionModel = require("../db/models/introduction");
+const PlaylistModel = require("../db/models/playlists");
+const EventModel = require("../db/models/events");
 
 module.exports = {
   signUpUser: (userData) => {
@@ -105,6 +107,33 @@ module.exports = {
           btnText: "Get started",
         });
       }
+    });
+  },
+  getMembers: () => {
+    return new Promise((resolve, reject) => {
+      UserModel.find({}, "badges fullName email location").then((members) => {
+        resolve(members);
+      });
+    });
+  },
+  getPlaylists: () => {
+    return new Promise((resolve, reject) => {
+      PlaylistModel.find(
+        {},
+        "topicsCovered projects title description videoId numOfVideos btnLink btnText"
+      ).then((playlists) => {
+        resolve(playlists);
+      });
+    });
+  },
+  getEvents: () => {
+    return new Promise((resolve, reject) => {
+      EventModel.find(
+        {},
+        "date time imageSrc title description btnLink btnText location"
+      ).then((events) => {
+        resolve(events);
+      });
     });
   },
 };

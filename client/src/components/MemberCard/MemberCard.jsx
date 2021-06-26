@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./MemberCard.css";
 import { Avatar, Button, Chip, Paper, Typography } from "@material-ui/core";
 import { CheckCircle, Email, GitHub, Instagram } from "@material-ui/icons";
-import { ThemeContext } from "../../contexts/Contexts";
+import { ThemeContext, UserContext } from "../../contexts/Contexts";
 import { getIcon } from "../IconConfig/Badges";
 import { openUrlInNewTab } from "../../constants/constants";
 
@@ -15,6 +15,7 @@ function MemberCard({
   instagramLink = "",
 }) {
   const { theme } = useContext(ThemeContext);
+  const { user } = useContext(UserContext);
 
   var toTitleCase = (str) => {
     return str.replace(/\w\S*/g, function (txt) {
@@ -58,41 +59,43 @@ function MemberCard({
           );
         })}
       </div>
-      <div className="member-card-links">
-        <Button
-          color="secondary"
-          variant="contained"
-          className="link-btn"
-          disabled={!githubLink}
-          onClick={() => {
-            openUrlInNewTab(githubLink);
-          }}
-        >
-          <GitHub />
-        </Button>
-        <Button
-          color="secondary"
-          variant="contained"
-          className="link-btn"
-          disabled={!emailLink}
-          onClick={() => {
-            openUrlInNewTab("mailto:" + emailLink);
-          }}
-        >
-          <Email />
-        </Button>
-        <Button
-          color="secondary"
-          variant="contained"
-          className="link-btn"
-          disabled={!instagramLink}
-          onClick={() => {
-            openUrlInNewTab(instagramLink);
-          }}
-        >
-          <Instagram />
-        </Button>
-      </div>
+      {user && (
+        <div className="member-card-links">
+          <Button
+            color="secondary"
+            variant="contained"
+            className="link-btn"
+            disabled={!githubLink}
+            onClick={() => {
+              openUrlInNewTab(githubLink);
+            }}
+          >
+            <GitHub />
+          </Button>
+          <Button
+            color="secondary"
+            variant="contained"
+            className="link-btn"
+            disabled={!emailLink}
+            onClick={() => {
+              openUrlInNewTab("mailto:" + emailLink);
+            }}
+          >
+            <Email />
+          </Button>
+          <Button
+            color="secondary"
+            variant="contained"
+            className="link-btn"
+            disabled={!instagramLink}
+            onClick={() => {
+              openUrlInNewTab(instagramLink);
+            }}
+          >
+            <Instagram />
+          </Button>
+        </div>
+      )}
     </Paper>
   );
 }

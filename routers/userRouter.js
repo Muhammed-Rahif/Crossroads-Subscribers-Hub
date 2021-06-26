@@ -73,4 +73,25 @@ router.post("/get-introduction", (req, res) => {
     });
 });
 
+// Get members data
+router.post("/get-members", (req, res) => {
+  userFunctions.getMembers().then((members) => {
+    res.json({ members });
+  });
+});
+
+// Get playlists data
+router.post("/get-playlists", (req, res) => {
+  userFunctions.getPlaylists().then((playlists) => {
+    res.json({ playlists });
+  });
+});
+
+// Get events data
+router.post("/get-events", (req, res) => {
+  userFunctions.getEvents().then((events) => {
+    res.json({ events });
+  });
+});
+
 module.exports = router;

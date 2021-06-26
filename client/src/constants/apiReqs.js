@@ -71,8 +71,8 @@ const getIntroduction = () => {
   return new Promise((resolve, reject) => {
     axios
       .post("/api/get-introduction")
-      .then((introduction) => {
-        resolve(introduction.data.introduction);
+      .then((response) => {
+        resolve(response.data.introduction);
       })
       .catch((err) => {
         resolve(null);
@@ -80,4 +80,52 @@ const getIntroduction = () => {
   });
 };
 
-export { signUpUser, getUserData, loginUser, logoutUser, getIntroduction };
+const getMembers = () => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post("/api/get-members")
+      .then((response) => {
+        resolve(response.data.members);
+      })
+      .catch((err) => {
+        resolve([]);
+      });
+  });
+};
+
+const getPlaylists = () => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post("/api/get-playlists")
+      .then((response) => {
+        resolve(response.data.playlists);
+      })
+      .catch((err) => {
+        resolve([]);
+      });
+  });
+};
+
+const getEvents = () => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post("/api/get-events")
+      .then((response) => {
+        resolve(response.data.events);
+      })
+      .catch((err) => {
+        resolve([]);
+      });
+  });
+};
+
+export {
+  signUpUser,
+  getUserData,
+  loginUser,
+  logoutUser,
+  getIntroduction,
+  getMembers,
+  getPlaylists,
+  getEvents,
+};
