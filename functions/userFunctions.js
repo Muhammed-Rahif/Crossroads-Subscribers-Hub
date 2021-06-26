@@ -37,22 +37,16 @@ module.exports = {
     return new Promise((resolve, reject) => {
       UserModel.findOne({ email: userData.email }).then(async (user) => {
         if (user) {
-          console.log({ user });
-          console.log({ userData });
-          if (user.fullName.toLowerCase() === userData.fullName.toLowerCase()) {
-            bcrypt.compare(userData.password, user.password).then((status) => {
-              if (status) {
-                resolve({ statusCode: 200, userData: user });
-              } else {
-                resolve({
-                  statusCode: 401,
-                  message: "Incorrect password typed!",
-                });
-              }
-            });
-          } else {
-            resolve({ statusCode: 401, message: "Incorrect full name typed!" });
-          }
+          bcrypt.compare(userData.password, user.password).then((status) => {
+            if (status) {
+              resolve({ statusCode: 200, userData: user });
+            } else {
+              resolve({
+                statusCode: 401,
+                message: "Incorrect password typed!",
+              });
+            }
+          });
         } else {
           resolve({
             statusCode: 404,
@@ -66,7 +60,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       UserModel.findOne(
         { _id: userId, clientId },
-        "createdAt -_id fullName email location clientId"
+        "createdAt -_id fullName email location clientId badges"
       )
         .then((userData) => {
           if (userData) {

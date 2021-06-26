@@ -5,7 +5,7 @@ const usersSchema = new mongoose.Schema(
     clientId: { type: String, required: true, unique: true },
     fullName: { type: String, required: true },
     location: { type: String, required: true },
-    gender: { type: String, required: false },
+    profileImageUrl: { type: String, required: false },
     phone: { type: String, required: false },
     personalWebsite: { type: String, required: false },
     github: { type: String, required: false },

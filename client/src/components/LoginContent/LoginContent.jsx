@@ -1,5 +1,12 @@
 import React, { useContext, useState } from "react";
-import { Grid, Typography, Avatar, TextField, Button } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  Avatar,
+  TextField,
+  Button,
+  Tooltip,
+} from "@material-ui/core";
 import "./LoginContent.css";
 import { useForm } from "react-hook-form";
 import { LockOutlined } from "@material-ui/icons";
@@ -51,87 +58,69 @@ function LoginContent(props) {
             {loginError}
           </Typography>
         )}
-        <Grid sm={5} xs={12} className="container">
+        <Grid sm={5} item xs={12} className="container">
           <form onSubmit={handleSubmit(onSubmit)} autoComplete="on">
             <div className="input-field-wrapper">
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                label="Full name"
-                autoFocus
-                type="text"
-                color="secondary"
-                {...register("fullName", {
-                  required: "Full name is required.",
-                  maxLength: {
-                    value: 24,
-                    message: "Maximum length allowed 24.",
-                  },
-                  minLength: {
-                    value: 4,
-                    message: "Minimum 4 charecters.",
-                  },
-                })}
-                error={errors.hasOwnProperty("fullName")}
-                helperText={
-                  errors.hasOwnProperty("fullName") && errors.fullName.message
-                }
-              />
+              <Tooltip
+                title="Email that you typed when you're sign up."
+                arrow
+                interactive
+              >
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  label="Email"
+                  type="email"
+                  color="secondary"
+                  {...register("email", {
+                    required: "Email is required.",
+                    maxLength: {
+                      value: 50,
+                      message: "Maximum length allowed 50.",
+                    },
+                    minLength: {
+                      value: 4,
+                      message: "Minimum 4 charecters.",
+                    },
+                    pattern: {
+                      value: emailRegexPattern,
+                      message: "This is not a valid email.",
+                    },
+                  })}
+                  error={errors.hasOwnProperty("email")}
+                  helperText={
+                    errors.hasOwnProperty("email") && errors.email.message
+                  }
+                />
+              </Tooltip>
             </div>
             <div className="input-field-wrapper">
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                label="Email"
-                type="email"
-                color="secondary"
-                {...register("email", {
-                  required: "Email is required.",
-                  maxLength: {
-                    value: 50,
-                    message: "Maximum length allowed 50.",
-                  },
-                  minLength: {
-                    value: 4,
-                    message: "Minimum 4 charecters.",
-                  },
-                  pattern: {
-                    value: emailRegexPattern,
-                    message: "This is not a valid email.",
-                  },
-                })}
-                error={errors.hasOwnProperty("email")}
-                helperText={
-                  errors.hasOwnProperty("email") && errors.email.message
-                }
-              />
-            </div>
-            <div className="input-field-wrapper">
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                label="Password"
-                color="secondary"
-                type="password"
-                {...register("password", {
-                  required: "Password is required.",
-                  maxLength: {
-                    value: 24,
-                    message: "Maximum length allowed 24.",
-                  },
-                  minLength: {
-                    value: 6,
-                    message: "Minimum 6 charecters.",
-                  },
-                })}
-                error={errors.hasOwnProperty("password")}
-                helperText={
-                  errors.hasOwnProperty("password") && errors.password.message
-                }
-              />
+              <Tooltip
+                title="Password that you typed when you're sign up."
+                arrow
+                interactive
+              >
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  label="Password"
+                  color="secondary"
+                  type="password"
+                  {...register("password", {
+                    required: "Password is required.",
+                    maxLength: {
+                      value: 24,
+                      message: "Maximum length allowed 24.",
+                    },
+                  })}
+                  error={errors.hasOwnProperty("password")}
+                  helperText={
+                    errors.hasOwnProperty("password") && errors.password.message
+                  }
+                />
+              </Tooltip>
             </div>
             <div className="input-field-wrapper">
               <Button
@@ -150,7 +139,7 @@ function LoginContent(props) {
                   to="/sign-up"
                   variant="body2"
                 >
-                  Already have an account? Sign up
+                  Don't have an account? Sign up
                 </Link>
               </Grid>
             </Grid>

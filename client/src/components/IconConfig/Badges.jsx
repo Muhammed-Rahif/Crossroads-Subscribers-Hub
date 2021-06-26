@@ -10,7 +10,7 @@ import {
 } from "@material-ui/icons";
 
 function getBadgesList() {
-  return ["member","student","contributer","working",]
+  return ["member", "student", "contributor", "working"];
 }
 
 function getIcon(icon) {
@@ -21,7 +21,7 @@ function getIcon(icon) {
       return <Code />;
     case "student":
       return <School />;
-    case "contributer":
+    case "contributor":
       return <GroupWork />;
     case "working":
       return <Work />;
@@ -36,4 +36,4 @@ function getIcon(icon) {
   }
 }
 
-export { getIcon,getBadgesList };
+export { getIcon, getBadgesList };

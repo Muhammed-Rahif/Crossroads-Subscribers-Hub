@@ -7,7 +7,7 @@ import "./Footer.css";
 function Footer(props) {
   const history = useHistory();
   return (
-    <Grid className="footer-wrapper" xs={12}>
+    <Grid className="footer-wrapper" item xs={12}>
       <Paper className="inner-footer" elevation={3}>
         <div className="footer">
           <Typography>
@@ -24,7 +24,7 @@ function Footer(props) {
             </span>
           </Typography>
           <Grid container>
-            <Grid xs={12} sm={3} xl={2} className="link-section">
+            <Grid item xs={12} sm={3} xl={2} className="link-section">
               <span className="link-title">Pages</span>
               <span
                 className="link"
@@ -47,7 +47,7 @@ function Footer(props) {
               <span className="link">Events</span>
               <span className="link"></span>
             </Grid>
-            <Grid xs={12} sm={3} xl={2} className="link-section">
+            <Grid item xs={12} sm={3} xl={2} className="link-section">
               <span className="link-title">Tutorial Vidoes</span>
               <span className="link">Basics of Programming</span>
               <span className="link">Git Tutorails</span>
@@ -55,7 +55,7 @@ function Footer(props) {
               <span className="link">Web Development Tutorails</span>
               <span className="link">React Tutorials</span>
             </Grid>
-            <Grid xs={12} sm={3} xl={2} className="link-section">
+            <Grid item xs={12} sm={3} xl={2} className="link-section">
               <span className="link-title">Projects</span>
               <span
                 className="link"
@@ -70,7 +70,7 @@ function Footer(props) {
               <span className="link">To Do App</span>
               <span className="link">Tovino Static Website</span>
             </Grid>
-            <Grid xs={12} sm={3} xl={2} className="link-section">
+            <Grid item xs={12} sm={3} xl={2} className="link-section">
               <span className="link-title">Follow us on</span>
               <span className="link">YouTube</span>
               <span className="link">Instagram</span>

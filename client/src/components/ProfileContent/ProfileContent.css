@@ -22,6 +22,7 @@
   justify-content: center;
 }
 .profile-content-wrapper .text-section .badges .badge {
+  text-transform: capitalize;
   margin-left: 0.5rem;
 }
 .profile-content-wrapper .text-section .forms {

@@ -83,7 +83,7 @@ function HomeContent(props) {
           btnText={introduction ? introduction.btnText : undefined}
         />
         <h2 className="video-cards-title">Video Playlists</h2>
-        <Grid sm={6} xs={12}>
+        <Grid item sm={6} xs={12}>
           <VideoCard
             videoId="pDmEYRhyusU"
             title="Basic Programming Tutorial Video Series ( 100K Coding Challenge )"
@@ -120,7 +120,7 @@ function HomeContent(props) {
             btnText="Go to playlist"
           />
         </Grid>
-        <Grid sm={6} xs={12}>
+        <Grid sm={6} item xs={12}>
           <VideoCard
             videoId="2TfED5L4c3M"
             title="Web Designing Challenge"
@@ -135,7 +135,7 @@ function HomeContent(props) {
             btnText="Go to playlist"
           />
         </Grid>
-        <Grid sm={6} xs={12}>
+        <Grid sm={6} item xs={12}>
           <VideoCard
             videoId="-wGc24R3_eM"
             title="Date with Git ( Git Tutorials )"
@@ -156,7 +156,7 @@ function HomeContent(props) {
             btnText="Go to playlist"
           />
         </Grid>
-        <Grid sm={6} xs={12}>
+        <Grid sm={6} item xs={12}>
           <h2 className="card-title">Upcoming Events</h2>
           <EventCard
             title="Javascript Develpers Meeting"
@@ -169,7 +169,7 @@ function HomeContent(props) {
             btnText="Go to Google"
           />
         </Grid>
-        <Grid sm={6} xs={12}>
+        <Grid sm={6} item xs={12}>
           {!user && (
             <Paper
               style={{
@@ -194,7 +194,7 @@ function HomeContent(props) {
             </Paper>
           )}
         </Grid>
-        <Grid sm={6} xs={12}>
+        <Grid sm={6} item xs={12}>
           <h2 className="card-title">Members</h2>
           {persons.map((itm, key) => {
             return (
