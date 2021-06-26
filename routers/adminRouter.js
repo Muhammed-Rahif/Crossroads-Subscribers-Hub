@@ -11,12 +11,22 @@ const verifyAdminLogin = (req, res, next) => {
 };
 
 // Home page
-router.get("/", verifyAdminLogin, (req, res) => {
+router.get("/", verifyAdminLogin, async (req, res) => {
+  let playlistsCount = await adminFunctions.getPlaylistsCount();
+  let videosCount = await adminFunctions.getVideosCount();
+  let projectsCount = await adminFunctions.getProjectsCount();
+  let usersCount = await adminFunctions.getUsersCount();
+  let eventsCount = await adminFunctions.getEventsCount();
   adminFunctions.getAdminsDetails().then((adminDetails) => {
     res.render("pages/home", {
       adminEmails: adminDetails.adminEmails,
       adminNames: adminDetails.adminNames,
       loginCount: adminDetails.versionKey,
+      usersCount,
+      projectsCount,
+      playlistsCount,
+      videosCount,
+      eventsCount,
     });
   });
 });

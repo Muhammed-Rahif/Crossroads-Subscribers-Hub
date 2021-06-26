@@ -235,6 +235,41 @@ module.exports = {
         });
     });
   },
+  getPlaylistsCount: () => {
+    return new Promise((resolve, reject) => {
+      PlaylistModel.count().then((playlistsCount) => {
+        resolve(playlistsCount);
+      });
+    });
+  },
+  getUsersCount: () => {
+    return new Promise((resolve, reject) => {
+      UserModel.count().then((UsersCount) => {
+        resolve(UsersCount);
+      });
+    });
+  },
+  getEventsCount: () => {
+    return new Promise((resolve, reject) => {
+      EventModel.count().then((EventsCount) => {
+        resolve(EventsCount);
+      });
+    });
+  },
+  getProjectsCount: () => {
+    return new Promise((resolve, reject) => {
+      ProjectModel.count().then((ProjectsCount) => {
+        resolve(ProjectsCount);
+      });
+    });
+  },
+  getVideosCount: () => {
+    return new Promise((resolve, reject) => {
+      VideoModel.count().then((VideosCount) => {
+        resolve(VideosCount);
+      });
+    });
+  },
   updateEvent: (eventId, eventData) => {
     return new Promise((resolve, reject) => {
       EventModel.findByIdAndUpdate(eventId, {

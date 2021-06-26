@@ -41,67 +41,63 @@
                 <tr>
                     <th scope="col">Collections</th>
                     <th scope="col">Numbers of Documents</th>
-                    <th scope="col">Last updated</th>
-                    <th scope="col">Updates times</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>Users</td>
-                    <td>1145642</td>
-                    <td>12 June 2021</td>
-                    <td>2</td>
+                    <td>
+                        <%= usersCount %>
+                    </td>
                     <td>
                         <a href="/admin/users" class="btn btn-sm m-1">View</a>
-                        <a class="btn btn-sm m-1 btn-primary">Create</a>
+                        <a href="/admin/users" class="btn btn-sm m-1 btn-primary">Send notification</a>
                     </td>
                 </tr>
                 <tr>
                     <td>Events</td>
-                    <td>21</td>
-                    <td>1 Jan 2021</td>
-                    <td>0</td>
+                    <td>
+                        <%= eventsCount %>
+                    </td>
                     <td>
                         <a href="/admin/events" class="btn btn-sm m-1">View</a>
-                        <a class="btn btn-sm m-1 btn-primary">Create</a>
+                        <a href="/admin/create/event" class="btn btn-sm m-1 btn-primary">Create</a>
                     </td>
                 </tr>
                 <tr>
                     <td>Projects</td>
-                    <td>45</td>
-                    <td>6 April 2021</td>
-                    <td>1</td>
                     <td>
-                        <a class="btn btn-sm m-1">View</a>
-                        <a class="btn btn-sm m-1 btn-primary">Create</a>
+                        <%= projectsCount %>
+                    </td>
+                    <td>
+                        <a href="/admin/projects" class="btn btn-sm m-1">View</a>
+                        <a href="/admin/create/project" class="btn btn-sm m-1 btn-primary">Create</a>
                     </td>
                 </tr>
                 <tr>
                     <td>Playlists</td>
-                    <td>456</td>
-                    <td>16 May 2021</td>
-                    <td>5</td>
                     <td>
-                        <a class="btn btn-sm m-1">View</a>
-                        <a class="btn btn-sm m-1 btn-primary">Create</a>
+                        <%= playlistsCount %>
+                    </td>
+                    <td>
+                        <a href="/admin/playlists" class="btn btn-sm m-1">View</a>
+                        <a href="/admin/create/playlist" class="btn btn-sm m-1 btn-primary">Create</a>
                     </td>
                 </tr>
                 <tr>
                     <td>Videos</td>
-                    <td>564</td>
-                    <td>30 Aug 2021</td>
-                    <td>0</td>
                     <td>
-                        <a class="btn btn-sm m-1">View</a>
-                        <a class="btn btn-sm m-1 btn-primary">Create</a>
+                        <%= videosCount %>
+                    </td>
+                    <td>
+                        <a href="/admin/videos" class="btn btn-sm m-1">View</a>
+                        <a href="/admin/create/video" class="btn btn-sm m-1 btn-primary">Create</a>
                     </td>
                 </tr>
                 <tr>
                     <td>Requests</td>
-                    <td>77</td>
-                    <td>4 Dec 2021</td>
-                    <td>88</td>
+                    <td>0</td>
                     <td>
                         <a class="btn btn-sm m-1">View</a>
                         <a class="btn btn-sm m-1 btn-primary">Create</a>
