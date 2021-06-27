@@ -13,7 +13,7 @@ function AlertDialog() {
   const { alertDialog, setAlertDialog } = useContext(AlertDialogContext);
 
   const handleClose = () => {
-    setAlertDialog({ open: false, title: "", contenText: "" });
+    setAlertDialog({ open: false, title: "", text: "" });
   };
 
   return (
@@ -30,7 +30,7 @@ function AlertDialog() {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="secondary" autoFocus >
+        <Button onClick={handleClose} color="secondary" autoFocus>
           Ok
         </Button>
       </DialogActions>

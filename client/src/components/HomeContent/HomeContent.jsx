@@ -11,13 +11,13 @@ import MemberCard from "../MemberCard/MemberCard";
 import EventCard from "../EventCard/EventCard";
 import IntroductionSection from "../IntroductionSection/IntroductionSection";
 import VideoCard from "../VideoCard/VideoCard";
-import { UserContext } from "../../contexts/Contexts";
 import {
   getEvents,
   getIntroduction,
   getMembers,
   getPlaylists,
 } from "../../constants/apiReqs";
+import { UserContext } from "../../contexts/Contexts";
 
 function HomeContent(props) {
   const { user } = useContext(UserContext);
@@ -33,6 +33,9 @@ function HomeContent(props) {
         setIntroduction(introductionData);
       }
     });
+  }, [user]);
+
+  useEffect(() => {
     getMembers().then((members) => {
       if (members) {
         setMembers(members);
@@ -50,7 +53,7 @@ function HomeContent(props) {
         setEvents(events);
       }
     });
-  }, [user]);
+  }, []);
 
   return (
     <div className="home-content-wrapper">
@@ -131,6 +134,10 @@ function HomeContent(props) {
               <Typography variant="h6">
                 Want to explore more features. Sign up right now..
               </Typography>
+              <p style={{ opacity: 0.5 }}>
+                You can view more details from here by signing up. Signing up or
+                logging in is highly recommended.
+              </p>
               <Button variant="contained" color="secondary">
                 Sign up
               </Button>

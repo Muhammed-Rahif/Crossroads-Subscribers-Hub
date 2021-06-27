@@ -1,8 +1,9 @@
 import { Button, Chip, Paper, Typography } from "@material-ui/core";
-import React from "react";
+import React, { useContext } from "react";
 import "./VideoCard.css";
 import YouTube from "react-youtube";
 import { openUrlInNewTab } from "../../constants/constants";
+import { UserContext } from "../../contexts/Contexts";
 
 function VideoCard({
   videoId = "",
@@ -14,6 +15,8 @@ function VideoCard({
   numOfVideos = false,
   btnText = "Watch video",
 }) {
+  const { user } = useContext(UserContext);
+
   return (
     <Paper className="video-card" elevation={3}>
       <YouTube
@@ -29,23 +32,25 @@ function VideoCard({
         <Typography variant="h5" className="title">
           {title}
         </Typography>
-        <hr className="hr" />
-        <Typography variant="h6">Covered Topics :-</Typography>
+        {user && <hr className="hr" />}
+        {user && <Typography variant="h6">Covered Topics :-</Typography>}
         <div className="badges">
-          {topicsCovered.map((itm, key) => {
-            return (
-              <Chip label={itm} key={key} color="secondary" className="badge">
-                C++
-              </Chip>
-            );
-          })}
+          {user &&
+            topicsCovered.map((itm, key) => {
+              return (
+                <Chip label={itm} key={key} color="secondary" className="badge">
+                  C++
+                </Chip>
+              );
+            })}
         </div>
-        {projects.length > 0 && <hr className="hr" />}
-        {projects.length > 0 && (
+        {user && projects.length > 0 && <hr className="hr" />}
+        {user && projects.length > 0 && (
           <Typography variant="h6">Projects :-</Typography>
         )}
         <div className="badges">
-          {projects.length > 0 &&
+          {user &&
+            projects.length > 0 &&
             projects.map((itm, key) => {
               return (
                 <Chip
@@ -76,6 +81,9 @@ function VideoCard({
             {btnText}
           </Button>
         </div>
+        <p style={{ opacity: 0.5 }}>
+          Tip : You can view more details from here by signing up.
+        </p>
       </div>
     </Paper>
   );

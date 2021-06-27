@@ -54,7 +54,6 @@ const getUserData = () => {
           clientId: store.get(clientStorageKey).clientId,
         })
         .then((response) => {
-          delete response.data._id;
           resolve(response.data);
         })
         .catch((err) => {

@@ -8,6 +8,7 @@ const EventModel = require("../db/models/events");
 
 module.exports = {
   signUpUser: (userData) => {
+    console.log(userData);
     return new Promise((resolve, reject) => {
       if (userData.password === userData.confirmPassword) {
         delete userData.confirmPassword;
@@ -26,7 +27,7 @@ module.exports = {
               })
               .catch((err) => {
                 reject(err);
-                console.log(err);
+                console.log(err.message);
               });
           }
         });

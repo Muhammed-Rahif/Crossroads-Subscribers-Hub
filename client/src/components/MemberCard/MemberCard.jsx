@@ -59,7 +59,7 @@ function MemberCard({
           );
         })}
       </div>
-      {user && (
+      {user ? (
         <div className="member-card-links">
           <Button
             color="secondary"
@@ -95,6 +95,11 @@ function MemberCard({
             <Instagram />
           </Button>
         </div>
+      ) : (
+        <p style={{ opacity: 0.5 }}>
+          Tip : You can view more details such as github, instagram, email from
+          here if you are a member of this community.
+        </p>
       )}
     </Paper>
   );

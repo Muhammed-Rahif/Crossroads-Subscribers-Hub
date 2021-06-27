@@ -12,6 +12,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 // Components
 import Home from "./pages/Home";
 import {
+  AlertDialogContext,
   BackdropLoadingContext,
   ThemeContext,
   UserContext,
@@ -26,17 +27,33 @@ import Footer from "./components/Footer/Footer";
 import AlertDialog from "./components/AlertDialog/AlertDialog";
 import NetworkStatus from "./components/NetoworkStatus/NetworkStatus";
 import Login from "./pages/Login";
+import { getUserData } from "./constants/apiReqs";
 
 function App() {
   const { theme } = useContext(ThemeContext);
   const { setBackdropLoading } = useContext(BackdropLoadingContext);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+  const { alertDialog, setAlertDialog } = useContext(AlertDialogContext);
 
   useEffect(() => {
+    getUserData().then((userData) => {
+      setUser(userData);
+      setTimeout(() => {
+        if (!userData) {
+          setAlertDialog({
+            open: true,
+            text: `Signing up or logging in is highly recommended.
+            Be a member of Crossroads subscribers community.
+            So you can access more information and get in touch with every member of this community.`,
+            title: "Want to explore more features. Sign up right now..",
+          });
+        }
+      }, 18000);
+    });
     window.onload = () => {
       setBackdropLoading(false);
     };
-  }, [setBackdropLoading]);
+  }, [setBackdropLoading, setUser, setAlertDialog, user]);
 
   return (
     <Router>

@@ -10,7 +10,7 @@ const usersSchema = new mongoose.Schema(
     personalWebsite: { type: String, required: false },
     github: { type: String, required: false },
     instagram: { type: String, required: false },
-    badges: [{ type: String, required: false, unique: true }],
+    badges: { type: Array, required: false, default: "member" },
     email: { type: String, required: true, unique: true, lowercase: true },
     password: { type: String, required: true },
     createdAt: { type: Date, required: true, default: new Date() },
