@@ -102,7 +102,12 @@ function SideDrawer() {
             <ListItemIcon>
               <EventNote />
             </ListItemIcon>
-            <ListItemText primary="Events" />
+            <ListItemText
+              primary="Events"
+              onClick={() => {
+                history.push("events");
+              }}
+            />
           </ListItem>
           <ListItem
             button

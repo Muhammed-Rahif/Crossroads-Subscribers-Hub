@@ -18,6 +18,7 @@ function MembersContent(props) {
       <Typography variant="h5" className="title">
         Members
       </Typography>
+      <hr className="hr" />
       <Grid container style={{ display: "flex", justifyContent: "center" }}>
         {members.length > 0 ? (
           members.map((itm, key) => {

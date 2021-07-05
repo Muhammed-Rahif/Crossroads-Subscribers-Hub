@@ -28,6 +28,7 @@ import AlertDialog from "./components/AlertDialog/AlertDialog";
 import NetworkStatus from "./components/NetoworkStatus/NetworkStatus";
 import Login from "./pages/Login";
 import Members from "./pages/Members";
+import Events from "./pages/Events";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -62,6 +63,9 @@ function App() {
           </Route>
           <Route path="/members">
             <Members />
+          </Route>
+          <Route path="/events">
+            <Events />
           </Route>
           <Route path="/profile">
             {user ? <Profile /> : <Redirect to="/sign-up" />}
