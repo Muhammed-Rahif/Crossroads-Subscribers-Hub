@@ -69,7 +69,12 @@ function SideDrawer() {
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
-          <ListItem button>
+          <ListItem
+            button
+            onClick={() => {
+              history.push("members");
+            }}
+          >
             <ListItemIcon>
               <SupervisedUserCircle />
             </ListItemIcon>

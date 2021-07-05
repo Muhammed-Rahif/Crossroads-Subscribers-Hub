@@ -13,6 +13,7 @@ function MemberCard({
   githubLink = "",
   emailLink = "",
   instagramLink = "",
+  location = "",
 }) {
   const { theme } = useContext(ThemeContext);
   const { user } = useContext(UserContext);
@@ -29,9 +30,8 @@ function MemberCard({
         <Avatar
           style={{ backgroundColor: theme.palette.secondary.main }}
           src={avatarSrc}
-        >
-          {memberName.match(/\b(\w)/g).join("")}
-        </Avatar>
+          alt={memberName && memberName.match(/\b(\w)/g).join("")}
+        />
       </div>
       <div className="member-card-text">
         <Typography variant="h5">
@@ -46,6 +46,12 @@ function MemberCard({
         <hr className="hr" />
       </div>
       <div className="member-badges">
+        <Chip
+          icon={getIcon("location")}
+          color="secondary"
+          label={location}
+          clickable
+        />
         {memberBadges.map((itm, key) => {
           return (
             <div className="badge" key={key}>

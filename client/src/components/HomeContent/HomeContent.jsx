@@ -156,6 +156,8 @@ function HomeContent(props) {
                 emailLink={itm.email}
                 githubLink={itm.github}
                 instagramLink={itm.instagram}
+                avatarSrc={itm.profileImageUrl}
+                location={itm.location}
               />
             );
           })}

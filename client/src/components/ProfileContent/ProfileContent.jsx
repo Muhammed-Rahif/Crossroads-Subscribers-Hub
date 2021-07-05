@@ -100,8 +100,8 @@ function ProfileContent(props) {
                   <Typography>Instgram : {user.instgram}</Typography>
                 </div>
               </div>
-              <hr className="hr" />
             </Grid>
+            <hr className="hr" style={{ marginTop: "5rem" }} />
           </>
         ) : (
           <CircularProgress

@@ -27,7 +27,7 @@ import Footer from "./components/Footer/Footer";
 import AlertDialog from "./components/AlertDialog/AlertDialog";
 import NetworkStatus from "./components/NetoworkStatus/NetworkStatus";
 import Login from "./pages/Login";
-import { getUserData } from "./constants/apiReqs";
+import Members from "./pages/Members";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -59,6 +59,9 @@ function App() {
           </Route>
           <Route path="/about">
             <About />
+          </Route>
+          <Route path="/members">
+            <Members />
           </Route>
           <Route path="/profile">
             {user ? <Profile /> : <Redirect to="/sign-up" />}

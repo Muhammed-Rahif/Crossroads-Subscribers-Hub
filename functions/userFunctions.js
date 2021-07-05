@@ -109,9 +109,11 @@ module.exports = {
   },
   getMembers: () => {
     return new Promise((resolve, reject) => {
-      UserModel.find({}, "badges fullName email location").then((members) => {
-        resolve(members);
-      });
+      UserModel.find({}, "badges fullName email location profileImageUrl").then(
+        (members) => {
+          resolve(members);
+        }
+      );
     });
   },
   getPlaylists: () => {
