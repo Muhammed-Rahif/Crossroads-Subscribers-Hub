@@ -43,7 +43,14 @@ function Footer(props) {
                 About
               </span>
               <span className="link">Chat Room</span>
-              <span className="link">Members</span>
+              <span
+                className="link"
+                onClick={() => {
+                  history.push("/members");
+                }}
+              >
+                Members
+              </span>
               <span className="link">Events</span>
               <span className="link"></span>
             </Grid>
