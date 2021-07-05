@@ -10,9 +10,13 @@ const openLocationInGMap = (locationName) => {
 const emailRegexPattern =
   /^(([^<>()[\].,;:\s@"]+(.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
+const urlRegexPattern =
+  "https?://(www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)";
+
 export {
   openUrlInNewTab,
   openLocationInGMap,
   emailRegexPattern,
+  urlRegexPattern,
   clientStorageKey,
 };

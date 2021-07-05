@@ -29,8 +29,9 @@ function MemberCard({
         <Avatar
           style={{ backgroundColor: theme.palette.secondary.main }}
           src={avatarSrc}
-          children={memberName.match(/\b(\w)/g).join("")}
-        />
+        >
+          {memberName.match(/\b(\w)/g).join("")}
+        </Avatar>
       </div>
       <div className="member-card-text">
         <Typography variant="h5">
@@ -47,60 +48,52 @@ function MemberCard({
       <div className="member-badges">
         {memberBadges.map((itm, key) => {
           return (
-            <div className="badge">
+            <div className="badge" key={key}>
               <Chip
                 icon={getIcon(itm)}
                 color="secondary"
                 label={toTitleCase(itm)}
                 clickable
-                key={key}
               />
             </div>
           );
         })}
       </div>
-      {user ? (
-        <div className="member-card-links">
-          <Button
-            color="secondary"
-            variant="contained"
-            className="link-btn"
-            disabled={!githubLink}
-            onClick={() => {
-              openUrlInNewTab(githubLink);
-            }}
-          >
-            <GitHub />
-          </Button>
-          <Button
-            color="secondary"
-            variant="contained"
-            className="link-btn"
-            disabled={!emailLink}
-            onClick={() => {
-              openUrlInNewTab("mailto:" + emailLink);
-            }}
-          >
-            <Email />
-          </Button>
-          <Button
-            color="secondary"
-            variant="contained"
-            className="link-btn"
-            disabled={!instagramLink}
-            onClick={() => {
-              openUrlInNewTab(instagramLink);
-            }}
-          >
-            <Instagram />
-          </Button>
-        </div>
-      ) : (
-        <p style={{ opacity: 0.5 }}>
-          Tip : You can view more details such as github, instagram, email from
-          here if you are a member of this community.
-        </p>
-      )}
+      <div className="member-card-links">
+        <Button
+          color="secondary"
+          variant="contained"
+          className="link-btn"
+          disabled={!githubLink}
+          onClick={() => {
+            openUrlInNewTab(githubLink);
+          }}
+        >
+          <GitHub />
+        </Button>
+        <Button
+          color="secondary"
+          variant="contained"
+          className="link-btn"
+          disabled={!emailLink}
+          onClick={() => {
+            openUrlInNewTab("mailto:" + emailLink);
+          }}
+        >
+          <Email />
+        </Button>
+        <Button
+          color="secondary"
+          variant="contained"
+          className="link-btn"
+          disabled={!instagramLink}
+          onClick={() => {
+            openUrlInNewTab(instagramLink);
+          }}
+        >
+          <Instagram />
+        </Button>
+      </div>
     </Paper>
   );
 }

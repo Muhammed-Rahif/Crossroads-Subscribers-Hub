@@ -23,6 +23,7 @@ import {
   Home,
   Info,
   SupervisedUserCircle,
+  VideoLibrary,
 } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
 
@@ -80,12 +81,18 @@ function SideDrawer() {
             </ListItemIcon>
             <ListItemText primary="Projects" />
           </ListItem>
-          {/* <ListItem button>
+          <ListItem button>
             <ListItemIcon>
               <Forum />
             </ListItemIcon>
             <ListItemText primary="Chat Room" />
-          </ListItem> */}
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <VideoLibrary />
+            </ListItemIcon>
+            <ListItemText primary="Videos" />
+          </ListItem>
           <ListItem button>
             <ListItemIcon>
               <EventNote />

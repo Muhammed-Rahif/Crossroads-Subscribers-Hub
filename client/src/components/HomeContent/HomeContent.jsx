@@ -102,6 +102,7 @@ function HomeContent(props) {
             events.map((itm, key) => {
               return (
                 <EventCard
+                  key={key}
                   title={itm.title}
                   description={itm.description}
                   date={itm.date}

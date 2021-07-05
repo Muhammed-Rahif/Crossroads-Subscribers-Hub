@@ -9,6 +9,7 @@ export const NotificationsPopoverContext = createContext(null);
 export const BackdropLoadingContext = createContext(null);
 export const AlertDialogContext = createContext(null);
 export const UserContext = createContext(null);
+export const EditProfilePopoverContext = createContext(null);
 
 export default function Contexts({ children }) {
   const [sideDrawer, setSideDrawer] = useState(false);
@@ -19,6 +20,7 @@ export default function Contexts({ children }) {
   const [backdropLoading, setBackdropLoading] = useState("Getting ready.!");
   const [alertDialog, setAlertDialog] = useState({ open: false });
   const [user, setUser] = useState();
+  const [editProfilePopover, setEditProfilePopover] = useState();
 
   const theme = useMemo(
     () =>
@@ -42,15 +44,23 @@ export default function Contexts({ children }) {
         <BackdropLoadingContext.Provider
           value={{ backdropLoading, setBackdropLoading }}
         >
-          <AlertDialogContext.Provider value={{ alertDialog, setAlertDialog }}>
-            <NotificationsPopoverContext.Provider
-              value={{ notificationsPopover, setNotificationsPopover }}
+          <EditProfilePopoverContext.Provider
+            value={{ editProfilePopover, setEditProfilePopover }}
+          >
+            <AlertDialogContext.Provider
+              value={{ alertDialog, setAlertDialog }}
             >
-              <SideDrawerContext.Provider value={{ sideDrawer, setSideDrawer }}>
-                {children}
-              </SideDrawerContext.Provider>
-            </NotificationsPopoverContext.Provider>
-          </AlertDialogContext.Provider>
+              <NotificationsPopoverContext.Provider
+                value={{ notificationsPopover, setNotificationsPopover }}
+              >
+                <SideDrawerContext.Provider
+                  value={{ sideDrawer, setSideDrawer }}
+                >
+                  {children}
+                </SideDrawerContext.Provider>
+              </NotificationsPopoverContext.Provider>
+            </AlertDialogContext.Provider>
+          </EditProfilePopoverContext.Provider>
         </BackdropLoadingContext.Provider>
       </UserContext.Provider>
     </ThemeContext.Provider>

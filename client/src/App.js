@@ -32,28 +32,13 @@ import { getUserData } from "./constants/apiReqs";
 function App() {
   const { theme } = useContext(ThemeContext);
   const { setBackdropLoading } = useContext(BackdropLoadingContext);
-  const { user, setUser } = useContext(UserContext);
-  const { alertDialog, setAlertDialog } = useContext(AlertDialogContext);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
-    getUserData().then((userData) => {
-      setUser(userData);
-      setTimeout(() => {
-        if (!userData) {
-          setAlertDialog({
-            open: true,
-            text: `Signing up or logging in is highly recommended.
-            Be a member of Crossroads subscribers community.
-            So you can access more information and get in touch with every member of this community.`,
-            title: "Want to explore more features. Sign up right now..",
-          });
-        }
-      }, 18000);
-    });
     window.onload = () => {
       setBackdropLoading(false);
     };
-  }, [setBackdropLoading, setUser, setAlertDialog, user]);
+  }, [setBackdropLoading]);
 
   return (
     <Router>

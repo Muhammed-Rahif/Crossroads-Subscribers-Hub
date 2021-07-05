@@ -61,10 +61,7 @@ module.exports = {
   },
   getUserData: (userId, clientId) => {
     return new Promise((resolve, reject) => {
-      UserModel.findOne(
-        { _id: userId, clientId },
-        "createdAt -_id fullName email location clientId badges"
-      )
+      UserModel.findOne({ _id: userId, clientId }, "-password -_id")
         .then((userData) => {
           if (userData) {
             resolve({ userData, statusCode: 200 });
@@ -135,6 +132,40 @@ module.exports = {
       ).then((events) => {
         resolve(events);
       });
+    });
+  },
+  updateUserProfile: (userId, userData) => {
+    return new Promise((resolve, reject) => {
+      UserModel.findByIdAndUpdate(userId, {
+        $set: { ...userData },
+        $inc: { versionKey: 1 },
+      })
+        .then((doc) => {
+          resolve({
+            statusCode: 200,
+            message: "Successfully updated user profile!",
+          });
+        })
+        .catch((err) => {
+          switch (err.code) {
+            case 11000:
+              if (userData.hasOwnProperty("email")) {
+                resolve({
+                  statusCode: 409,
+                  message: "This email is already exist with another account!",
+                });
+              } else {
+                resolve({
+                  statusCode: 409,
+                  message: "This entry is already exist with another account!",
+                });
+              }
+              break;
+            default:
+              resolve({ statusCode: 400, message: "Something went wrong!" });
+              break;
+          }
+        });
     });
   },
 };

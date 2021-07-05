@@ -4,14 +4,20 @@ import {
   Grid,
   Typography,
   CircularProgress,
-  Button,
+  TextField,
 } from "@material-ui/core";
 import { getIcon } from "../IconConfig/Badges";
 import "./ProfileContent.css";
-import { UserContext } from "../../contexts/Contexts";
+import {
+  EditProfilePopoverContext,
+  UserContext,
+} from "../../contexts/Contexts";
+import { Add, Edit } from "@material-ui/icons";
 
 function ProfileContent(props) {
   const { user } = useContext(UserContext);
+
+  const { setEditProfilePopover } = useContext(EditProfilePopoverContext);
 
   return (
     <div className="profile-content-wrapper">
@@ -20,13 +26,17 @@ function ProfileContent(props) {
           <>
             <Grid xs={12} sm={3}>
               <img
-                src="https://material-ui.com/static/images/avatar/2.jpg"
-                alt="Someone"
+                src={
+                  user.profileImageUrl
+                    ? user.profileImageUrl
+                    : "/def-avatar.png"
+                }
+                alt={user.fullName}
               />
             </Grid>
             <Grid item xs={12} sm={9} className="text-section">
-              <Typography variant="h4">
-                {user.fullName}
+              <Typography variant="h4" className="full-name">
+                {user.fullName + "\t"}
                 <Chip
                   className="location-chip"
                   color="secondary"
@@ -34,6 +44,18 @@ function ProfileContent(props) {
                   icon={getIcon("location")}
                   clickable
                 ></Chip>
+                <div className="edit-btn-wrapper">
+                  <Chip
+                    className="badge"
+                    color="primary"
+                    label="Edit Profile"
+                    icon={<Edit />}
+                    clickable
+                    onClick={() => {
+                      setEditProfilePopover(true);
+                    }}
+                  ></Chip>
+                </div>
               </Typography>
 
               <div className="badges">
@@ -48,31 +70,35 @@ function ProfileContent(props) {
                     ></Chip>
                   );
                 })}
+                <Chip
+                  className="badge"
+                  color="secondary"
+                  icon={<Add />}
+                  size="small"
+                  clickable
+                ></Chip>
               </div>
-              <div className="forms">
-                <Typography variant="subtitle1">
-                  Phone : <span className="link">1234567890</span>
-                </Typography>
-                <Typography variant="subtitle1">
-                  Address :{" "}
-                  <span className="">Mankada, Malappuram, Kerala.</span>
-                </Typography>
-                <Typography variant="subtitle1">
-                  Website :{" "}
-                  <span className="link">www.muhammed-rahif.github.io</span>
-                </Typography>
-              </div>
-              <div className="forms">
-                <Typography variant="subtitle1">
-                  GitHub : <span className="link">@Muhammed-Rahif</span>
-                </Typography>
-                <Typography variant="subtitle1">
-                  Instagram : <span className="link">@Muhammed_Rahif_</span>
-                </Typography>
-                <Typography variant="subtitle1">
-                  Email :{" "}
-                  <span className="link">@rahifpalliyalil@gmail.com</span>
-                </Typography>
+              <div className="profile">
+                <div className="content-div">
+                  <Typography>Email : {user.email}</Typography>
+                </div>
+                <div className="content-div">
+                  <Typography>
+                    Profile Image URL : {user.profileImageUrl}
+                  </Typography>
+                </div>
+                <div className="content-div">
+                  <Typography>Location : {user.location}</Typography>
+                </div>
+                <div className="content-div">
+                  <Typography>Website : {user.website}</Typography>
+                </div>
+                <div className="content-div">
+                  <Typography>Github : {user.github}</Typography>
+                </div>
+                <div className="content-div">
+                  <Typography>Instgram : {user.instgram}</Typography>
+                </div>
               </div>
               <hr className="hr" />
             </Grid>

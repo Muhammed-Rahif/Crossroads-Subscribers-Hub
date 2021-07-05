@@ -164,6 +164,7 @@ function NavBar(props) {
                       color="default"
                       onClick={() => {
                         history.push("/profile");
+                        handleProfileClose();
                       }}
                     >
                       View Profile

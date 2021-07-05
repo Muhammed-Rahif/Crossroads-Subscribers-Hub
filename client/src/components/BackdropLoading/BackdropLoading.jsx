@@ -6,7 +6,7 @@ import "./BackdropLoading.css";
 function BackdropLoading() {
   const { backdropLoading } = useContext(BackdropLoadingContext);
   return (
-    <Backdrop open={backdropLoading} className="backdrop-loading">
+    <Backdrop open={Boolean(backdropLoading)} className="backdrop-loading">
       <div className="dot-flashing"></div>
       <div className="text-container">
         <Typography variant="subtitle1">

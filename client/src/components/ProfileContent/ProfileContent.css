@@ -15,6 +15,15 @@
 .profile-content-wrapper .text-section .location-chip {
   margin-left: 1rem;
 }
+.profile-content-wrapper .full-name {
+  display: flex;
+  width: 75%;
+}
+.profile-content-wrapper .edit-btn-wrapper {
+  justify-self: flex-start;
+  align-self: flex-end;
+  margin-left: auto;
+}
 .profile-content-wrapper .text-section .badges {
   display: flex;
   align-items: center;
@@ -25,7 +34,7 @@
   text-transform: capitalize;
   margin-left: 0.5rem;
 }
-.profile-content-wrapper .text-section .forms {
+.profile-content-wrapper .text-section .profile {
   display: flex;
   align-items: flex-start;
   width: 100%;
@@ -33,15 +42,29 @@
   justify-content: center;
   flex-direction: column;
 }
-.profile-content-wrapper .text-section .forms .link:hover {
+.profile-content-wrapper .text-section .profile .link:hover {
   text-decoration: underline;
   cursor: pointer;
 }
+.profile-content-wrapper .text-section .profile .content-div {
+  margin-top: 1rem;
+  /* width: 75%; */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
 @media only screen and (max-width: 767px) {
+  .profile-content-wrapper .full-name {
+    display: inline;
+  }
   .profile-content-wrapper {
     padding: 1rem;
   }
   .profile-content-wrapper .text-section .location-chip {
     margin-left: 0rem;
+  }
+  .profile-content-wrapper .text-section .profile .content-div {
+    /* width: 100%; */
+    text-align: left;
   }
 }

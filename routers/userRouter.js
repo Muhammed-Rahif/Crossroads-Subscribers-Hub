@@ -68,7 +68,6 @@ router.post("/get-introduction", (req, res) => {
   userFunctions
     .getIntroduction(req.session.userData.userId)
     .then((introduction) => {
-      console.log(introduction);
       res.json({ introduction });
     });
 });
@@ -92,6 +91,20 @@ router.post("/get-events", (req, res) => {
   userFunctions.getEvents().then((events) => {
     res.json({ events });
   });
+});
+
+// Update user profile details
+router.post("/update-profile", (req, res) => {
+  console.log(req.body);
+  userFunctions
+    .updateUserProfile(req.session.userData.userId, req.body.userData)
+    .then((response) => {
+      if (response.statusCode === 200) {
+        res.status(response.statusCode).json({ response });
+      } else {
+        res.status(response.statusCode).json({ response });
+      }
+    });
 });
 
 module.exports = router;

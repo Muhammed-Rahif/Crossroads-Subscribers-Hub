@@ -1,0 +1,20 @@
+.app-bar {
+  position: relative;
+}
+.title {
+  flex: 1;
+}
+.edit-profile-body {
+  margin: auto;
+  width: 100%;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+}
+.edit-profile-body .form-title {
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.edit-profile-body .input-field {
+  margin-top: 1rem;
+}

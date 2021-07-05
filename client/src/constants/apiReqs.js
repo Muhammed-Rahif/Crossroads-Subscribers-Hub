@@ -105,6 +105,19 @@ const getPlaylists = () => {
   });
 };
 
+const updateProfile = (userData) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post("/api/update-profile", { userData })
+      .then((response) => {
+        resolve(response.data.response);
+      })
+      .catch((err) => {
+        resolve(err.response.data.response);
+      });
+  });
+};
+
 const getEvents = () => {
   return new Promise((resolve, reject) => {
     axios
@@ -127,4 +140,5 @@ export {
   getMembers,
   getPlaylists,
   getEvents,
+  updateProfile,
 };

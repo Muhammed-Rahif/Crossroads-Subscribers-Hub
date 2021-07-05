@@ -30,7 +30,7 @@
 }
 .inner-profile-popover {
   width: 22rem;
-  padding: 3rem;
+  padding: 1.5rem;
 }
 .inner-profile-popover .profile {
   display: flex;
@@ -45,12 +45,12 @@
   padding: 0.7rem;
   padding-bottom: 0rem;
 }
-.inner-profile-popover .profile-btns{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.inner-profile-popover .profile-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.profile-popover-wrapper .inner-profile-popover .profile-btns{
+.profile-popover-wrapper .inner-profile-popover .profile-btns {
   display: flex;
   align-items: center;
   justify-content: space-around;

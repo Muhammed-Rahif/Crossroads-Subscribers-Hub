@@ -81,9 +81,6 @@ function VideoCard({
             {btnText}
           </Button>
         </div>
-        <p style={{ opacity: 0.5 }}>
-          Tip : You can view more details from here by signing up.
-        </p>
       </div>
     </Paper>
   );
