@@ -80,7 +80,12 @@ function SideDrawer() {
             </ListItemIcon>
             <ListItemText primary="Members" />
           </ListItem>
-          <ListItem button>
+          <ListItem
+            button
+            onClick={() => {
+              history.push("projects");
+            }}
+          >
             <ListItemIcon>
               <FormatListNumbered />
             </ListItemIcon>

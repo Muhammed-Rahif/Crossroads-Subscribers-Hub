@@ -1,0 +1,27 @@
+.project-card-wrapper {
+  display: flex;
+  width: auto;
+  margin: 1rem;
+  flex-direction: column;
+  padding: 1rem;
+}
+.project-card-wrapper .badges {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  margin-top: 1rem;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.project-card-wrapper .badge {
+  margin: 0.2rem;
+}
+.project-card-wrapper .links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.project-card-wrapper .links .link {
+  margin: 0.2rem;
+}

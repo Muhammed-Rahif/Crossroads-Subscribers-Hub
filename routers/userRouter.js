@@ -93,6 +93,13 @@ router.post("/get-events", (req, res) => {
   });
 });
 
+// Get projects data
+router.post("/get-projects", (req, res) => {
+  userFunctions.getProjects().then((projects) => {
+    res.json({ projects });
+  });
+});
+
 // Update user profile details
 router.post("/update-profile", (req, res) => {
   console.log(req.body);

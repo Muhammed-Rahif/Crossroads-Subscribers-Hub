@@ -15,6 +15,12 @@
         </div>
         <br>
         <div class="form-outline">
+            <input value="<%=project.projectImageUrl%>" name="projectImageUrl" type="url" id="title"
+                class="form-control" required />
+            <label class="form-label" for="title">Project image url</label>
+        </div>
+        <br>
+        <div class="form-outline">
             <input value="<%=project.githubLink%>" type="url" required name="githubLink" class="form-control"
                 id="githubLink" />
             <label class="form-label" for="githubLink">Github repo link</label>

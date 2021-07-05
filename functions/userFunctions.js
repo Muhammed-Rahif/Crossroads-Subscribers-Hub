@@ -5,6 +5,7 @@ const UserModel = require("../db/models/users");
 const IntroductionModel = require("../db/models/introduction");
 const PlaylistModel = require("../db/models/playlists");
 const EventModel = require("../db/models/events");
+const ProjectModel = require("../db/models/projects");
 
 module.exports = {
   signUpUser: (userData) => {
@@ -133,6 +134,13 @@ module.exports = {
         "date time imageSrc title description btnLink btnText location"
       ).then((events) => {
         resolve(events);
+      });
+    });
+  },
+  getProjects: () => {
+    return new Promise((resolve, reject) => {
+      ProjectModel.find({}, "-id").then((projects) => {
+        resolve(projects);
       });
     });
   },

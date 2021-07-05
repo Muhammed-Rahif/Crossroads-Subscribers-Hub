@@ -10,6 +10,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Created</th>
+                        <th scope="col">Project Image</th>
                         <th scope="col">Project</th>
                         <th style="min-width: 22rem;" scope="col">Description</th>
                         <th scope="col">Github</th>
@@ -27,6 +28,9 @@
                         <tr>
                             <td>
                                 <%= projects[i].createdAt.toLocaleString("en-US"); %>
+                            </td>
+                            <td>
+                                <img src="<%= projects[i].projectImageUrl %>" alt="Not availiable" width="100%">
                             </td>
                             <td>
                                 <%= projects[i].title %>
