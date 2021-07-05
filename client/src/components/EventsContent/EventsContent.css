@@ -5,3 +5,10 @@
 .events-content-wrapper .title {
   text-align: center;
 }
+.events-content-wrapper .loading-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}

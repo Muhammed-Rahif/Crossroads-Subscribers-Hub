@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./MembersContent.css";
-import { Typography, Grid } from "@material-ui/core";
+import { Typography, Grid, CircularProgress } from "@material-ui/core";
 import MemberCard from "../../components/MemberCard/MemberCard";
 import { getMembers } from "../../constants/apiReqs";
 
 function MembersContent(props) {
   const [members, setMembers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getMembers().then((members) => {
+      setLoading(false);
       setMembers(members);
     });
   }, []);
@@ -20,7 +22,7 @@ function MembersContent(props) {
       </Typography>
       <hr className="hr" />
       <Grid container style={{ display: "flex", justifyContent: "center" }}>
-        {members.length > 0 ? (
+        {members.length > 0 &&
           members.map((itm, key) => {
             return (
               <Grid item xs={12} sm={key % 2 === 0 ? 4 : 3}>
@@ -36,11 +38,16 @@ function MembersContent(props) {
                 />
               </Grid>
             );
-          })
-        ) : (
+          })}
+        {!loading && members.length === 0 && (
           <p style={{ opacity: 0.8, margin: "auto", marginTop: "3rem" }}>
             No members found !
           </p>
+        )}
+        {loading && (
+          <div className="loading-wrapper">
+            <CircularProgress color="secondary" />
+          </div>
         )}
       </Grid>
     </div>

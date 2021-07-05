@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, CircularProgress } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { getEvents } from "../../constants/apiReqs";
 import "./EventsContent.css";
@@ -6,9 +6,11 @@ import EventCard from "../../components/EventCard/EventCard";
 
 function EventComponent(props) {
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getEvents().then((events) => {
+      setLoading(false);
       setEvents(events);
     });
   }, []);
@@ -20,10 +22,10 @@ function EventComponent(props) {
       </Typography>
       <hr className="hr" />
       <Grid container style={{ display: "flex", justifyContent: "center" }}>
-        {events.length > 0 ? (
+        {events.length > 0 &&
           events.map((itm, key) => {
             return (
-              <Grid item xs={12} sm={key % 2 === 0 ? 4 : 3}>
+              <Grid item xs={12} sm={4}>
                 <EventCard
                   key={key}
                   key={key}
@@ -38,11 +40,16 @@ function EventComponent(props) {
                 />
               </Grid>
             );
-          })
-        ) : (
+          })}
+        {!loading && events.length === 0 && (
           <p style={{ opacity: 0.8, margin: "auto", marginTop: "3rem" }}>
             No events found !
           </p>
+        )}
+        {loading && (
+          <div className="loading-wrapper">
+            <CircularProgress color="secondary" />
+          </div>
         )}
       </Grid>
     </div>
