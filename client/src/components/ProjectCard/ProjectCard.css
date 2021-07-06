@@ -1,8 +1,5 @@
 .project-card-wrapper {
-  display: flex;
-  width: auto;
   margin: 1rem;
-  flex-direction: column;
   padding: 1rem;
 }
 .project-card-wrapper .badges {

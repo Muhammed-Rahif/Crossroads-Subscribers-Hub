@@ -21,20 +21,22 @@ function ProjectsContent(props) {
         Projects
       </Typography>
       <hr className="hr" />
-      <Grid xs={12} sm={4}>
+      <Grid container style={{ display: "flex", justifyContent: "center" }}>
         {projects.length > 0 &&
           projects.map((project) => (
-            <ProjectCard
-              projectImageUrl={project.projectImageUrl}
-              title={project.title}
-              description={project.description}
-              githubLink={project.githubLink}
-              hostedIn={project.hostedIn}
-              contributors={project.contributors}
-              usedTechnologies={project.usedTechnologies}
-              usedLanguages={project.usedLanguages}
-              stableBranch={project.stableBranch}
-            />
+            <Grid item xs={12} sm={4}>
+              <ProjectCard
+                projectImageUrl={project.projectImageUrl}
+                title={project.title}
+                description={project.description}
+                githubLink={project.githubLink}
+                hostedIn={project.hostedIn}
+                contributors={project.contributors}
+                usedTechnologies={project.usedTechnologies}
+                usedLanguages={project.usedLanguages}
+                stableBranch={project.stableBranch}
+              />
+            </Grid>
           ))}
       </Grid>
       {!loading && projects.length === 0 && (

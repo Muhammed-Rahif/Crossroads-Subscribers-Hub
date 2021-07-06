@@ -30,7 +30,12 @@ function ProjectCard({
 
   return (
     <Paper className="project-card-wrapper" elevation={3}>
-      <img src={projectImageUrl} alt={title} style={{ marginBottom: "1rem" }} />
+      <img
+        src={projectImageUrl}
+        alt={title}
+        style={{ marginBottom: "1rem" }}
+        width="100%"
+      />
       <Typography variant="h5">{title}</Typography>
       <hr className="hr" />
       <Typography variant="subtitle1">{description}</Typography>

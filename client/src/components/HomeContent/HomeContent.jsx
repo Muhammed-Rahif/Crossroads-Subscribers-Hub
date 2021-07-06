@@ -145,20 +145,23 @@ function HomeContent(props) {
             </Paper>
           </Grid>
         )}
-        <Grid sm={6} item xs={12}>
-          <h2 className="card-title">Members</h2>
+        <hr className="hr" />
+        <h2 className="card-title">Members</h2>
+        <Grid container style={{ display: "flex", justifyContent: "center" }}>
           {members.map((itm, key) => {
             return (
-              <MemberCard
-                key={key}
-                memberName={itm.fullName}
-                memberBadges={itm.badges}
-                emailLink={itm.email}
-                githubLink={itm.github}
-                instagramLink={itm.instagram}
-                avatarSrc={itm.profileImageUrl}
-                location={itm.location}
-              />
+              <Grid item xs={12} sm={key % 2 === 0 ? 4 : 3}>
+                <MemberCard
+                  key={key}
+                  memberName={itm.fullName}
+                  memberBadges={itm.badges}
+                  emailLink={itm.email}
+                  githubLink={itm.github}
+                  instagramLink={itm.instagram}
+                  avatarSrc={itm.profileImageUrl}
+                  location={itm.location}
+                />
+              </Grid>
             );
           })}
         </Grid>
