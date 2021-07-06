@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getProjects } from "../../constants/apiReqs";
 import ProjectCard from "../ProjectCard/ProjectCard";
 import "./ProjectsContent.css";
-import { Typography, Grid, CircularProgress } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
+import CircleLoading from "../CircleLoading/CircleLoading";
 
 function ProjectsContent(props) {
   const [projects, setProjects] = useState([]);
@@ -44,11 +45,7 @@ function ProjectsContent(props) {
           No projects found !
         </p>
       )}
-      {loading && (
-        <div className="loading-wrapper">
-          <CircularProgress color="secondary" />
-        </div>
-      )}
+      {loading && <CircleLoading />}
     </div>
   );
 }

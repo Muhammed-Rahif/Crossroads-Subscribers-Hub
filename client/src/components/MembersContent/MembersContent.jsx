@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./MembersContent.css";
-import { Typography, Grid, CircularProgress } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 import MemberCard from "../../components/MemberCard/MemberCard";
 import { getMembers } from "../../constants/apiReqs";
+import CircleLoading from "../CircleLoading/CircleLoading";
 
 function MembersContent(props) {
   const [members, setMembers] = useState([]);
@@ -44,11 +45,7 @@ function MembersContent(props) {
             No members found !
           </p>
         )}
-        {loading && (
-          <div className="loading-wrapper">
-            <CircularProgress color="secondary" />
-          </div>
-        )}
+        {loading && <CircleLoading />}
       </Grid>
     </div>
   );

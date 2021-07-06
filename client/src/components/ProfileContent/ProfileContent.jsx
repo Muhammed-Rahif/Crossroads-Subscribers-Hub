@@ -1,11 +1,5 @@
 import React, { useContext } from "react";
-import {
-  Chip,
-  Grid,
-  Typography,
-  CircularProgress,
-  TextField,
-} from "@material-ui/core";
+import { Chip, Grid, Typography, TextField } from "@material-ui/core";
 import { getIcon } from "../IconConfig/Badges";
 import "./ProfileContent.css";
 import {
@@ -13,6 +7,7 @@ import {
   UserContext,
 } from "../../contexts/Contexts";
 import { Add, Edit } from "@material-ui/icons";
+import CircleLoading from "../CircleLoading/CircleLoading";
 
 function ProfileContent(props) {
   const { user } = useContext(UserContext);
@@ -104,14 +99,7 @@ function ProfileContent(props) {
             <hr className="hr" style={{ marginTop: "5rem" }} />
           </>
         ) : (
-          <CircularProgress
-            color="secondary"
-            style={{
-              margin: "auto",
-              marginTop: "8rem",
-              marginBottom: "8rem",
-            }}
-          />
+          <CircleLoading />
         )}
       </Grid>
     </div>

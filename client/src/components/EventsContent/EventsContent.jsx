@@ -1,8 +1,9 @@
-import { Grid, Typography, CircularProgress } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { getEvents } from "../../constants/apiReqs";
 import "./EventsContent.css";
 import EventCard from "../../components/EventCard/EventCard";
+import CircleLoading from "../CircleLoading/CircleLoading";
 
 function EventComponent(props) {
   const [events, setEvents] = useState([]);
@@ -46,11 +47,7 @@ function EventComponent(props) {
             No events found !
           </p>
         )}
-        {loading && (
-          <div className="loading-wrapper">
-            <CircularProgress color="secondary" />
-          </div>
-        )}
+        {loading && <CircleLoading />}
       </Grid>
     </div>
   );

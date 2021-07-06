@@ -1,8 +1,9 @@
-import { Typography, Grid, CircularProgress } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { getVideos } from "../../constants/apiReqs";
 import "./VideosContent.css";
 import VideoCard from "../VideoCard/VideoCard";
+import CircleLoading from "../CircleLoading/CircleLoading";
 
 function VideosContent(props) {
   const [videos, setVideos] = useState([]);
@@ -18,7 +19,7 @@ function VideosContent(props) {
   return (
     <div className="videos-content-wrapper">
       <Typography variant="h5" className="title">
-        VIdeos
+        Videos
       </Typography>
       <hr className="hr" />
       <Grid container style={{ display: "flex", justifyContent: "center" }}>
@@ -44,11 +45,7 @@ function VideosContent(props) {
           No videos found !
         </p>
       )}
-      {loading && (
-        <div className="loading-wrapper">
-          <CircularProgress color="secondary" />
-        </div>
-      )}
+      {loading && <CircleLoading />}
     </div>
   );
 }

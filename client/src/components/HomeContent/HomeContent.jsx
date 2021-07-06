@@ -1,11 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Grid,
-  Paper,
-  Typography,
-  Button,
-  CircularProgress,
-} from "@material-ui/core";
+import { Grid, Paper, Typography, Button } from "@material-ui/core";
 import "./HomeContent.css";
 import MemberCard from "../MemberCard/MemberCard";
 import EventCard from "../EventCard/EventCard";
@@ -18,6 +12,7 @@ import {
   getPlaylists,
 } from "../../constants/apiReqs";
 import { UserContext } from "../../contexts/Contexts";
+import CircleLoading from "../CircleLoading/CircleLoading";
 
 function HomeContent(props) {
   const { user } = useContext(UserContext);
@@ -84,17 +79,7 @@ function HomeContent(props) {
             );
           })
         ) : (
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "8rem",
-              marginBottom: "8rem",
-            }}
-          >
-            <CircularProgress color="secondary" />
-          </div>
+          <CircleLoading />
         )}
         <Grid sm={6} item xs={12}>
           <h2 className="card-title">Upcoming Events</h2>
@@ -114,6 +99,7 @@ function HomeContent(props) {
                 />
               );
             })}
+          {playlists.length === 0 && <CircleLoading />}
         </Grid>
 
         {!user && (
@@ -164,6 +150,7 @@ function HomeContent(props) {
               </Grid>
             );
           })}
+          {playlists.length === 0 && <CircleLoading />}
         </Grid>
       </Grid>
     </div>
