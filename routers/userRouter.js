@@ -100,6 +100,13 @@ router.post("/get-projects", (req, res) => {
   });
 });
 
+// Get videos data
+router.post("/get-videos", (req, res) => {
+  userFunctions.getVideos().then((videos) => {
+    res.json({ videos });
+  });
+});
+
 // Update user profile details
 router.post("/update-profile", (req, res) => {
   console.log(req.body);

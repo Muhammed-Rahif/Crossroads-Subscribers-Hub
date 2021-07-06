@@ -14,6 +14,9 @@ function VideoCard({
   btnLink = "",
   numOfVideos = false,
   btnText = "Watch video",
+  tags = [],
+  madeFor = "",
+  uploadedBy = "",
 }) {
   const { user } = useContext(UserContext);
 
@@ -38,9 +41,12 @@ function VideoCard({
           {user &&
             topicsCovered.map((itm, key) => {
               return (
-                <Chip label={itm} key={key} color="secondary" className="badge">
-                  C++
-                </Chip>
+                <Chip
+                  label={itm}
+                  key={key}
+                  color="secondary"
+                  className="badge"
+                />
               );
             })}
         </div>
@@ -58,12 +64,36 @@ function VideoCard({
                   key={key}
                   color="secondary"
                   className="badge"
-                ></Chip>
+                />
+              );
+            })}
+        </div>
+        {user && <Typography variant="h6">Tags :-</Typography>}
+        <div className="badges">
+          {user &&
+            tags.map((itm, key) => {
+              return (
+                <Chip
+                  label={itm}
+                  key={key}
+                  color="secondary"
+                  className="badge"
+                />
               );
             })}
         </div>
         <hr className="hr" />
         <Typography variant="subtitle1">{description}</Typography>
+        {madeFor && (
+          <Typography variant="subtitle2" style={{ marginTop: "0.5rem" }}>
+            Video made for :- {madeFor}
+          </Typography>
+        )}
+        {uploadedBy && (
+          <Typography variant="subtitle2" style={{ marginTop: "0.5rem" }}>
+            Video uploaded by :- {uploadedBy}
+          </Typography>
+        )}
         {numOfVideos && (
           <Typography variant="subtitle2" style={{ marginTop: "0.5rem" }}>
             Number of videos :- {numOfVideos}

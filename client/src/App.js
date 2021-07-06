@@ -30,6 +30,7 @@ import Login from "./pages/Login";
 import Members from "./pages/Members";
 import Events from "./pages/Events";
 import Projects from "./pages/Projects";
+import Videos from "./pages/Videos";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -67,6 +68,9 @@ function App() {
           </Route>
           <Route path="/events">
             <Events />
+          </Route>
+          <Route path="/videos">
+            <Videos />
           </Route>
           <Route path="/projects">
             {user ? <Projects /> : <Redirect to="/sign-up" />}

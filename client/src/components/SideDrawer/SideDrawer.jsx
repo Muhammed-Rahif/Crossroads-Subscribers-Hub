@@ -97,7 +97,12 @@ function SideDrawer() {
             </ListItemIcon>
             <ListItemText primary="Chat Room" />
           </ListItem>
-          <ListItem button>
+          <ListItem
+            button
+            onClick={() => {
+              history.push("videos");
+            }}
+          >
             <ListItemIcon>
               <VideoLibrary />
             </ListItemIcon>

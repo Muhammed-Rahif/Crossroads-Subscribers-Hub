@@ -144,6 +144,19 @@ const getEvents = () => {
   });
 };
 
+const getVideos = () => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post("/api/get-videos")
+      .then((response) => {
+        resolve(response.data.videos);
+      })
+      .catch((err) => {
+        resolve([]);
+      });
+  });
+};
+
 export {
   signUpUser,
   getUserData,
@@ -154,5 +167,6 @@ export {
   getPlaylists,
   getEvents,
   getProjects,
+  getVideos,
   updateProfile,
 };

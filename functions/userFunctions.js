@@ -6,6 +6,7 @@ const IntroductionModel = require("../db/models/introduction");
 const PlaylistModel = require("../db/models/playlists");
 const EventModel = require("../db/models/events");
 const ProjectModel = require("../db/models/projects");
+const VideoModel = require("../db/models/videos");
 
 module.exports = {
   signUpUser: (userData) => {
@@ -141,6 +142,13 @@ module.exports = {
     return new Promise((resolve, reject) => {
       ProjectModel.find({}, "-id").then((projects) => {
         resolve(projects);
+      });
+    });
+  },
+  getVideos: () => {
+    return new Promise((resolve, reject) => {
+      VideoModel.find({}, "-id").then((videos) => {
+        resolve(videos);
       });
     });
   },
