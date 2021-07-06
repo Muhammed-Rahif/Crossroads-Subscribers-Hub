@@ -1,8 +1,14 @@
-import { Paper, Typography, Chip, Button, IconButton } from "@material-ui/core";
+import { Paper, Typography, Chip, Button, Tooltip } from "@material-ui/core";
 import React from "react";
 import "./ProjectCard.css";
 import { getIcon } from "../IconConfig/Badges";
-import { AccountTreeTwoTone, GitHub, Launch } from "@material-ui/icons";
+import {
+  AccountTreeTwoTone,
+  Code,
+  FlashOn,
+  GitHub,
+  Launch,
+} from "@material-ui/icons";
 import { openUrlInNewTab } from "../../constants/constants";
 
 function ProjectCard({
@@ -51,7 +57,7 @@ function ProjectCard({
           return (
             <div className="badge" key={key}>
               <Chip
-                icon={getIcon("contributor")}
+                icon={<FlashOn />}
                 color="secondary"
                 label={toTitleCase(technology)}
                 clickable
@@ -67,7 +73,7 @@ function ProjectCard({
           return (
             <div className="badge" key={key}>
               <Chip
-                icon={getIcon("contributor")}
+                icon={<Code />}
                 color="secondary"
                 label={toTitleCase(language)}
                 clickable
@@ -78,36 +84,42 @@ function ProjectCard({
       </div>
       <hr className="hr" />
       <div className="links">
-        <Button
-          variant="contained"
-          color="secondary"
-          className="link"
-          onClick={() => {
-            openUrlInNewTab(githubLink);
-          }}
-        >
-          <GitHub />
-        </Button>
-        <Button
-          variant="contained"
-          color="secondary"
-          className="link"
-          onClick={() => {
-            openUrlInNewTab(hostedIn);
-          }}
-        >
-          <Launch />
-        </Button>
-        <Button
-          variant="contained"
-          color="secondary"
-          className="link"
-          onClick={() => {
-            openUrlInNewTab(githubLink + "tree/" + stableBranch);
-          }}
-        >
-          <AccountTreeTwoTone />
-        </Button>
+        <Tooltip title="Live hosted" arrow interactive>
+          <Button
+            variant="contained"
+            color="secondary"
+            className="link"
+            onClick={() => {
+              openUrlInNewTab(githubLink);
+            }}
+          >
+            <GitHub />
+          </Button>
+        </Tooltip>
+        <Tooltip title="Live hosted" arrow interactive>
+          <Button
+            variant="contained"
+            color="secondary"
+            className="link"
+            onClick={() => {
+              openUrlInNewTab(hostedIn);
+            }}
+          >
+            <Launch />
+          </Button>
+        </Tooltip>
+        <Tooltip title="Stable branch" arrow interactive>
+          <Button
+            variant="contained"
+            color="secondary"
+            className="link"
+            onClick={() => {
+              openUrlInNewTab(githubLink + "/tree/" + stableBranch);
+            }}
+          >
+            <AccountTreeTwoTone />
+          </Button>
+        </Tooltip>
       </div>
     </Paper>
   );
