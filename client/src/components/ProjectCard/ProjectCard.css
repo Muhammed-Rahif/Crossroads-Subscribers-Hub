@@ -10,6 +10,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-around;
+  width: 100%;
 }
 .project-card-wrapper .badge {
   margin: 0.2rem;

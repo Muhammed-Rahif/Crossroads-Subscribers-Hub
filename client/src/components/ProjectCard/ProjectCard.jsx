@@ -57,7 +57,7 @@ function ProjectCard({
       </div>
       <br />
       <Typography variant="subtitle1">Technologies :-</Typography>
-      <div className="badges">
+      <div className="badges" style={{ flexDirection: "row" }}>
         {usedTechnologies.map((technology, key) => {
           return (
             <div className="badge" key={key}>
