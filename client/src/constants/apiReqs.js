@@ -157,6 +157,19 @@ const getVideos = () => {
   });
 };
 
+const sendQuestion = (question) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post("/api/send-question", { question })
+      .then((response) => {
+        resolve(response.data.response);
+      })
+      .catch((err) => {
+        resolve(err.response.data.response);
+      });
+  });
+};
+
 export {
   signUpUser,
   getUserData,
@@ -168,5 +181,6 @@ export {
   getEvents,
   getProjects,
   getVideos,
+  sendQuestion,
   updateProfile,
 };

@@ -7,6 +7,7 @@ const PlaylistModel = require("../db/models/playlists");
 const EventModel = require("../db/models/events");
 const ProjectModel = require("../db/models/projects");
 const VideoModel = require("../db/models/videos");
+const QuestionModel = require("../db/models/questions");
 
 module.exports = {
   signUpUser: (userData) => {
@@ -183,6 +184,20 @@ module.exports = {
               resolve({ statusCode: 400, message: "Something went wrong!" });
               break;
           }
+        });
+    });
+  },
+  createQuestion: (question, userId = null) => {
+    return new Promise((resolve, reject) => {
+      QuestionModel.create({ question, userId })
+        .then((doc) => {
+          resolve({
+            statusCode: 201,
+            message: "Successfully created a question.",
+          });
+        })
+        .catch((err) => {
+          resolve({ statusCode: 400, message: "Something went wrong!" });
         });
     });
   },

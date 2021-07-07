@@ -121,4 +121,13 @@ router.post("/update-profile", (req, res) => {
     });
 });
 
+// Creating a new question from client
+router.post("/send-question", (req, res) => {
+  userFunctions
+    .createQuestion(req.body.question, req.session.userData.userId)
+    .then((response) => {
+      res.status(response.statusCode).json({ response });
+    });
+});
+
 module.exports = router;

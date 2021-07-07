@@ -1,9 +1,40 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, TextField, Typography } from "@material-ui/core";
 import { openUrlInNewTab } from "../../constants/constants";
+import { useForm } from "react-hook-form";
 import "./AboutContent.css";
+import { sendQuestion } from "../../constants/apiReqs";
+import { AlertDialogContext } from "../../contexts/Contexts";
 
 function AboutContent(props) {
+  const {
+    handleSubmit,
+    formState: { errors },
+    register,
+    setValue,
+  } = useForm();
+
+  const { setAlertDialog } = useContext(AlertDialogContext);
+
+  const onSubmit = (data, e) => {
+    sendQuestion(data.question).then((response) => {
+      if (response.statusCode === 201) {
+        setAlertDialog({
+          open: true,
+          title: "Sended!",
+          text: "Successfully sended your question to admin panel... Thank you for supporting us!",
+        });
+      } else {
+        setAlertDialog({
+          open: true,
+          title: "Ooops!",
+          text: "Something went wrong! Try again..",
+        });
+      }
+      e.target.reset();
+    });
+  };
+
   return (
     <div className="about-content-wrapper">
       <div className="inner-section">
@@ -47,7 +78,7 @@ function AboutContent(props) {
       </div>
       <hr className="hr" />
       <div className="inner-section">
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Typography variant="subtitle1" style={{ marginBottom: "1rem" }}>
             Have any doubt or question 🤔️ ? Send it right now. Answer will be
             shown up here when the admin replies... 🤓️
@@ -62,6 +93,17 @@ function AboutContent(props) {
             rows={5}
             style={{ marginBottom: "1rem" }}
             required
+            {...register("question", {
+              required: "Fill your question here.",
+              minLength: {
+                value: 4,
+                message: "Minimum 4 charecters.",
+              },
+            })}
+            error={errors.hasOwnProperty("question")}
+            helperText={
+              errors.hasOwnProperty("question") && errors.question.message
+            }
           />
           <div className="btn-container">
             <Button
