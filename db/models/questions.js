@@ -4,7 +4,7 @@ const questionsSchema = new mongoose.Schema(
   {
     createdAt: { type: Date, required: true, default: new Date() },
     question: { type: String, required: true },
-    userId: { type: String, required: false },
+    userId: { type: mongoose.Schema.Types.ObjectId, required: false },
   },
   {
     versionKey: "versionKey",

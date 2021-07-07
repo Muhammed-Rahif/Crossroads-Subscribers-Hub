@@ -1,0 +1,38 @@
+<div class="p-3 pt-4 mt-5">
+    <h4 class="text-center">Questions recieved</h4>
+    <% if(questions.length> 0) { %>
+        <div class="table-responsive">
+            <table style="overflow: scroll;" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Created</th>
+                        <th scope="col">Question</th>
+                        <th scope="col">User name</th>
+                        <th scope="col">User ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0; i < questions.length; i++){ %>
+                        <tr>
+                            <td>
+                                <%= questions[i].createdAt.toLocaleString("en-US"); %>
+                            </td>
+                            <td>
+                                <%= questions[i].question %>
+                            </td>
+                            <td>
+                                <%= questions[i].userName ? questions[i].userName : "Unknown" %>
+                            </td>
+                            <td>
+                                <%= questions[i].userId ? questions[i].userId : "Unknown" %>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+        <% }else{ %>
+            <hr>
+            <h6 class="text-center">No questions found!</h6>
+            <% } %>
+</div>

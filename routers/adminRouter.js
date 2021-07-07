@@ -66,6 +66,13 @@ router.get("/projects", verifyAdminLogin, (req, res) => {
   });
 });
 
+// Questions page
+router.get("/questions", verifyAdminLogin, (req, res) => {
+  adminFunctions.getQuestions().then((questions) => {
+    res.render("pages/questions", { questions });
+  });
+});
+
 // Create event
 router.get("/create/event", verifyAdminLogin, (req, res) => {
   res.render("pages/create-event");

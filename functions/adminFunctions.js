@@ -7,6 +7,7 @@ const PlaylistModel = require("../db/models/playlists");
 const ProjectModel = require("../db/models/projects");
 const VideoModel = require("../db/models/videos");
 const IntroductionModel = require("../db/models/introduction");
+const QuestionModel = require("../db/models/questions");
 
 module.exports = {
   login: (adminData) => {
@@ -267,6 +268,37 @@ module.exports = {
     return new Promise((resolve, reject) => {
       VideoModel.count().then((VideosCount) => {
         resolve(VideosCount);
+      });
+    });
+  },
+  getQuestions: () => {
+    return new Promise((resolve, reject) => {
+      QuestionModel.aggregate([
+        {
+          $lookup: {
+            from: "users",
+            localField: "userId",
+            foreignField: "_id",
+            as: "users_array",
+          },
+        },
+        {
+          $addFields: {
+            userName: "$users_array.fullName",
+          },
+        },
+        {
+          $unwind: "$userName",
+        },
+        {
+          $project: {
+            users_array: 0,
+          },
+        },
+      ]).then((questions) => {
+        QuestionModel.find({ userId: null }).then((unknownQuestions) => {
+          resolve([...questions, ...unknownQuestions]);
+        });
       });
     });
   },
