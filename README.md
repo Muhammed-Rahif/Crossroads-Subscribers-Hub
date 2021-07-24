@@ -23,11 +23,12 @@
 
 <hr >
 
+<!-- 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+Write about 1-2 paragraphs describing the purpose of your project. -->
 
-## 🧐 Screenshots <a name = "screenshots"></a>
+## 📱️ Screenshots <a name = "screenshots"></a>
 
 ### Chat app ( Branch `react` )
 
