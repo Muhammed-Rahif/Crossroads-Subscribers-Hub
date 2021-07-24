@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "repository": "git@github.com:Muhammed-Rahif/CR-Chat.git",
+  "repository": "git@github.com:Muhammed-Rahif/Crossroads-Subscribers-Hub.git",
   "author": "Muhammed Rahif <rahifpalliyalil@gmail.com>",
   "license": "MIT",
   "dependencies": {
