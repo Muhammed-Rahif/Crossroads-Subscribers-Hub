@@ -31,7 +31,6 @@ Write about 1-2 paragraphs describing the purpose of your project.
 
 ### Chat app ( Branch `react` )
 
-<br />
 <div align="center">
   <img width="19.5%" src="assets/screenshots/v1-chat-light.png" alt="Shot 1"/>
   <img width="19.5%" src="assets/screenshots/v1-chat-dark.png" alt="Shot 2"/>
@@ -42,7 +41,6 @@ Write about 1-2 paragraphs describing the purpose of your project.
 
 ### Subscribers Hub ( Branch `version2` )
 
-<br />
 <div align="center">
   <img width="24.6%" src="assets/screenshots/v2-home-light.png" alt="Shot 1"/>
   <img width="24.6%" src="assets/screenshots/v2-home-dark.png" alt="Shot 2"/>
